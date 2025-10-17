@@ -1,0 +1,339 @@
+personal_info:
+  name: Soham Manish Sawalakhe
+  title: Software Developer | AI/ML Engineer | Full Stack Developer
+  tagline: Computer Engineering Student | AI/ML Enthusiast | Building Innovative Solutions
+  email: sohamsawalakhe@gmail.com
+  phone: '7558496659'
+  location: Amravati, Maharashtra
+  github: https://github.com/SohamSawalakhe
+  linkedin: https://www.linkedin.com/in/soham-sawalakhe-901366278/
+  birthday: 26 April 2004
+  age: 21
+  degree: B.Tech (Computer Engineering)
+  freelance: Available
+  profile_image: WhatsApp-Image-2025-07-05-at-09.49.44_340bdf10.jpg
+professional_summary: Results-driven Computer Engineering student with strong expertise
+  in Python, AI/ML, and Full-Stack Web Development. Experienced in building scalable
+  applications, implementing advanced algorithms, and integrating secure systems.
+  Proven track record of delivering high-impact projects with clean, maintainable
+  code. Passionate about problem-solving, data-driven insights, and innovative software
+  solutions.
+about: Hello! I'm Soham, a passionate Software Developer and Computer Engineering
+  student based in Amravati, Maharashtra. I specialize in building innovative solutions
+  using cutting-edge technologies like Python, AI/ML, and modern web frameworks. With
+  hands-on experience in developing full-stack applications, machine learning models,
+  and secure systems, I love creating applications that solve real-world problems.
+  My journey in technology has been marked by continuous learning, participating in
+  hackathons, and publishing research in Scopus-indexed journals. I'm committed to
+  leveraging technology to create impactful solutions that make a difference.
+facts:
+  projects: 20+
+  clients: 15+
+  support_hours: 500+
+  certifications: 8+
+skills:
+  Languages:
+  - name: Python
+    level: 95
+  - name: JavaScript
+    level: 85
+  - name: Java
+    level: 80
+  - name: SQL
+    level: 90
+  - name: HTML/CSS
+    level: 90
+  Frameworks & Tools:
+  - name: Django
+    level: 90
+  - name: Flask
+    level: 85
+  - name: React
+    level: 80
+  - name: Node.js
+    level: 80
+  - name: Bootstrap
+    level: 90
+  - name: REST APIs
+    level: 95
+  AI/ML & Data:
+  - name: Scikit-learn
+    level: 85
+  - name: TensorFlow/Keras
+    level: 80
+  - name: Pandas/NumPy
+    level: 90
+  - name: Power BI
+    level: 85
+  - name: Machine Learning
+    level: 85
+  Tools & Technologies:
+  - name: Git/GitHub
+    level: 95
+  - name: VS Code
+    level: 90
+  - name: Docker
+    level: 75
+  - name: AWS
+    level: 70
+  - name: MongoDB
+    level: 85
+education:
+- degree: B.Tech in Computer Engineering
+  institution: Government College of Engineering, Yavatmal
+  period: 2021 - 2025
+  score: 'CGPA: 8.26/10'
+  description: Pursuing Bachelor's degree in Computer Engineering with focus on AI/ML
+    and Full Stack Development. Active participant in technical events, hackathons,
+    and research activities. Published research paper in Scopus indexed journal.
+- degree: Higher Secondary (HSC)
+  institution: Bhartiya Mahavidyalaya, Amravati
+  period: 2020 - 2021
+  score: 84.80%
+  description: Completed Higher Secondary education with distinction, specializing
+    in Science stream with Mathematics and Computer Science.
+- degree: Secondary (SSC)
+  institution: Dnyanmata High School, Amravati
+  period: '2019'
+  score: 77.6%
+  description: Completed Secondary education with good academic performance and active
+    participation in extracurricular activities.
+experience:
+- role: Software Developer Intern
+  company: TCS (Tata Consultancy Services)
+  period: June 2025 - Present
+  location: India
+  type: Internship
+  responsibilities:
+  - Working on enterprise software development projects
+  - Collaborating with development teams on code reviews and implementation
+  - Participating in agile development methodologies
+  - Learning industry best practices and professional software development
+- role: Full Stack Developer
+  company: Freelance Projects
+  period: 2023 - Present
+  location: Amravati, Maharashtra
+  type: Freelance
+  responsibilities:
+  - Developed multiple full-stack web applications using Django, Flask, and React
+  - Implemented AI/ML models for various projects including image recognition and
+    data analysis
+  - Built REST APIs for seamless integration between frontend and backend systems
+  - Managed databases using MySQL and MongoDB for efficient data storage
+  - Collaborated with clients to understand requirements and deliver custom solutions
+- role: Technical Volunteer & Class Representative
+  company: NSS & GCOE Yavatmal
+  period: 2021 - 2024
+  location: GCOE, Yavatmal
+  type: Leadership
+  responsibilities:
+  - Led 60+ peers as Class Representative, facilitating communication between students
+    and faculty
+  - Volunteered in 100+ hours of community service through National Service Scheme
+  - Organized technical workshops, coding competitions, and awareness programs
+  - Mentored junior students in programming and project development
+certifications:
+- name: Google Cybersecurity Professional Certificate
+  issuer: Google Career Certificates
+  date: '2024'
+  description: 'Comprehensive training in cybersecurity fundamentals, security operations,
+    threat analysis, network security, and incident response. Skills: Python, Linux,
+    SQL, SIEM tools, IDS.'
+  skills:
+  - Python
+  - Linux
+  - SQL
+  - SIEM Tools
+  - Network Security
+  - Threat Analysis
+  badge_url: https://www.credly.com/org/googlecareercertificates/badge/google-cybersecurity-certificate
+- name: Microsoft & LinkedIn - Generative AI
+  issuer: Microsoft & LinkedIn Learning
+  date: '2024'
+  description: Advanced training in Generative AI technologies, large language models,
+    prompt engineering, and their practical applications in software development.
+  skills:
+  - Generative AI
+  - Prompt Engineering
+  - ChatGPT
+  - Microsoft Copilot
+  badge_url: https://www.linkedin.com/learning/paths/career-essentials-in-generative-ai-by-microsoft-and-linkedin
+- name: Google AI Essentials
+  issuer: Google
+  date: '2024'
+  description: Foundational knowledge in artificial intelligence, machine learning
+    concepts, and AI-powered application development.
+  skills:
+  - Artificial Intelligence
+  - Machine Learning
+  - AI Applications
+  badge_url: https://grow.google/certificates/
+- name: Cisco Networking Academy - Data Analytics Essentials
+  issuer: Cisco
+  date: '2024'
+  description: Training in data analytics fundamentals, visualization techniques,
+    and statistical analysis. Hands-on activities using Excel, SQL, Tableau and other
+    tools.
+  skills:
+  - Data Analytics
+  - Excel
+  - SQL
+  - Tableau
+  - Data Visualization
+  badge_url: https://www.credly.com/org/cisco/badge/data-analytics-essentials
+- name: Power BI Masterclass
+  issuer: Udemy
+  date: '2023'
+  description: Expert-level training in Microsoft Power BI for data visualization,
+    dashboard creation, and business intelligence reporting.
+  skills:
+  - Power BI
+  - Data Visualization
+  - Business Intelligence
+  - DAX
+  badge_url: '#'
+- name: Python Professional Certification
+  issuer: Professional Institute
+  date: '2023'
+  description: Expert-level certification in Python programming covering advanced
+    concepts, data structures, OOP, and application development.
+  skills:
+  - Python
+  - Data Structures
+  - OOP
+  - Application Development
+  badge_url: '#'
+- name: NPTEL - Soft Skills
+  issuer: NPTEL (IIT)
+  date: '2023'
+  description: Comprehensive training in professional communication, leadership, teamwork,
+    and interpersonal skills for workplace success.
+  skills:
+  - Communication
+  - Leadership
+  - Teamwork
+  - Presentation Skills
+  badge_url: '#'
+- name: NPTEL - Professional Skills
+  issuer: NPTEL (IIT)
+  date: '2023'
+  description: Advanced training in professional development, workplace ethics, time
+    management, and career advancement strategies.
+  skills:
+  - Professional Development
+  - Time Management
+  - Work Ethics
+  badge_url: '#'
+projects:
+- name: Covert Database Detection
+  category: AI/ML
+  technologies: Python, Tkinter, Scikit-learn, Stegano, Cryptography
+  description: Built a sophisticated desktop application to detect hidden databases
+    using steganography, cryptography, and advanced data structures. Achieved 90%
+    detection accuracy by integrating custom ML models with real-time analysis visualization.
+    Published research paper in Scopus indexed international journal.
+  github: https://github.com/SohamSawalakhe/Covert-Database-Detection
+  image_id: image:36
+  highlights:
+  - 90% detection accuracy with custom ML models
+  - Advanced steganography and cryptography integration
+  - Real-time analysis and comprehensive reporting
+  - Published in Scopus indexed journal
+- name: Library Management System
+  category: Full Stack
+  technologies: Django, DRF, MySQL, Bootstrap
+  description: Comprehensive dual-interface system for admin and student users with
+    role-based authentication. Created RESTful APIs enabling secure CRUD operations
+    on books, members, and transactions. Developed custom admin dashboard with analytics
+    and reporting features.
+  github: https://github.com/SohamSawalakhe/Library-Management-System
+  image_id: image:35
+  highlights:
+  - Dual interface with role-based access control
+  - Secure REST API implementation with JWT authentication
+  - Custom admin dashboard with analytics
+  - Book issue/return tracking system
+- name: CDP Chatbot
+  category: AI/ML
+  technologies: Python, NLP, Machine Learning, Flask
+  description: Intelligent chatbot using natural language processing and machine learning
+    algorithms for automated customer support. Features context-aware responses, multi-intent
+    recognition, and sentiment analysis. Integrated with web interface via RESTful
+    API.
+  github: https://github.com/SohamSawalakhe/cdp-chatbot
+  image_id: image:31
+  highlights:
+  - NLP-powered conversation engine
+  - Context-aware response generation
+  - Multi-intent recognition capability
+  - RESTful API for integration
+- name: Any Search Tool
+  category: Desktop App
+  technologies: Python, Tkinter, GUI Libraries
+  description: Real-time file search tool with advanced directory filtering for faster
+    file access. Implemented multi-threaded search algorithms ensuring high responsiveness.
+    Lightweight GUI with instant search results and file preview capabilities.
+  github: https://github.com/SohamSawalakhe
+  image_id: image:32
+  highlights:
+  - Real-time file search with instant results
+  - Advanced directory filtering system
+  - Multi-threaded search implementation
+  - Lightweight and responsive GUI
+- name: Data Analytics Dashboard
+  category: Web App
+  technologies: React, Node.js, MongoDB, Chart.js
+  description: Interactive data analytics dashboard for visualizing business metrics
+    and KPIs. Features real-time data updates, customizable widgets, and export functionality.
+    Built with responsive design for optimal viewing across devices.
+  github: https://github.com/SohamSawalakhe
+  image_id: image:33
+  highlights:
+  - Real-time data visualization
+  - Customizable dashboard widgets
+  - Interactive charts and graphs
+  - Export reports in multiple formats
+- name: Spreadsheet Application
+  category: Web App
+  technologies: JavaScript, HTML, CSS, Data Structures
+  description: Interactive spreadsheet application with formula support, data manipulation,
+    and real-time calculations. Features include cell formatting, data validation,
+    import/export functionality, and undo/redo operations similar to Excel.
+  github: https://github.com/SohamSawalakhe/spreadsheet_project
+  image_id: image:34
+  highlights:
+  - Formula calculation engine
+  - Cell formatting and styling options
+  - Data import/export (CSV, Excel)
+  - Undo/Redo operations
+achievements:
+- title: Published Research Paper
+  description: 'Published paper on ''Covert Data Intelligence: Advanced Hiding Techniques''
+    in Scopus Indexed international journal'
+  year: '2024'
+  icon: bi-journal-text
+- title: TCS Interview Selection
+  description: Successfully cleared technical interview rounds at Tata Consultancy
+    Services for software developer role
+  year: '2025'
+  icon: bi-award
+- title: 100+ Problems Solved
+  description: Solved 100+ algorithmic problems on competitive coding platforms including
+    LeetCode, HackerRank, and CodeChef
+  year: 2023-2024
+  icon: bi-trophy
+- title: Hackathon Recognition
+  description: Recognized in multiple national and state-level hackathons for innovative
+    solutions and creative problem-solving
+  year: 2023-2024
+  icon: bi-lightbulb
+- title: Leadership Excellence
+  description: Led 60+ peers as Class Representative with strong leadership, communication,
+    and organizational skills
+  year: 2021-2024
+  icon: bi-people
+- title: Community Service
+  description: Volunteered 100+ hours in NSS activities, contributing to social welfare
+    and community development programs
+  year: 2021-2024
+  icon: bi-heart
