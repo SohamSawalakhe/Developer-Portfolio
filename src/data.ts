@@ -107,21 +107,6 @@ export const data = {
       ]
     },
     {
-      role: "Full Stack Developer",
-      company: "Freelance Projects",
-      period: "2023 - 2024",
-      location: "Amravati, Maharashtra",
-      type: "Freelance",
-      description: "Developed multiple full-stack web applications using Django, Flask, and React. Implemented AI/ML models for various projects.",
-      responsibilities: [
-        "Developed multiple full-stack web applications using Django, Flask, and React",
-        "Implemented AI/ML models for various projects including image recognition and data analysis",
-        "Built REST APIs for seamless integration between frontend and backend systems",
-        "Managed databases using MySQL and MongoDB for efficient data storage",
-        "Collaborated with clients to understand requirements and deliver custom solutions"
-      ]
-    },
-    {
       role: "Technical Volunteer & Class Representative",
       company: "NSS & GCOE Yavatmal",
       period: "2021 - 2024",
