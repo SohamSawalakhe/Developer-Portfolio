@@ -78,12 +78,12 @@ export const data = {
   },
   experience: [
     {
-      role: "Backend Developer Intern",
+      role: "Backend Developer",
       company: "SitaraHub",
-      period: "Jan 2025 - Present",
+      period: "Jan 2026 - Present",
       location: "Remote",
-      type: "Internship",
-      description: "Currently working as a Backend Developer Intern building scalable APIs and server-side applications.",
+      type: "Full-Time",
+      description: "Working as a Backend Developer building scalable APIs and server-side applications.",
       responsibilities: [
         "Developing and maintaining backend services and RESTful APIs",
         "Implementing database schemas and optimizing query performance",
@@ -94,7 +94,7 @@ export const data = {
     {
       role: "Full Stack Developer Intern",
       company: "Techelevare Software Pvt Ltd",
-      period: "Aug 2024 - Dec 2024",
+      period: "Aug 2025 - Dec 2025",
       location: "Pune, India",
       type: "Internship",
       description: "Worked as a Full Stack Developer Intern, building enterprise applications and collaborating with cross-functional teams.",
@@ -322,8 +322,8 @@ export const data = {
   achievements: [
     {
       title: "SitaraHub Internship",
-      description: "Currently working as a Backend Developer Intern at SitaraHub — building scalable APIs and server-side applications",
-      year: "2025",
+      description: "Currently working as a Backend Developer at SitaraHub — building scalable APIs and server-side applications",
+      year: "2026",
       icon: "award"
     },
     {
@@ -335,7 +335,7 @@ export const data = {
     {
       title: "Techelevare Internship",
       description: "Successfully completed Full Stack Developer Internship at Techelevare Software Pvt Ltd, Pune — built enterprise applications",
-      year: "2024",
+      year: "2025",
       icon: "award"
     },
     {

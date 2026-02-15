@@ -62,7 +62,7 @@ function getBotResponse(input: string): Message {
   }
   if (lower.includes('about') || lower.includes('👋') || lower.includes('who') || lower.includes('yourself')) {
     return {
-      text: `👋 Hi! I'm ${data.personal.name}, a ${data.personal.tagline}.\n\n🎓 ${data.personal.degree}\n📍 ${data.personal.location}\n🚀 Currently interning at SitaraHub as a Backend Developer\n\nI love building AI/ML solutions and full-stack applications!`,
+      text: `👋 Hi! I'm ${data.personal.name}, a ${data.personal.tagline}.\n\n🎓 ${data.personal.degree}\n📍 ${data.personal.location}\n🚀 Currently working at SitaraHub as a Backend Developer\n\nI love building AI/ML solutions and full-stack applications!`,
       isBot: true,
     };
   }
