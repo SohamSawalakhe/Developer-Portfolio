@@ -97,6 +97,72 @@ export default function App() {
     return () => container.removeEventListener('wheel', handleWheel);
   }, [entered, activePage, isTransitioning, navigateToPage]);
 
+  // Touch/swipe-based page navigation for mobile
+  useEffect(() => {
+    if (!entered) return;
+
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    let touchStartY = 0;
+    let touchStartTime = 0;
+    let touchTriggered = false;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
+      touchStartTime = Date.now();
+      touchTriggered = false;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (touchTriggered || isScrolling.current || isTransitioning) return;
+
+      const now = Date.now();
+      if (now - lastScrollTime.current < 1500) return;
+
+      const touchCurrentY = e.touches[0].clientY;
+      const deltaY = touchStartY - touchCurrentY;
+      const { scrollTop, scrollHeight, clientHeight } = container;
+      const atBottom = scrollTop + clientHeight >= scrollHeight - 10;
+      const atTop = scrollTop <= 10;
+
+      // Require minimum 50px swipe distance
+      if (Math.abs(deltaY) < 50) return;
+
+      if (deltaY > 0 && atBottom) {
+        // Swiped up at bottom - next page
+        e.preventDefault();
+        touchTriggered = true;
+        lastScrollTime.current = now;
+        isScrolling.current = true;
+        navigateToPage(activePage + 1);
+        setTimeout(() => { isScrolling.current = false; }, 1500);
+      } else if (deltaY < 0 && atTop) {
+        // Swiped down at top - previous page
+        e.preventDefault();
+        touchTriggered = true;
+        lastScrollTime.current = now;
+        isScrolling.current = true;
+        navigateToPage(activePage - 1);
+        setTimeout(() => { isScrolling.current = false; }, 1500);
+      }
+    };
+
+    const handleTouchEnd = () => {
+      touchTriggered = false;
+    };
+
+    container.addEventListener('touchstart', handleTouchStart, { passive: true });
+    container.addEventListener('touchmove', handleTouchMove, { passive: false });
+    container.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+    return () => {
+      container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchmove', handleTouchMove);
+      container.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [entered, activePage, isTransitioning, navigateToPage]);
+
   const CurrentPage = pages[activePage].Component;
 
   return (
