@@ -306,7 +306,7 @@ export const data = {
   ],
   achievements: [
     {
-      title: "SitaraHub Internship",
+      title: "SitaraHub",
       description: "Currently working as a Backend Developer at SitaraHub — building scalable APIs and server-side applications",
       year: "2026",
       icon: "award"
@@ -318,7 +318,7 @@ export const data = {
       icon: "journal"
     },
     {
-      title: "Techelevare Internship",
+      title: "Techelevare",
       description: "Successfully completed Full Stack Developer Internship at Techelevare Software Pvt Ltd, Pune — built enterprise applications",
       year: "2025",
       icon: "award"
