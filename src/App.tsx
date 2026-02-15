@@ -105,12 +105,10 @@ export default function App() {
     if (!container) return;
 
     let touchStartY = 0;
-    let touchStartTime = 0;
     let touchTriggered = false;
 
     const handleTouchStart = (e: TouchEvent) => {
       touchStartY = e.touches[0].clientY;
-      touchStartTime = Date.now();
       touchTriggered = false;
     };
 
