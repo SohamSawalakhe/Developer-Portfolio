@@ -81,7 +81,7 @@ export const data = {
       role: "Backend Developer",
       company: "SitaraHub",
       period: "Jan 2026 - Present",
-      location: "Remote",
+      location: "Onsite",
       type: "Full-Time",
       description: "Working as a Backend Developer building scalable APIs and server-side applications.",
       responsibilities: [
