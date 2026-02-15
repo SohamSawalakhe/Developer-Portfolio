@@ -4,7 +4,6 @@ import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 export default function MusicPlayer() {
   const [playing, setPlaying] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
   const audioCtxRef = useRef<AudioContext | null>(null);
   const sourceRef = useRef<AudioBufferSourceNode | null>(null);
   const gainRef = useRef<GainNode | null>(null);
