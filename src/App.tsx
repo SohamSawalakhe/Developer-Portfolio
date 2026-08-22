@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import ParticleField from './components/ParticleField';
 import CinematicIntro from './components/CinematicIntro';
 import Navbar from './components/Navbar';
@@ -167,6 +168,7 @@ export default function App() {
   return (
     <>
       <Analytics />
+      <SpeedInsights />
       {/* Deep space particle background */}
       <ParticleField />
 

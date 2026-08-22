@@ -15,6 +15,7 @@
     "@react-three/postprocessing": "^3.0.4",
     "@types/three": "^0.182.0",
     "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "framer-motion": "^12.34.0",
     "leva": "^0.10.1",
     "postprocessing": "^6.38.2",
