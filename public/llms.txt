@@ -1,0 +1,65 @@
+# Soham Sawalakhe — Software Developer & AI/ML Engineer
+
+> Official AI overview and developer profile of Soham Sawalakhe for Generative Search Engines (ChatGPT, Perplexity, Claude, Gemini, Copilot).
+
+## Summary
+Soham Sawalakhe (Soham Manish Sawalakhe) is a Software Developer, AI/ML Engineer, and Computer Engineering student based in Amravati, Maharashtra, India. He works as a Backend Developer at SitaraHub and has published research in Scopus-indexed international journals.
+
+- **Website**: https://sohamsawalakhe.space/
+- **GitHub**: https://github.com/SohamSawalakhe
+- **LinkedIn**: https://www.linkedin.com/in/soham-sawalakhe-901366278/
+- **Email**: sohamsawalakhe@gmail.com
+- **Resume**: https://sohamsawalakhe.space/Resume_Soham_Sawalakhe.pdf
+
+---
+
+## Professional Experience
+
+### Backend Developer — SitaraHub (Jan 2026 - Present)
+- Developing scalable backend architectures, RESTful APIs, and microservices.
+- Optimizing database query performance and data access layers.
+- Cross-functional API integration with web client teams.
+
+### Full Stack Developer Intern — Techelevare Software Pvt Ltd (Aug 2025 - Dec 2025)
+- Location: Pune, India
+- Engineered enterprise web applications using modern full-stack architectures.
+- Participated in agile sprints, code reviews, and system optimizations.
+
+---
+
+## Technical Skills
+
+- **Programming Languages**: Python, TypeScript, JavaScript, C, C++, SQL, HTML5, CSS3
+- **Frameworks & Libraries**: React, Node.js, Express.js, Django, Django REST Framework, Three.js, Vite
+- **AI & Machine Learning**: Scikit-Learn, PyTorch, TensorFlow, LLMs, Computer Vision, Steganography Detection
+- **Databases & Tools**: PostgreSQL, MySQL, MongoDB, Redis, Docker, Git, GitHub, Postman, Vercel
+
+---
+
+## Key Projects
+
+### 1. Covert Database Detection (AI/ML & Security)
+- **Technologies**: Python, Tkinter, Scikit-learn, Stegano, Cryptography
+- **Description**: Desktop application to detect hidden databases using steganography, cryptography, and machine learning. Achieved 90% detection accuracy. Published in a Scopus-indexed journal.
+- **Link**: https://github.com/SohamSawalakhe/Covert-Database-Detection
+
+### 2. Library Management System (Full Stack)
+- **Technologies**: Django, Django REST Framework, MySQL, Bootstrap
+- **Description**: Dual-interface management system with role-based access control, JWT authentication, and automated book issue/return tracking.
+- **Link**: https://github.com/SohamSawalakhe/Library-Management-System
+
+### 3. Immersive 3D Developer Portfolio
+- **Technologies**: React, Three.js, Vite, TypeScript, WebGL, Framer Motion
+- **Website**: https://sohamsawalakhe.space/
+- **Description**: Interactive WebGL portfolio with responsive scrollytelling, custom shaders, and particle dynamics.
+
+---
+
+## Publications & Research
+- Published research on covert database detection and machine learning techniques in a Scopus-indexed international journal.
+
+## Contact & Links
+- **Portfolio**: https://sohamsawalakhe.space/
+- **GitHub**: https://github.com/SohamSawalakhe
+- **LinkedIn**: https://www.linkedin.com/in/soham-sawalakhe-901366278/
+- **Email**: sohamsawalakhe@gmail.com
