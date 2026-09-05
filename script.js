@@ -489,7 +489,7 @@ const pWaveStatus = document.getElementById('pWaveStatus');
 const ambientAudio = document.getElementById('ambientAudio');
 
 if (ambientAudio) {
-  ambientAudio.volume = 0.4;
+  ambientAudio.volume = 0.30;
 }
 
 function playAmbientAudio() {
@@ -498,7 +498,7 @@ function playAmbientAudio() {
     if (ambientPlayer) ambientPlayer.classList.add('is-playing');
     if (pPlayIcon) pPlayIcon.textContent = '⏸';
     if (pPlayText) pPlayText.textContent = 'Pause Soundtrack';
-    if (pWaveStatus) pWaveStatus.textContent = 'Playing Soothing Stream';
+    if (pWaveStatus) pWaveStatus.textContent = 'Playing Subtle Ambience';
   }).catch(e => {
     console.log('Audio autoplay wait:', e);
   });
@@ -568,15 +568,23 @@ if (pVolumeSlider && ambientAudio) {
 
 // Playlist Track Switcher
 if (playlistSelect && ambientAudio) {
+  const pTrackSub = document.getElementById('pTrackSub');
+  const pTagPill = document.querySelector('.p-tag-pill');
+
   playlistSelect.addEventListener('change', (e) => {
     const selectedOpt = e.target.options[e.target.selectedIndex];
     const src = e.target.value;
     const trackName = selectedOpt.getAttribute('data-name') || selectedOpt.textContent;
     const icon = selectedOpt.getAttribute('data-icon') || '🎵';
+    const sub = selectedOpt.getAttribute('data-sub') || 'Subtle Ambient Soundtrack';
+    const tag = selectedOpt.getAttribute('data-tag') || (icon + ' ' + trackName.toUpperCase());
 
     if (pTrackName) pTrackName.textContent = trackName;
-    if (pMiniTitle) pMiniTitle.textContent = trackName.split(' ')[0] + ' Beats';
+    const displayTitle = trackName.includes('•') ? trackName.split('•')[1].trim() : trackName;
+    if (pMiniTitle) pMiniTitle.textContent = icon + ' ' + (displayTitle.length > 16 ? displayTitle.substring(0, 15) + '…' : displayTitle);
     if (pTrackIcon) pTrackIcon.textContent = icon;
+    if (pTrackSub) pTrackSub.textContent = sub;
+    if (pTagPill) pTagPill.textContent = tag;
 
     ambientAudio.src = src;
     playAmbientAudio();
