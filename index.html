@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0"/>
   <!-- Primary SEO Meta Tags -->
   <title>Soham Sawalakhe — Software Developer &amp; AI Engineer</title>
   <meta name="title" content="Soham Sawalakhe — Software Developer &amp; AI Engineer" />
@@ -204,92 +205,108 @@
   </div>
 </nav>
 
-<!-- ─── HERO — PINNED CANVAS SCROLLYTELLING ──────────────────────────────── -->
+<!-- ─── HERO: FULL-PAGE CENTERED AVATAR SCROLLER (Apple/Framer-style) ─ -->
 <section id="home" class="hero-scroll-section">
-  <div class="hero-sticky-pin">
-    
-    <!-- Full-bleed frame canvas -->
-    <canvas id="heroCanvas"></canvas>
+  <div class="hero-sticky-pin" id="heroStickyPin">
 
-    <!-- Scrollytelling Story Layers (Side-by-Side Floating Glass Capsules) -->
-    <div class="hero-scenes-wrapper">
-      
-      <!-- Stage 1 (0% - 28%) -->
-      <div class="hero-card hero-stage-1 active" id="stage1">
-        <div class="badge-pill">
-          <span class="pulse-dot"></span> OPEN TO OPPORTUNITIES
-        </div>
-        <h1 class="hero-title">
-          Hi, I'm Soham.<br>
-          <span class="gradient-text">Scalable Code & AI.</span>
-        </h1>
-        <p class="hero-desc">
-          Backend Developer at SitaraHub & Scopus-published researcher architecting high-throughput microservices and intelligent systems.
-        </p>
-        <div class="hero-btns">
-          <a href="#projects" class="btn-primary">
-            <span>Explore Work</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="#contact" class="btn-secondary">Let's Connect</a>
-        </div>
-      </div>
+    <!-- Ambient Studio Background & Radial Lighting -->
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-spotlight" id="heroSpotlight"></div>
+    <div class="hero-ambient-glow" id="heroAmbientGlow"></div>
 
-      <!-- Stage 2 (30% - 62%) -->
-      <div class="hero-card hero-stage-2" id="stage2">
-        <div class="badge-pill">RESEARCH & ARCHITECTURE</div>
-        <h2 class="hero-title-sm">
-          Precision Built.<br>
-          <span class="gradient-text">Scopus Indexed.</span>
-        </h2>
-        <p class="hero-desc">
-          Published author in database steganography & cybersecurity with 90% AI detection accuracy.
-        </p>
-        <div class="hero-stats">
-          <div class="h-stat">
-            <span class="h-stat-num">20+</span>
-            <span class="h-stat-lbl">Projects</span>
-          </div>
-          <div class="h-stat">
-            <span class="h-stat-num">8.26</span>
-            <span class="h-stat-lbl">CGPA</span>
-          </div>
-          <div class="h-stat">
-            <span class="h-stat-num">Scopus</span>
-            <span class="h-stat-lbl">Published</span>
+    <!-- CENTER AVATAR STAGE (Full-page centered character, no circle, seamless blend) -->
+    <div class="hero-avatar-center-stage" id="heroAvatarStage">
+      <div class="hero-avatar-floor-shadow"></div>
+      <img src="soham1.png" class="hero-avatar-center-img active" id="heroImg1" alt="Soham Sawalakhe - Full Stack Developer" />
+      <img src="soham2.png" class="hero-avatar-center-img" id="heroImg2" alt="Soham - A Curious Mind" />
+      <img src="soham3.png" class="hero-avatar-center-img" id="heroImg3" alt="Soham - The Builder" />
+      <img src="soham4.png" class="hero-avatar-center-img" id="heroImg4" alt="Soham - Scopus Researcher" />
+      <img src="soham5.png" class="hero-avatar-center-img" id="heroImg5" alt="Soham - Backend at SitaraHub" />
+    </div>
+
+    <!-- FLOATING STORY CARDS (Gaze-direction responsive positions) -->
+    <div class="hero-panels-wrap" id="heroPanelsWrap">
+
+      <!-- Panel 1: Intro (Look Center/Straight) -->
+      <div class="hero-panel hero-panel--center-left" id="hPanel1">
+        <div class="hp-inner">
+          <div class="badge-pill"><span class="pulse-dot"></span> OPEN TO OPPORTUNITIES</div>
+          <h1 class="hp-title">Hi, I'm<br><span class="gradient-text">Soham Sawalakhe.</span></h1>
+          <p class="hp-sub">Backend Developer at SitaraHub &amp; Scopus-published researcher building scalable systems and intelligent AI pipelines.</p>
+          <div class="hp-btns">
+            <a href="#projects" class="btn-primary"><span>Explore Work</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a href="#contact" class="btn-secondary">Let's Connect</a>
           </div>
         </div>
       </div>
 
-      <!-- Stage 3 (64% - 98%) -->
-      <div class="hero-card hero-stage-3" id="stage3">
-        <div class="badge-pill">CURRENT ROLE</div>
-        <h2 class="hero-title-sm">
-          Backend at <span class="gradient-text">SitaraHub</span>
-        </h2>
-        <p class="hero-desc">
-          Designing production microservices, high-throughput REST APIs, and resilient database architectures.
-        </p>
-        <div class="hero-btns">
-          <a href="#experience" class="btn-primary">
-            <span>View Timeline</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+      <!-- Panel 2: The Beginning (Look UP) -->
+      <div class="hero-panel hero-panel--look-up" id="hPanel2">
+        <div class="hp-inner">
+          <div class="badge-pill">📚 THE BEGINNING</div>
+          <h2 class="hp-title">A curious mind<br><span class="gradient-text">looking up.</span></h2>
+          <p class="hp-sub">Started Computer Engineering at GCOE Yavatmal — curiosity as fuel, code as craft. Obsessed with distributed architecture from day one.</p>
+          <div class="hp-stats">
+            <div class="hp-stat"><span class="hp-stat-n">8.26</span><span class="hp-stat-l">CGPA</span></div>
+            <div class="hp-stat"><span class="hp-stat-n">2021</span><span class="hp-stat-l">Started</span></div>
+            <div class="hp-stat"><span class="hp-stat-n">'25</span><span class="hp-stat-l">Graduate</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: The Builder (Look DOWN) -->
+      <div class="hero-panel hero-panel--look-down" id="hPanel3">
+        <div class="hp-inner">
+          <div class="badge-pill">⚡ THE BUILDER</div>
+          <h2 class="hp-title">Confidence built<br><span class="gradient-text">with every line.</span></h2>
+          <p class="hp-sub">Shipped 20+ production applications — from real-time AI computer vision models to high-throughput REST APIs handling thousands of events.</p>
+          <div class="hp-stats">
+            <div class="hp-stat"><span class="hp-stat-n">20+</span><span class="hp-stat-l">Shipped</span></div>
+            <div class="hp-stat"><span class="hp-stat-n">90%</span><span class="hp-stat-l">AI Accuracy</span></div>
+            <div class="hp-stat"><span class="hp-stat-n">99.9%</span><span class="hp-stat-l">Uptime</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 4: Scopus Research (Look RIGHT) -->
+      <div class="hero-panel hero-panel--look-right" id="hPanel4">
+        <div class="hp-inner">
+          <div class="badge-pill">🔬 SCOPUS PUBLISHED</div>
+          <h2 class="hp-title">Precision built.<br><span class="gradient-text">Indexed globally.</span></h2>
+          <p class="hp-sub">Scopus-indexed author in database steganography &amp; cybersecurity — where rigorous academic research meets hardened engineering.</p>
+          <div class="hp-btns">
+            <a href="#about" class="btn-primary"><span>Read Research</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a href="https://doi.org" target="_blank" class="btn-secondary">Scopus ID</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 5: SitaraHub (Look LEFT) -->
+      <div class="hero-panel hero-panel--look-left" id="hPanel5">
+        <div class="hp-inner">
+          <div class="badge-pill">🚀 CURRENT IMPACT</div>
+          <h2 class="hp-title">Backend at<br><span class="gradient-text">SitaraHub.</span></h2>
+          <p class="hp-sub">Architecting production microservices, optimized SQL data layers, and automated cloud workflows serving clients daily.</p>
+          <div class="hp-btns">
+            <a href="#experience" class="btn-primary"><span>View Career</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a href="#contact" class="btn-secondary">Get In Touch</a>
+          </div>
         </div>
       </div>
 
     </div>
 
-    <!-- Scroll Indicator -->
+    <!-- Scroll Down Hint: Sleek minimal indicator -->
     <div class="hero-scroll-hint" id="scrollHint">
-      <div class="mouse-icon">
-        <div class="mouse-wheel"></div>
-      </div>
-      <span>SCROLL DOWN</span>
+      <div class="mouse-icon"><div class="mouse-wheel"></div></div>
+      <span>SCROLL TO EXPLORE</span>
     </div>
 
   </div>
 </section>
+
+<!-- ─── ABOUT SECTION ────────────────────────────────────────────────────── -->
+
 
 <!-- ─── ABOUT SECTION ────────────────────────────────────────────────────── -->
 <section id="about" class="content-section">
@@ -383,7 +400,6 @@
         <div class="s-node"><span class="node-icon">⚛️</span><span class="node-txt">React UI</span></div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -1052,9 +1068,6 @@
         </div>
 
       </div>
-    </div>
-
-  </div>
 </section>
 
 <!-- ─── CONTACT SECTION ──────────────────────────────────────────────────── -->
@@ -1158,7 +1171,7 @@
       <span class="disc-dot"></span>
     </div>
     <div class="player-mini-info">
-      <span class="p-now-title" id="pMiniTitle">Cozy Lofi</span>
+      <span class="p-now-title" id="pMiniTitle">Light Piano</span>
       <div class="p-equalizer">
         <span class="eq-bar bar-1"></span>
         <span class="eq-bar bar-2"></span>
@@ -1171,7 +1184,7 @@
   <!-- Expanded Glassmorphic Panel -->
   <div class="player-expand-panel" id="playerExpandPanel">
     <div class="p-panel-header">
-      <div class="p-tag-pill">🎧 SOOTHING SOUNDTRACK</div>
+      <div class="p-tag-pill">🎹 SERENE LIGHT PIANO</div>
       <button class="p-close-btn" id="playerCloseBtn" aria-label="Minimize player">✕</button>
     </div>
 
@@ -1179,11 +1192,11 @@
     <div class="p-track-display">
       <div class="p-track-artwork">
         <span class="artwork-pulse"></span>
-        <span class="artwork-icon" id="pTrackIcon">☕</span>
+        <span class="artwork-icon" id="pTrackIcon">🎹</span>
       </div>
       <div class="p-track-meta">
-        <h4 class="p-track-name" id="pTrackName">Cozy Lofi Study Beats</h4>
-        <span class="p-track-sub" id="pTrackSub">Relax & Code Soundscape</span>
+        <h4 class="p-track-name" id="pTrackName">Peaceful Light Piano</h4>
+        <span class="p-track-sub" id="pTrackSub">Gentle &amp; Soothing Ambient Notes</span>
       </div>
     </div>
 
@@ -1208,10 +1221,9 @@
     <div class="p-playlist-selector">
       <label for="playlistSelect" class="p-select-label">SELECT SOUNDSCAPE</label>
       <select id="playlistSelect" class="p-select-dropdown">
-        <option value="audio/lofi-study.mp3" data-name="Cozy Lofi Study Beats" data-icon="☕" selected>☕ Cozy Lofi Study Beats</option>
+        <option value="audio/light-notes.wav" data-name="Peaceful Light Piano" data-icon="🎹" selected>🎹 Peaceful Light Piano (Gentle)</option>
         <option value="audio/ambient-chill.mp3" data-name="Midnight Ambient Synth" data-icon="🌌">🌌 Midnight Ambient Synth</option>
-        <option value="audio/gentle-piano.mp3" data-name="Peaceful Gentle Piano" data-icon="🍃">🍃 Peaceful Gentle Piano</option>
-        <option value="audio/cyberpunk-focus.mp3" data-name="Cyberpunk Focus Waves" data-icon="⚡">⚡ Cyberpunk Focus Waves</option>
+        <option value="audio/lofi-study.mp3" data-name="Cozy Lofi Study Beats" data-icon="☕">☕ Cozy Lofi Study Beats</option>
         <option value="audio/tokyo-rain.mp3" data-name="Tokyo Night Rainy Lofi" data-icon="🌧️">🌧️ Tokyo Night Rainy Lofi</option>
       </select>
     </div>
@@ -1230,12 +1242,12 @@
     <!-- Volume Control -->
     <div class="p-volume-box">
       <span class="p-vol-icon">🔉</span>
-      <input type="range" id="pVolumeSlider" min="0" max="1" step="0.05" value="0.4" class="p-vol-slider" aria-label="Volume slider"/>
+      <input type="range" id="pVolumeSlider" min="0" max="1" step="0.05" value="0.25" class="p-vol-slider" aria-label="Volume slider"/>
       <span class="p-vol-icon">🔊</span>
     </div>
 
     <!-- Hidden Native Audio Element -->
-    <audio id="ambientAudio" preload="auto" loop src="audio/lofi-study.mp3"></audio>
+    <audio id="ambientAudio" preload="auto" loop src="audio/light-notes.wav"></audio>
   </div>
 
 </div>
