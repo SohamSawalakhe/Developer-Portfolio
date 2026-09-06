@@ -104,6 +104,43 @@ if (introEnterBtn) {
   introEnterBtn.addEventListener('click', enterExperience);
 }
 
+if (introGateway) {
+  introGateway.addEventListener('click', enterExperience);
+}
+
+if (window.location.hash && window.location.hash !== '#home') {
+  if (introGateway) introGateway.style.display = 'none';
+  if (nav) {
+    nav.classList.remove('nav-initial-hide');
+    nav.classList.add('nav-reveal-focus');
+  }
+}
+
+// Instant jump to target section if requested
+function handleInitialAnchorJump() {
+  const params = new URLSearchParams(window.location.search);
+  const targetId = params.get('jump') || (window.location.hash ? window.location.hash.slice(1) : null);
+  if (targetId && targetId !== 'home') {
+    if (introGateway) {
+      introGateway.classList.add('is-bypassed');
+      introGateway.style.display = 'none';
+    }
+    if (nav) {
+      nav.classList.remove('nav-initial-hide');
+      nav.classList.add('nav-reveal-focus');
+    }
+    document.querySelectorAll('.reveal').forEach(r => r.classList.add('is-revealed'));
+    const el = document.getElementById(targetId);
+    if (el) {
+      window.scrollTo(0, el.offsetTop);
+      el.scrollIntoView({ behavior: 'instant', block: 'start' });
+    }
+  }
+}
+handleInitialAnchorJump();
+window.addEventListener('DOMContentLoaded', handleInitialAnchorJump);
+window.addEventListener('load', handleInitialAnchorJump);
+
 window.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') enterExperience();
 });
@@ -218,9 +255,12 @@ function renderHero(progress) {
     const avatarY = -progress * 20;
     const avatarScale = 1 + progress * 0.03;
     let gazeX = 0, gazeY = 0;
+    const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
     if (imgIdx === 1) gazeY = -8;  // subtly floats up with upward gaze
     if (imgIdx === 2) gazeY = 8;   // settles down with downward gaze
-    if (imgIdx === 3) gazeX = 14;  // shifts right towards look direction
+    if (imgIdx === 3) {
+      gazeX = isTablet ? -220 : 14; // on tablet, shift left so card on right has ample breathing room
+    }
     if (imgIdx === 4) gazeX = -10; // shifts left towards look direction
     avatarStage.style.transform = `translate(${gazeX}px, ${avatarY + gazeY}px) scale(${avatarScale})`;
   }
@@ -231,9 +271,8 @@ function renderHero(progress) {
     pill.classList.toggle('active', idx === imgIdx);
   });
 
-  // --- 6. CONTINUOUS SCROLL TRAVEL: ZERO-GAP OVERLAPPING CARD CROSS-FADES ---
-  // Guarantees cards always smoothly cross-fade without dead-zones across all devices.
-  const isMobile = window.innerWidth <= 960;
+  // --- 6. CONTINUOUS SCROLL TRAVEL: CRISP, BUTTERY FRAMER CARD TRANSITIONS ---
+  const isMobile = window.innerWidth <= 768;
 
   PANELS.forEach((panel, i) => {
     if (!panel) return;
@@ -245,90 +284,110 @@ function renderHero(progress) {
     let transY = 0;
 
     if (i === 0) {
-      // Panel 1 (Intro · Look Straight): active [0.0, 0.22]
-      if (progress <= 0.12) {
+      // Panel 1 (Intro · Look Straight): active [0.0, 0.20]
+      if (progress <= 0.15) {
         opacity = 1;
-      } else if (progress <= 0.22) {
-        opacity = 1 - easeInOut((progress - 0.12) / 0.10);
+        transY = lerp(0, -8, progress / 0.15);
+      } else if (progress <= 0.20) {
+        const t = (progress - 0.15) / 0.05;
+        opacity = 1 - easeInOut(t);
+        transY = lerp(-8, -20, t);
       } else {
         opacity = 0;
       }
-      transY = lerp(0, -22, clamp01(progress / 0.22));
 
     } else if (i === 1) {
-      // Panel 2 (The Beginning · Look UP ⬆️): active [0.12, 0.42]
-      if (progress < 0.12) {
+      // Panel 2 (The Beginning · Look UP ⬆️): active [0.15, 0.40]
+      if (progress < 0.15) {
         opacity = 0;
-      } else if (progress <= 0.22) {
-        opacity = easeInOut((progress - 0.12) / 0.10);
-      } else if (progress <= 0.32) {
+      } else if (progress <= 0.20) {
+        const t = (progress - 0.15) / 0.05;
+        opacity = easeInOut(t);
+        transY = lerp(20, 0, t);
+      } else if (progress <= 0.35) {
         opacity = 1;
-      } else if (progress <= 0.42) {
-        opacity = 1 - easeInOut((progress - 0.32) / 0.10);
+        const t = (progress - 0.20) / 0.15;
+        transY = lerp(0, -8, t);
+      } else if (progress <= 0.40) {
+        const t = (progress - 0.35) / 0.05;
+        opacity = 1 - easeInOut(t);
+        transY = lerp(-8, -20, t);
       } else {
         opacity = 0;
-      }
-      const tTravel = clamp01((progress - 0.12) / 0.30);
-      if (isMobile) {
-        transY = lerp(16, -10, tTravel);
-      } else {
-        transY = lerp(35, -15, tTravel);
       }
 
     } else if (i === 2) {
-      // Panel 3 (The Builder · Look DOWN ⬇️): active [0.32, 0.62]
-      if (progress < 0.32) {
+      // Panel 3 (The Builder · Look DOWN ⬇️): active [0.35, 0.60]
+      if (progress < 0.35) {
         opacity = 0;
-      } else if (progress <= 0.42) {
-        opacity = easeInOut((progress - 0.32) / 0.10);
-      } else if (progress <= 0.52) {
+      } else if (progress <= 0.40) {
+        const t = (progress - 0.35) / 0.05;
+        opacity = easeInOut(t);
+        transY = lerp(20, 0, t);
+      } else if (progress <= 0.55) {
         opacity = 1;
-      } else if (progress <= 0.62) {
-        opacity = 1 - easeInOut((progress - 0.52) / 0.10);
+        const t = (progress - 0.40) / 0.15;
+        transY = lerp(0, -8, t);
+      } else if (progress <= 0.60) {
+        const t = (progress - 0.55) / 0.05;
+        opacity = 1 - easeInOut(t);
+        transY = lerp(-8, -20, t);
       } else {
         opacity = 0;
-      }
-      const tTravel = clamp01((progress - 0.32) / 0.30);
-      if (isMobile) {
-        transY = lerp(-14, 10, tTravel);
-      } else {
-        transY = lerp(-32, 15, tTravel);
       }
 
     } else if (i === 3) {
-      // Panel 4 (Scopus · Look RIGHT ➡️): active [0.52, 0.82]
-      if (progress < 0.52) {
+      // Panel 4 (Scopus · Look RIGHT ➡️): active [0.55, 0.80]
+      if (progress < 0.55) {
         opacity = 0;
-      } else if (progress <= 0.62) {
-        opacity = easeInOut((progress - 0.52) / 0.10);
-      } else if (progress <= 0.72) {
+      } else if (progress <= 0.60) {
+        const t = (progress - 0.55) / 0.05;
+        opacity = easeInOut(t);
+        if (isMobile) {
+          transY = lerp(20, 0, t);
+        } else {
+          transX = lerp(35, 0, t);
+        }
+      } else if (progress <= 0.75) {
         opacity = 1;
-      } else if (progress <= 0.82) {
-        opacity = 1 - easeInOut((progress - 0.72) / 0.10);
+        const t = (progress - 0.60) / 0.15;
+        if (isMobile) {
+          transY = lerp(0, -8, t);
+        } else {
+          transX = lerp(0, -10, t);
+        }
+      } else if (progress <= 0.80) {
+        const t = (progress - 0.75) / 0.05;
+        opacity = 1 - easeInOut(t);
+        if (isMobile) {
+          transY = lerp(-8, -20, t);
+        } else {
+          transX = lerp(-10, -28, t);
+        }
       } else {
         opacity = 0;
-      }
-      const tTravel = clamp01((progress - 0.52) / 0.30);
-      if (isMobile) {
-        transY = lerp(12, -8, tTravel);
-      } else {
-        transX = lerp(45, -15, tTravel);
       }
 
     } else if (i === 4) {
-      // Panel 5 (SitaraHub · Look LEFT ⬅️): active [0.72, 1.00]
-      if (progress < 0.72) {
+      // Panel 5 (SitaraHub · Look LEFT ⬅️): active [0.75, 1.00]
+      if (progress < 0.75) {
         opacity = 0;
-      } else if (progress <= 0.82) {
-        opacity = easeInOut((progress - 0.72) / 0.10);
+      } else if (progress <= 0.80) {
+        const t = (progress - 0.75) / 0.05;
+        opacity = easeInOut(t);
+        if (isMobile) {
+          transY = lerp(20, 0, t);
+        } else {
+          transX = lerp(-35, 0, t);
+        }
       } else {
         opacity = 1;
-      }
-      const tTravel = clamp01((progress - 0.72) / 0.20);
-      if (isMobile) {
-        transY = lerp(-10, 0, tTravel);
-      } else {
-        transX = lerp(-40, 0, tTravel);
+        const t = clamp01((progress - 0.80) / 0.20);
+        if (isMobile) {
+          transY = lerp(0, -6, t);
+        } else {
+          transX = lerp(0, 8, t);
+        }
       }
     }
 
@@ -423,6 +482,91 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 revealElements.forEach(el => observer.observe(el));
+
+function checkReveals() {
+  const triggerBottom = window.innerHeight * 1.1;
+  document.querySelectorAll('.reveal:not(.is-revealed)').forEach(el => {
+    const box = el.getBoundingClientRect();
+    if (box.top < triggerBottom) {
+      el.classList.add('is-revealed');
+    }
+  });
+}
+window.addEventListener('scroll', checkReveals, { passive: true });
+window.addEventListener('DOMContentLoaded', checkReveals);
+window.addEventListener('load', checkReveals);
+setTimeout(checkReveals, 300);
+
+/* ─── CARD LUMINESCENCE CURSOR TRACKER ───────────────────── */
+const glowCards = document.querySelectorAll(
+  '.about-details-card, .tech-stream-banner, .project-spotlight-card, .bento-card, .exp-card, .edu-modern-card, .cert-badge-card, .contact-box, .story-sticky-aside, .story-manifesto-card'
+);
+
+glowCards.forEach(card => {
+  const glow = card.querySelector('.card-ambient-glow');
+  if (!glow) return;
+
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    let rgb = '229, 152, 56';
+    if (glow.classList.contains('glow-emerald')) rgb = '16, 185, 129';
+    if (glow.classList.contains('glow-blue')) rgb = '59, 130, 246';
+    if (glow.classList.contains('glow-purple')) rgb = '168, 85, 247';
+
+    glow.style.background = `radial-gradient(circle 320px at ${x}px ${y}px, rgba(${rgb}, 0.28) 0%, rgba(${rgb}, 0.06) 45%, transparent 70%)`;
+  }, { passive: true });
+
+  card.addEventListener('mouseleave', () => {
+    glow.style.background = '';
+  });
+});
+
+/* ─── SCROLLYTELLING STORY STEP TRACKER ──────────────────── */
+function updateActiveStorySteps() {
+  const sections = document.querySelectorAll('.story-split-section');
+  sections.forEach(sec => {
+    const steps = sec.querySelectorAll('.story-step-link');
+    if (!steps.length) return;
+
+    let currentActiveId = null;
+    steps.forEach(step => {
+      const hash = step.getAttribute('href');
+      if (!hash || !hash.startsWith('#')) return;
+      const target = document.querySelector(hash);
+      if (target) {
+        const rect = target.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.5 && rect.bottom >= 120) {
+          currentActiveId = hash;
+        }
+      }
+    });
+
+    if (currentActiveId) {
+      steps.forEach(step => {
+        step.classList.toggle('active', step.getAttribute('href') === currentActiveId);
+      });
+    }
+  });
+}
+window.addEventListener('scroll', updateActiveStorySteps, { passive: true });
+window.addEventListener('DOMContentLoaded', updateActiveStorySteps);
+
+// Smooth click jump for story steps
+document.querySelectorAll('.story-step-link').forEach(link => {
+  link.addEventListener('click', (e) => {
+    const hash = link.getAttribute('href');
+    if (hash && hash.startsWith('#')) {
+      const target = document.querySelector(hash);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
+});
 
 /* ─── 3D VORTEX GALAXY INTERACTIVITY ─────────────────────── */
 const filterBtns = document.querySelectorAll('.v-filter-btn');
@@ -607,6 +751,99 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+/* ─── 3D PERSPECTIVE CARD TILT ENGINE ─────────────────────── */
+function init3DCardTilt() {
+  if (window.matchMedia('(hover: none)').matches) return; // Skip touch/mobile devices
+
+  const tiltCards = document.querySelectorAll('.tilt-card-3d');
+  tiltCards.forEach(card => {
+    if (!card.querySelector('.card-tilt-glare')) {
+      const glare = document.createElement('div');
+      glare.className = 'card-tilt-glare';
+      card.appendChild(glare);
+    }
+
+    const glare = card.querySelector('.card-tilt-glare');
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      // Constrain rotation to -6deg to +6deg for sleek, subtle effect
+      const rotateX = ((y - centerY) / centerY) * -6;
+      const rotateY = ((x - centerX) / centerX) * 6;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.015, 1.015, 1.015)`;
+
+      if (glare) {
+        glare.style.opacity = '0.45';
+        glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.45) 0%, transparent 60%)`;
+      }
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      if (glare) {
+        glare.style.opacity = '0';
+      }
+    });
+  });
+}
+
+/* ─── DYNAMIC RADAR TELEMETRY SIMULATOR ───────────────────── */
+function initRadarSimulator() {
+  const spotlightSvg = document.querySelector('.spotlight-svg');
+  if (!spotlightSvg) return;
+
+  const entropyTexts = spotlightSvg.querySelectorAll('text');
+  let counter = 0;
+
+  setInterval(() => {
+    counter++;
+    const entropyVal = (0.938 + Math.sin(counter * 0.5) * 0.015).toFixed(3);
+    entropyTexts.forEach(t => {
+      if (t.textContent.includes('Entropy:')) {
+        t.textContent = `Entropy: ${entropyVal}`;
+      }
+    });
+  }, 2200);
+}
+
+/* ─── SCROLLYTELLING STORY STEP TRACKER ───────────────────── */
+function initStoryStepTracker() {
+  const storySections = document.querySelectorAll('.story-split-section');
+  if (!storySections.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        if (!id) return;
+        const parentSection = entry.target.closest('.story-split-section');
+        if (!parentSection) return;
+        const links = parentSection.querySelectorAll('.story-step-link');
+        links.forEach(l => {
+          if (l.getAttribute('href') === `#${id}`) {
+            l.classList.add('active');
+          } else {
+            l.classList.remove('active');
+          }
+        });
+      }
+    });
+  }, {
+    threshold: 0.35,
+    rootMargin: '-80px 0px -40% 0px'
+  });
+
+  document.querySelectorAll('.story-beat, .exp-row').forEach(beat => {
+    if (beat.id) observer.observe(beat);
+  });
+}
+
 /* ─── INITIALIZATION ──────────────────────────────────────── */
 function initPortfolioApp() {
   // Set first image active immediately
@@ -619,7 +856,10 @@ function initPortfolioApp() {
   updateScrollProgress();
   // Start intro sequence
   startIntroSequence();
-
+  // Initialize interactive chapter effects
+  init3DCardTilt();
+  initRadarSimulator();
+  initStoryStepTracker();
 }
 
 if (document.readyState === 'loading') {
@@ -627,3 +867,4 @@ if (document.readyState === 'loading') {
 } else {
   initPortfolioApp();
 }
+
