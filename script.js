@@ -10,13 +10,15 @@ const nav = document.getElementById('nav');
 const heroSection = document.getElementById('home');
 const scrollHint = document.getElementById('scrollHint');
 
-const introGateway = document.getElementById('introGateway');
+const introGateway    = document.getElementById('introGateway');
+const introVideo      = document.getElementById('introVideo');
 const introLoaderWrap = document.getElementById('introLoaderWrap');
 const introProgressFill = document.getElementById('introProgressFill');
-const introStatus = document.getElementById('introStatus');
-const introPct = document.getElementById('introPct');
-const introEnterBtn = document.getElementById('introEnterBtn');
-const introHintText = document.getElementById('introHintText');
+const introStatus     = document.getElementById('introStatus');
+const introPct        = document.getElementById('introPct');
+const introEnterBtn   = document.getElementById('introEnterBtn');
+const introSkipBtn    = document.getElementById('introSkipBtn');
+const introHintText   = document.getElementById('introHintText');
 let introReady = false;
 
 /* Avatar images (one per stage) */
@@ -28,54 +30,75 @@ const avatarImgs = [
   document.getElementById('heroImg5'),
 ];
 
-/* ─── FAST & CRISP INTRO CONTROLLER ──────────────────── */
-function startIntroSequence() {
-  const duration = 450;
-  const start = performance.now();
-
-  function tick(now) {
-    const elapsed = now - start;
-    const p = Math.min(1, elapsed / duration);
-    const eased = 1 - Math.pow(1 - p, 3);
-    const pct = Math.round(eased * 100);
-
-    if (introProgressFill) introProgressFill.style.width = `${pct}%`;
-    if (introPct) introPct.textContent = `${pct}%`;
-
-    if (pct < 60) {
-      if (introStatus) introStatus.textContent = 'INITIALIZING SYSTEM...';
-    } else {
-      if (introStatus) introStatus.textContent = 'READY';
-    }
-
-    if (p < 1) {
-      requestAnimationFrame(tick);
-    } else {
-      introReady = true;
-      if (introLoaderWrap) introLoaderWrap.classList.add('is-hidden');
-      if (introEnterBtn) introEnterBtn.classList.add('is-ready');
-      if (introHintText) introHintText.classList.add('is-ready');
-      if (typeof anime !== 'undefined') {
-        anime({
-          targets: '#introEnterBtn',
-          scale: [0.88, 1],
-          opacity: [0, 1],
-          duration: 350,
-          easing: 'easeOutBack'
-        });
-      }
-    }
-  }
-
-  requestAnimationFrame(tick);
-}
+/* ─── CINEMATIC VIDEO INTRO CONTROLLER ──────────────────── */
 
 // Initial hide states
 if (nav) nav.classList.add('nav-initial-hide');
 
+function revealEnterButton() {
+  if (introReady) return;
+  introReady = true;
+  if (introLoaderWrap) introLoaderWrap.classList.add('is-hidden');
+  if (introEnterBtn)   introEnterBtn.classList.add('is-ready');
+  if (introHintText)   introHintText.classList.add('is-ready');
+}
+
+function startProgressBar(durationMs) {
+  const start = performance.now();
+  function tick(now) {
+    const p = Math.min(1, (now - start) / durationMs);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const pct = Math.round(eased * 100);
+    if (introProgressFill) introProgressFill.style.width = `${pct}%`;
+    if (introPct) introPct.textContent = `${pct}%`;
+    if (introStatus) introStatus.textContent = pct < 50 ? 'LOADING EXPERIENCE...' : pct < 90 ? 'ALMOST READY...' : 'READY';
+    if (p < 1) {
+      requestAnimationFrame(tick);
+    } else {
+      revealEnterButton();
+    }
+  }
+  requestAnimationFrame(tick);
+}
+
+function initVideoIntro() {
+  if (!introGateway) return;
+
+  // Show UI overlay elements after brief delay
+  setTimeout(() => {
+    if (introGateway) introGateway.classList.add('ui-visible');
+  }, 600);
+
+  if (introVideo) {
+    // Fade in video when it can play
+    introVideo.addEventListener('canplay', () => {
+      introVideo.classList.add('is-playing');
+    }, { once: true });
+
+    // Fallback: show video after 1s regardless
+    setTimeout(() => {
+      if (introVideo) introVideo.classList.add('is-playing');
+    }, 1000);
+
+    // Start progress bar — syncs with ~1.8s video buffer window
+    startProgressBar(1800);
+
+    // If video fails, still show enter button
+    introVideo.addEventListener('error', () => {
+      startProgressBar(800);
+    }, { once: true });
+  } else {
+    // No video element — fallback progress
+    startProgressBar(800);
+  }
+}
+
 function enterExperience() {
   if (!introGateway || introGateway.classList.contains('is-exiting')) return;
   introGateway.classList.add('is-exiting');
+
+  // Pause video to save resources
+  if (introVideo) { introVideo.pause(); }
 
   playAmbientAudio();
 
@@ -86,7 +109,7 @@ function enterExperience() {
 
   // Animate avatar in on enter
   setTimeout(() => {
-    introGateway.style.display = 'none';
+    if (introGateway) introGateway.style.display = 'none';
 
     if (typeof anime !== 'undefined') {
       anime({
@@ -97,17 +120,21 @@ function enterExperience() {
         easing: 'easeOutExpo'
       });
     }
-  }, 750);
+  }, 900);
 }
 
-if (introEnterBtn) {
-  introEnterBtn.addEventListener('click', enterExperience);
-}
+// Wire up buttons
+if (introEnterBtn) introEnterBtn.addEventListener('click', (e) => { e.stopPropagation(); enterExperience(); });
+if (introSkipBtn)  introSkipBtn.addEventListener('click', (e)  => { e.stopPropagation(); enterExperience(); });
 
+// Click anywhere to enter (only if ready)
 if (introGateway) {
-  introGateway.addEventListener('click', enterExperience);
+  introGateway.addEventListener('click', () => {
+    if (introReady) enterExperience();
+  });
 }
 
+// Hash bypass — skip intro when navigating to a section directly
 if (window.location.hash && window.location.hash !== '#home') {
   if (introGateway) introGateway.style.display = 'none';
   if (nav) {
@@ -141,9 +168,13 @@ handleInitialAnchorJump();
 window.addEventListener('DOMContentLoaded', handleInitialAnchorJump);
 window.addEventListener('load', handleInitialAnchorJump);
 
+// Keyboard shortcut: Enter or Space to proceed
 window.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') enterExperience();
+  if (e.key === 'Enter' || e.key === ' ') enterExperience();
 });
+
+// Boot the intro
+initVideoIntro();
 
 /* ─── STAGE SWITCHER (image crossfade only) ───────────────── */
 function setAvatarImage(idx) {

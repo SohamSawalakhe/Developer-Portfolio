@@ -128,48 +128,67 @@
 </head>
 <body>
 
-<!-- ─── CINEMATIC INTRO PRELOADER & GATEWAY ──────────────────────────────── -->
+<!-- ─── CINEMATIC VIDEO INTRO ──────────────────────────────── -->
 <div id="introGateway" class="intro-gateway">
-  <!-- Glowing Background Fairytale Orbs -->
-  <div class="intro-ambient-orb intro-orb-1"></div>
-  <div class="intro-ambient-orb intro-orb-2"></div>
-  <div class="intro-ambient-orb intro-orb-3"></div>
 
-  <div class="intro-center-box">
-    <!-- Theme Badge Chip -->
-    <div class="intro-badge-chip">
-      <span class="intro-pulse-dot"></span> 00 // DIGITAL PORTFOLIO
-    </div>
+  <!-- Full-screen background video -->
+  <video
+    id="introVideo"
+    class="intro-video-bg"
+    src="/intro.mp4"
+    autoplay
+    muted
+    playsinline
+    preload="auto"
+    loop
+    aria-hidden="true"
+  ></video>
 
-    <!-- Glowing Astrolabe Monogram -->
-    <div class="intro-monogram-wrap">
-      <div class="intro-orbit-ring ring-a"></div>
-      <div class="intro-orbit-ring ring-b"></div>
-      <div class="intro-logo-disc">S</div>
-    </div>
+  <!-- Cinematic letterbox bars -->
+  <div class="intro-letterbox-top"></div>
+  <div class="intro-letterbox-bottom"></div>
 
-    <!-- Title & Subtitle -->
-    <h1 class="intro-brand-title">SOHAM SAWALAKHE</h1>
-    <div class="intro-role-tag">SOFTWARE DEVELOPER & AI RESEARCHER</div>
+  <!-- Dark vignette overlay -->
+  <div class="intro-vignette"></div>
 
-    <!-- Live Frame Preloader -->
+  <!-- Grain/film texture overlay -->
+  <div class="intro-grain" aria-hidden="true"></div>
+
+  <!-- Top-left: badge chip -->
+  <div class="intro-corner-badge">
+    <span class="intro-pulse-dot"></span>
+    <span>PORTFOLIO // 2025</span>
+  </div>
+
+  <!-- Skip button (top-right) -->
+  <button class="intro-skip-btn" id="introSkipBtn" title="Skip intro">
+    SKIP
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+
+
+
+  <!-- Bottom CTA (appears near end of video) -->
+  <div class="intro-bottom-bar">
+    <!-- Loading indicator shown first -->
     <div class="intro-loader-wrap" id="introLoaderWrap">
       <div class="intro-progress-bar">
         <div class="intro-progress-fill" id="introProgressFill"></div>
       </div>
       <div class="intro-status-text">
-        <span id="introStatus">SYNCHRONIZING ASSETS...</span>
+        <span id="introStatus">LOADING EXPERIENCE...</span>
         <span class="intro-pct" id="introPct">0%</span>
       </div>
     </div>
 
-    <!-- Enter Experience Button (Revealed at 100% Loaded) -->
+    <!-- Enter button revealed after load -->
     <button class="intro-enter-btn" id="introEnterBtn">
       <span>ENTER EXPERIENCE</span>
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </button>
-    <div class="intro-hint-text" id="introHintText">Press Enter or click anywhere to begin</div>
+    <div class="intro-hint-text" id="introHintText">Click anywhere to begin this journey</div>
   </div>
+
 </div>
 
 <!-- ─── FLOATING AESTHETIC BACKGROUND ORBS ──────────────────────────────── -->
