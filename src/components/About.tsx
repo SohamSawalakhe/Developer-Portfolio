@@ -1,6 +1,7 @@
 import { FaEnvelope } from 'react-icons/fa';
 import { data } from '../data';
 import Reveal from './AnimateOnScroll';
+import Avatar3D from './Avatar3D';
 
 export default function About() {
   return (
@@ -17,13 +18,13 @@ export default function About() {
         <Reveal>
           <div className="about-grid">
             <div className="about-image-container">
-              <img
-                src={data.personal.image}
+              <Avatar3D
+                src="/soham2.png"
                 alt={data.personal.name}
-                className="about-image"
-                onError={(e) => {
-                  e.currentTarget.src = `https://ui-avatars.com/api/?name=${data.personal.firstName}+${data.personal.lastName}&size=300&background=020617&color=00d4ff&bold=true&font-size=0.4`;
-                }}
+                size="md"
+                showOrbit={false}
+                showScanCorners={true}
+                className="about-avatar3d"
               />
             </div>
             <div className="about-content">

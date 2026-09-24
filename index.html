@@ -88,6 +88,9 @@
           "Three.js",
           "PostgreSQL",
           "MongoDB",
+          "AWS (Amazon Web Services)",
+          "Docker",
+          "Cloud Architecture",
           "Data Structures & Algorithms",
           "Scopus Research"
         ]
@@ -135,14 +138,16 @@
   <video
     id="introVideo"
     class="intro-video-bg"
-    src="/intro.mp4"
     autoplay
     muted
     playsinline
     preload="auto"
     loop
     aria-hidden="true"
-  ></video>
+  >
+    <source src="intro.mp4" type="video/mp4"/>
+    <source src="/intro.mp4" type="video/mp4"/>
+  </video>
 
   <!-- Cinematic letterbox bars -->
   <div class="intro-letterbox-top"></div>
@@ -233,14 +238,16 @@
     <div class="hero-spotlight" id="heroSpotlight"></div>
     <div class="hero-ambient-glow" id="heroAmbientGlow"></div>
 
-    <!-- CENTER AVATAR STAGE (Full-page centered character, no circle, seamless blend) -->
+    <!-- CENTER AVATAR STAGE (Full-page centered character, seamless Framer effect) -->
     <div class="hero-avatar-center-stage" id="heroAvatarStage">
+      <!-- Ground Floor Shadow -->
       <div class="hero-avatar-floor-shadow"></div>
-      <img src="soham1.png" class="hero-avatar-center-img active" id="heroImg1" alt="Soham Sawalakhe - Full Stack Developer" />
-      <img src="soham2.png" class="hero-avatar-center-img" id="heroImg2" alt="Soham - A Curious Mind" />
-      <img src="soham3.png" class="hero-avatar-center-img" id="heroImg3" alt="Soham - The Builder" />
-      <img src="soham4.png" class="hero-avatar-center-img" id="heroImg4" alt="Soham - Scopus Researcher" />
-      <img src="soham5.png" class="hero-avatar-center-img" id="heroImg5" alt="Soham - Backend at SitaraHub" />
+
+      <img src="soham1.png" class="hero-avatar-center-img active" id="heroImg1" alt="Soham Sawalakhe - Full Stack Developer" draggable="false" />
+      <img src="soham2.png" class="hero-avatar-center-img" id="heroImg2" alt="Soham - A Curious Mind" draggable="false" />
+      <img src="soham3.png" class="hero-avatar-center-img" id="heroImg3" alt="Soham - The Builder" draggable="false" />
+      <img src="soham4.png" class="hero-avatar-center-img" id="heroImg4" alt="Soham - Scopus Researcher" draggable="false" />
+      <img src="soham5.png" class="hero-avatar-center-img" id="heroImg5" alt="Soham - Backend at SitaraHub" draggable="false" />
     </div>
 
     <!-- FLOATING STORY CARDS (Gaze-direction responsive positions) -->
@@ -336,10 +343,23 @@
       <aside class="story-sticky-aside reveal">
         <div class="card-ambient-glow glow-amber"></div>
 
-        <!-- Illustrated Character Capsule (Pure, Unobstructed Art) -->
-        <div class="aside-character-capsule">
+        <!-- Illustrated 3D Character Capsule -->
+        <div class="aside-character-capsule avatar-3d-capsule" id="capsuleAbout">
+          <div class="capsule-glare"></div>
+          <div class="capsule-corners">
+            <span class="cap-c cap-tl"></span>
+            <span class="cap-c cap-tr"></span>
+            <span class="cap-c cap-bl"></span>
+            <span class="cap-c cap-br"></span>
+          </div>
           <div class="aside-char-backdrop"></div>
-          <img src="soham1.png" alt="Soham - Digital Architect" class="aside-char-img" />
+          <div class="capsule-orbit-ring" aria-hidden="true"><div class="capsule-orbit-dot"></div></div>
+          <img src="soham1.png" alt="Soham - Digital Architect" class="aside-char-img" draggable="false" />
+          <div class="capsule-bottom-fade"></div>
+          <div class="capsule-status-badge">
+            <span class="cap-status-dot"></span>
+            <span class="cap-status-text">Available For Hire</span>
+          </div>
         </div>
 
         <div class="story-aside-header">
@@ -405,25 +425,7 @@
 
           <div class="about-modern-grid">
             
-            <!-- Photo Card with Fairy-tale Vector Rings (Clamped, Zero Overlay Badges) -->
-            <div class="photo-aurora-card reveal">
-              <div class="photo-wrapper">
-                <img src="Soham2.jpg" alt="Soham Sawalakhe" class="profile-photo"/>
-                
-                <!-- Animated SVG Fairytale Astrolabe Rings -->
-                <svg class="fairytale-ring ring-outer" viewBox="0 0 300 300" fill="none">
-                  <circle cx="150" cy="150" r="140" stroke="rgba(229,152,56,0.35)" stroke-width="1.5" stroke-dasharray="8 12"/>
-                  <circle cx="150" cy="10" r="3.5" fill="#e59838"/>
-                  <circle cx="290" cy="150" r="3" fill="#e59838"/>
-                </svg>
-                <svg class="fairytale-ring ring-inner" viewBox="0 0 280 280" fill="none">
-                  <circle cx="140" cy="140" r="128" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" stroke-dasharray="6 10"/>
-                  <circle cx="140" cy="12" r="2.5" fill="#fff"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Bio & Details Card with 3D Tilt -->
+            <!-- Bio & Details Card with 3D Tilt (Full Width Spacious Layout) -->
             <div class="about-details-card tilt-card-3d reveal">
               <div class="card-ambient-glow glow-amber"></div>
               <h3 class="about-heading">Architecting Scalable Systems &amp; Applied AI</h3>
@@ -670,10 +672,23 @@
       <aside class="story-sticky-aside reveal">
         <div class="card-ambient-glow glow-blue"></div>
 
-        <!-- Illustrated Character Capsule (Pure, Unobstructed Art) -->
-        <div class="aside-character-capsule">
+        <!-- Illustrated 3D Character Capsule -->
+        <div class="aside-character-capsule avatar-3d-capsule" id="capsuleProjects">
+          <div class="capsule-glare"></div>
+          <div class="capsule-corners">
+            <span class="cap-c cap-tl"></span>
+            <span class="cap-c cap-tr"></span>
+            <span class="cap-c cap-bl"></span>
+            <span class="cap-c cap-br"></span>
+          </div>
           <div class="aside-char-backdrop char-backdrop-blue"></div>
-          <img src="soham4.png" alt="Soham - Cyber & AI Researcher" class="aside-char-img" />
+          <div class="capsule-orbit-ring" aria-hidden="true"><div class="capsule-orbit-dot"></div></div>
+          <img src="soham4.png" alt="Soham - Cyber & AI Researcher" class="aside-char-img" draggable="false" />
+          <div class="capsule-bottom-fade"></div>
+          <div class="capsule-status-badge">
+            <span class="cap-status-dot"></span>
+            <span class="cap-status-text">Scopus Researcher</span>
+          </div>
         </div>
 
         <div class="story-aside-header">
@@ -958,10 +973,23 @@
       <aside class="story-sticky-aside reveal">
         <div class="card-ambient-glow glow-emerald"></div>
 
-        <!-- Illustrated Character Capsule (Pure, Unobstructed Art) -->
-        <div class="aside-character-capsule">
+        <!-- Illustrated 3D Character Capsule -->
+        <div class="aside-character-capsule avatar-3d-capsule" id="capsuleExp">
+          <div class="capsule-glare"></div>
+          <div class="capsule-corners">
+            <span class="cap-c cap-tl"></span>
+            <span class="cap-c cap-tr"></span>
+            <span class="cap-c cap-bl"></span>
+            <span class="cap-c cap-br"></span>
+          </div>
           <div class="aside-char-backdrop char-backdrop-green"></div>
-          <img src="soham5.png" alt="Soham - Backend at SitaraHub" class="aside-char-img" />
+          <div class="capsule-orbit-ring" aria-hidden="true"><div class="capsule-orbit-dot"></div></div>
+          <img src="soham5.png" alt="Soham - Backend at SitaraHub" class="aside-char-img" draggable="false" />
+          <div class="capsule-bottom-fade"></div>
+          <div class="capsule-status-badge">
+            <span class="cap-status-dot"></span>
+            <span class="cap-status-text">Backend @ SitaraHub</span>
+          </div>
         </div>
 
         <div class="story-aside-header">
@@ -1135,7 +1163,7 @@
 
     <!-- Vortex Category Filter Chips -->
     <div class="vortex-filter-bar">
-      <button class="v-filter-btn active" data-filter="all">All Stack (16)</button>
+      <button class="v-filter-btn active" data-filter="all">All Stack (17)</button>
       <button class="v-filter-btn" data-filter="lang">Languages</button>
       <button class="v-filter-btn" data-filter="backend">Backend & Web</button>
       <button class="v-filter-btn" data-filter="ai">AI / Data Science</button>
@@ -1247,11 +1275,19 @@
 
       </div>
 
-      <!-- Orbit 3: Outer Ring (Languages, Tools & Architecture: 6 items) -->
+      <!-- Orbit 3: Outer Ring (Languages, Tools & Architecture: 7 items) -->
       <div class="vortex-orbit orbit-3" id="orbit3">
         
+        <!-- AWS (Amazon Web Services) -->
+        <div class="v-node node-1" data-cat="db" data-name="AWS" data-desc="EC2, S3, Lambda, IAM, VPC & Cloud Architecture" data-prof="88%">
+          <div class="v-node-inner">
+            <svg class="v-logo" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="5" fill="#232F3E"/><path d="M6.8 6.5L4.5 14h1.7l.5-1.8h2.3l.5 1.8h1.7L8.9 6.5H6.8zm-.1 4.7l.7-2.9.7 2.9H6.7zm12.8-4.7l-1 4.3-1.1-4.3h-1.2l-1.1 4.3-1-4.3h-1.6l1.7 7.5h1.5l1.1-4.1 1.1 4.1h1.5l1.7-7.5h-1.6z" fill="#fff"/><path d="M5.5 16.5c3.2 2 7.8 2 11 0" stroke="#FF9900" stroke-width="1.8" stroke-linecap="round"/><path d="M17.5 15.5l.8 1.8-1.8.4" fill="#FF9900"/></svg>
+            <span class="v-name">AWS</span>
+          </div>
+        </div>
+
         <!-- JavaScript -->
-        <div class="v-node node-1" data-cat="lang" data-name="JavaScript" data-desc="ES6+, DOM Manipulation & Full Stack Scripting" data-prof="88%">
+        <div class="v-node node-2" data-cat="lang" data-name="JavaScript" data-desc="ES6+, DOM Manipulation & Full Stack Scripting" data-prof="88%">
           <div class="v-node-inner">
             <svg class="v-logo" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#F7DF1E"/><path d="M13.5 8.5v7.2c0 1.8 1 2.8 2.6 2.8 1.4 0 2.4-.8 2.8-1.7l-1.5-.9c-.2.5-.6.8-1.2.8-.7 0-1.1-.4-1.1-1.3V8.5h-1.6zm-6.2 6.3c.5.8 1.3 1.3 2.3 1.3 1.1 0 1.8-.6 1.8-1.4 0-.9-.7-1.3-1.9-1.8l-.6-.2c-1.8-.7-3-1.6-3-3.4 0-1.7 1.3-3.1 3.4-3.1 1.5 0 2.6.5 3.3 1.7l-1.4 1c-.4-.7-1-1-1.9-1-.9 0-1.5.6-1.5 1.2 0 .8.6 1.2 1.7 1.7l.6.2c2.1.9 3.2 1.8 3.2 3.6 0 2.1-1.6 3.3-3.7 3.3-2 0-3.3-.9-4-2.2l1.4-.6z" fill="#000"/></svg>
             <span class="v-name">JavaScript</span>
@@ -1259,7 +1295,7 @@
         </div>
 
         <!-- SQL -->
-        <div class="v-node node-2" data-cat="lang" data-name="SQL" data-desc="Complex Joins, Subqueries & Query Optimization" data-prof="90%">
+        <div class="v-node node-3" data-cat="lang" data-name="SQL" data-desc="Complex Joins, Subqueries & Query Optimization" data-prof="90%">
           <div class="v-node-inner">
             <svg class="v-logo" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#00758F"/><ellipse cx="12" cy="7" rx="6" ry="2.5" fill="#fff"/><path d="M6 7v4c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5V7" stroke="#fff" stroke-width="1.5"/><path d="M6 11v4c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5v-4" stroke="#fff" stroke-width="1.5"/></svg>
             <span class="v-name">SQL</span>
@@ -1267,7 +1303,7 @@
         </div>
 
         <!-- Git / GitHub -->
-        <div class="v-node node-3" data-cat="db" data-name="Git & GitHub" data-desc="Version Control, Branching, CI/CD Workflows" data-prof="92%">
+        <div class="v-node node-4" data-cat="db" data-name="Git & GitHub" data-desc="Version Control, Branching, CI/CD Workflows" data-prof="92%">
           <div class="v-node-inner">
             <svg class="v-logo" viewBox="0 0 24 24" fill="none"><path d="M21.6 10.9L13.1 2.4c-.6-.6-1.5-.6-2.1 0L8.7 4.7l2.8 2.8c.6-.2 1.4-.1 1.9.4.5.5.7 1.3.4 1.9l2.7 2.7c.6-.3 1.4-.1 1.9.4.8.8.8 2 0 2.8s-2 .8-2.8 0c-.5-.5-.7-1.3-.4-1.9L12.5 11v5.2c.4.3.7.8.7 1.4 0 1.1-.9 2-2 2s-2-.9-2-2c0-.6.3-1.1.7-1.4v-5.3c-.4-.3-.7-.8-.7-1.4 0-.6.3-1.1.7-1.4L7.1 6.8 2.4 11.5c-.6.6-.6 1.5 0 2.1l8.5 8.5c.6.6 1.5.6 2.1 0l8.5-8.5c.7-.7.7-1.6.1-2.2z" fill="#F05032"/></svg>
             <span class="v-name">Git</span>
@@ -1275,7 +1311,7 @@
         </div>
 
         <!-- Java -->
-        <div class="v-node node-4" data-cat="lang" data-name="Java" data-desc="Core OOP, Multithreading & Algorithms" data-prof="80%">
+        <div class="v-node node-5" data-cat="lang" data-name="Java" data-desc="Core OOP, Multithreading & Algorithms" data-prof="80%">
           <div class="v-node-inner">
             <svg class="v-logo" viewBox="0 0 24 24" fill="none"><path d="M8.5 17.5s-1.5.5 0 1c2 .7 4.5.6 7.5-.1 0 0 1-.2 1.5.5-2 .5-4.5.7-8 .1-2.5-.5-1-1.5-1-1.5zm1-3.5s-2 .5 0 1c2.5.6 5.5.4 9-.3 0 0 .8-.2 1.2.4-2.5.5-5.5.8-9.5.2-3-.5-1.5-1.5-1.5-1.5zm3.5-10c.8 1-1 2.5-1 3.5 0 1.5 1.5 2 2.5 3-1-.5-2-1.5-2-2.5 0-1.5 1-2.5.5-4z" fill="#EA2D2E"/></svg>
             <span class="v-name">Java</span>
@@ -1283,7 +1319,7 @@
         </div>
 
         <!-- Natural Language Processing (NLP) -->
-        <div class="v-node node-5" data-cat="ai" data-name="NLP" data-desc="Tokenization, Intent Matching & Sentiment Parsing" data-prof="88%">
+        <div class="v-node node-6" data-cat="ai" data-name="NLP" data-desc="Tokenization, Intent Matching & Sentiment Parsing" data-prof="88%">
           <div class="v-node-inner">
             <svg class="v-logo" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#8B5CF6"/><path d="M6 9h12M6 12h8M6 15h10" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             <span class="v-name">NLP</span>
@@ -1291,7 +1327,7 @@
         </div>
 
         <!-- Linux / Shell -->
-        <div class="v-node node-6" data-cat="db" data-name="Linux / Shell" data-desc="Bash Scripting, Permissions & Server Config" data-prof="86%">
+        <div class="v-node node-7" data-cat="db" data-name="Linux / Shell" data-desc="Bash Scripting, Permissions & Server Config" data-prof="86%">
           <div class="v-node-inner">
             <svg class="v-logo" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#2d2721"/><path d="M7 8l4 4-4 4m6 0h5" stroke="#e59838" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span class="v-name">Linux</span>

@@ -1,9 +1,28 @@
+import * as THREE from 'three';
+
 /* ============================================================
-   SOHAM SAWALAKHE — SCROLL STORY ENGINE
-   Centered Avatar + 5-Stage Journey Cards · Framer-style
+   SOHAM SAWALAKHE — SCROLL STORY ENGINE & 3D AVATAR SYSTEM
+   Centered 3D Avatar + 5-Stage Journey Cards · Three.js & WebGL
    ============================================================ */
 
 'use strict';
+
+/* ─── 3D MOUSE VECTOR TRACKING ───────────────────── */
+let mouseNormX = 0;
+let mouseNormY = 0;
+let targetHeroRx = 0;
+let targetHeroRy = 0;
+let curHeroRx = 0;
+let curHeroRy = 0;
+
+if (typeof window !== 'undefined') {
+  window.addEventListener('mousemove', (e) => {
+    mouseNormX = (e.clientX / window.innerWidth) * 2 - 1;   // -1 to 1
+    mouseNormY = (e.clientY / window.innerHeight) * 2 - 1;  // -1 to 1
+    targetHeroRy = mouseNormX * 16;  // up to 16 deg rotation around Y axis
+    targetHeroRx = -mouseNormY * 12; // up to 12 deg rotation around X axis
+  });
+}
 
 /* ─── DOM ELEMENTS ───────────────────────────────── */
 const nav = document.getElementById('nav');
@@ -64,32 +83,46 @@ function startProgressBar(durationMs) {
 function initVideoIntro() {
   if (!introGateway) return;
 
-  // Show UI overlay elements after brief delay
-  setTimeout(() => {
-    if (introGateway) introGateway.classList.add('ui-visible');
-  }, 600);
+  // Immediately make UI visible
+  introGateway.classList.add('ui-visible');
 
   if (introVideo) {
-    // Fade in video when it can play
-    introVideo.addEventListener('canplay', () => {
+    const onPlaying = () => {
       introVideo.classList.add('is-playing');
-    }, { once: true });
+    };
 
-    // Fallback: show video after 1s regardless
+    introVideo.addEventListener('playing', onPlaying, { once: true });
+    introVideo.addEventListener('canplay', onPlaying, { once: true });
+    introVideo.addEventListener('timeupdate', onPlaying, { once: true });
+
+    // Explicitly call play() on muted element
+    introVideo.muted = true;
+    const playPromise = introVideo.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          introVideo.classList.add('is-playing');
+        })
+        .catch(() => {
+          // Autoplay was prevented or error — show fallback anyway
+          introVideo.classList.add('is-playing');
+        });
+    }
+
+    // Fallback: guarantee video and UI visible after 300ms
     setTimeout(() => {
-      if (introVideo) introVideo.classList.add('is-playing');
-    }, 1000);
+      introVideo.classList.add('is-playing');
+    }, 300);
 
-    // Start progress bar — syncs with ~1.8s video buffer window
-    startProgressBar(1800);
+    // Progress bar runs ~1.5s
+    startProgressBar(1500);
 
-    // If video fails, still show enter button
+    // If video errors out, reveal enter immediately
     introVideo.addEventListener('error', () => {
-      startProgressBar(800);
+      startProgressBar(400);
     }, { once: true });
   } else {
-    // No video element — fallback progress
-    startProgressBar(800);
+    startProgressBar(600);
   }
 }
 
@@ -236,6 +269,10 @@ function heroRAF() {
   // Lerp smooth progress towards raw progress (buttery 60fps damped feel)
   smoothProgress += (rawProgress - smoothProgress) * 0.085;
 
+  // Mouse Parallax Lerp for Avatar Stage
+  curHeroRx += (targetHeroRx - curHeroRx) * 0.08;
+  curHeroRy += (targetHeroRy - curHeroRy) * 0.08;
+
   // Render
   renderHero(smoothProgress);
 
@@ -293,7 +330,7 @@ function renderHero(progress) {
       gazeX = isTablet ? -220 : 14; // on tablet, shift left so card on right has ample breathing room
     }
     if (imgIdx === 4) gazeX = -10; // shifts left towards look direction
-    avatarStage.style.transform = `translate(${gazeX}px, ${avatarY + gazeY}px) scale(${avatarScale})`;
+    avatarStage.style.transform = `translate(${gazeX + curHeroRy * 0.4}px, ${avatarY + gazeY + curHeroRx * 0.3}px) scale(${avatarScale})`;
   }
 
   // --- 5. Timeline pills active update ---
@@ -875,6 +912,99 @@ function initStoryStepTracker() {
   });
 }
 
+/* ─── 3D AVATAR CAPSULE TILT & GLARE ENGINE ───────────────── */
+function initAvatar3DTilt() {
+  if (window.matchMedia('(hover: none)').matches) return; // Skip touch devices
+
+  const capsules = document.querySelectorAll('.aside-character-capsule, .avatar-3d-capsule, .avatar-3d-card-wrap');
+  if (!capsules.length) return;
+
+  capsules.forEach(capsule => {
+    const glare = capsule.querySelector('.capsule-glare, .av3d-glare');
+    const img = capsule.querySelector('.aside-char-img, .av3d-img');
+
+    let currentRotX = 0;
+    let currentRotY = 0;
+    let targetRotX = 0;
+    let targetRotY = 0;
+    let isHovered = false;
+    let animId = null;
+
+    const maxTilt = 15; // Max degrees
+
+    function updateCapsulePhysics() {
+      currentRotX += (targetRotX - currentRotX) * 0.12;
+      currentRotY += (targetRotY - currentRotY) * 0.12;
+
+      const scale = isHovered ? 1.025 : 1.0;
+      capsule.style.transform = `perspective(900px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg) scale3d(${scale}, ${scale}, ${scale})`;
+
+      if (img) {
+        // Deep 3D parallax offset for character avatar
+        const imgX = (currentRotY * 0.9).toFixed(1);
+        const imgY = (-currentRotX * 0.9).toFixed(1);
+        img.style.transform = `translate3d(${imgX}px, ${imgY}px, 32px)`;
+      }
+
+      if (isHovered || Math.abs(currentRotX) > 0.05 || Math.abs(currentRotY) > 0.05) {
+        animId = requestAnimationFrame(updateCapsulePhysics);
+      } else {
+        currentRotX = 0;
+        currentRotY = 0;
+        capsule.style.transform = '';
+        if (img) img.style.transform = 'translateZ(30px)';
+        animId = null;
+      }
+    }
+
+    function onMouseMove(e) {
+      const rect = capsule.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const normX = (x / rect.width) * 2 - 1;   // -1 to 1
+      const normY = (y / rect.height) * 2 - 1;  // -1 to 1
+
+      targetRotY = normX * maxTilt;
+      targetRotX = -normY * maxTilt;
+
+      if (glare) {
+        const glareX = ((x / rect.width) * 100).toFixed(1);
+        const glareY = ((y / rect.height) * 100).toFixed(1);
+        glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.32) 0%, rgba(229, 152, 56, 0.15) 45%, transparent 70%)`;
+        glare.style.opacity = '1';
+      }
+
+      if (!animId) {
+        animId = requestAnimationFrame(updateCapsulePhysics);
+      }
+    }
+
+    function onMouseEnter() {
+      isHovered = true;
+      if (!animId) {
+        animId = requestAnimationFrame(updateCapsulePhysics);
+      }
+    }
+
+    function onMouseLeave() {
+      isHovered = false;
+      targetRotX = 0;
+      targetRotY = 0;
+      if (glare) {
+        glare.style.opacity = '0';
+      }
+      if (!animId) {
+        animId = requestAnimationFrame(updateCapsulePhysics);
+      }
+    }
+
+    capsule.addEventListener('mousemove', onMouseMove);
+    capsule.addEventListener('mouseenter', onMouseEnter);
+    capsule.addEventListener('mouseleave', onMouseLeave);
+  });
+}
+
 /* ─── INITIALIZATION ──────────────────────────────────────── */
 function initPortfolioApp() {
   // Set first image active immediately
@@ -886,9 +1016,10 @@ function initPortfolioApp() {
   // Capture initial scroll state
   updateScrollProgress();
   // Start intro sequence
-  startIntroSequence();
-  // Initialize interactive chapter effects
+  initVideoIntro();
+  // Initialize interactive effects
   init3DCardTilt();
+  initAvatar3DTilt();
   initRadarSimulator();
   initStoryStepTracker();
 }

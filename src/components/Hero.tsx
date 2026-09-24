@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FaEnvelope, FaMicrochip, FaCode, FaRocket, FaDownload } from 'react-icons/fa';
 import { data } from '../data';
+import Avatar3D from './Avatar3D';
 
 export default function Hero({ isHomePage }: { isHomePage?: boolean }) {
   const [typed, setTyped] = useState('');
@@ -30,39 +31,53 @@ export default function Hero({ isHomePage }: { isHomePage?: boolean }) {
       {/* Animated grid background for hero */}
       <div className="hero-grid-bg" />
       
-      <div className="hero-content">
-        <div className="hero-badge">
-          <span className="dot" />
-          Open to Opportunities
-        </div>
+      <div className="hero-split">
+        {/* Left: text content */}
+        <div className="hero-content">
+          <div className="hero-badge">
+            <span className="dot" />
+            Open to Opportunities
+          </div>
 
-        <h1>
-          <span className="first">{data.personal.firstName} </span>
-          <span className="last">{data.personal.lastName}</span>
-        </h1>
+          <h1>
+            <span className="first">{data.personal.firstName} </span>
+            <span className="last">{data.personal.lastName}</span>
+          </h1>
 
-        <div className="hero-typed">
-          {'> '}<strong>{typed}</strong>
-          <span className="cursor">_</span>
-        </div>
+          <div className="hero-typed">
+            {'> '}<strong>{typed}</strong>
+            <span className="cursor">_</span>
+          </div>
 
-        <p className="hero-desc">{data.personal.professionalSummary}</p>
+          <p className="hero-desc">{data.personal.professionalSummary}</p>
 
-        <div className="hero-actions">
-          {isHomePage && (
-            <a href={data.personal.resume} target="_blank" rel="noopener noreferrer" className="btn btn-glow">
-              <FaDownload /> Download Resume
+          <div className="hero-actions">
+            {isHomePage && (
+              <a href={data.personal.resume} target="_blank" rel="noopener noreferrer" className="btn btn-glow">
+                <FaDownload /> Download Resume
+              </a>
+            )}
+            <a href={`mailto:${data.personal.email}`} className="btn btn-ghost">
+              <FaEnvelope /> Get In Touch
             </a>
-          )}
-          <a href={`mailto:${data.personal.email}`} className="btn btn-ghost">
-            <FaEnvelope /> Get In Touch
-          </a>
+          </div>
+
+          <div className="hero-tags">
+            <span className="hero-tag"><FaMicrochip /> AI/ML</span>
+            <span className="hero-tag"><FaCode /> Full-Stack</span>
+            <span className="hero-tag"><FaRocket /> {data.facts.projects} Projects</span>
+          </div>
         </div>
 
-        <div className="hero-tags">
-          <span className="hero-tag"><FaMicrochip /> AI/ML</span>
-          <span className="hero-tag"><FaCode /> Full-Stack</span>
-          <span className="hero-tag"><FaRocket /> {data.facts.projects} Projects</span>
+        {/* Right: 3D Avatar */}
+        <div className="hero-avatar-col">
+          <Avatar3D
+            src="/soham1.png"
+            alt="Soham Sawalakhe"
+            size="xl"
+            showOrbit={true}
+            showScanCorners={true}
+          />
         </div>
       </div>
 

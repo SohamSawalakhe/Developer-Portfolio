@@ -598,11 +598,42 @@ a:hover { color: #fff; }
 
 .hero::before { display: none; }
 
-.hero-content {
-  text-align: center;
+/* Hero split layout: text left, avatar right */
+.hero-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 48px;
   z-index: 2;
-  max-width: 900px;
-  padding: 0 24px;
+}
+
+.hero-content {
+  text-align: left;
+  z-index: 2;
+  padding: 0;
+}
+
+.hero-content .hero-actions {
+  justify-content: flex-start;
+}
+
+.hero-content .hero-tags {
+  justify-content: flex-start;
+}
+
+.hero-content .hero-desc {
+  margin: 0 0 40px;
+}
+
+.hero-avatar-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeSlideUp 1s ease both;
+  animation-delay: 0.4s;
 }
 
 .hero-badge {
@@ -807,6 +838,253 @@ a:hover { color: #fff; }
 @keyframes float {
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ======== 3D AVATAR ======== */
+.avatar3d-wrapper {
+  position: relative;
+  width: var(--avatar-size, 280px);
+  height: var(--avatar-size, 280px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Subtle float animation */
+  animation: avatar3dFloat 5s ease-in-out infinite;
+}
+
+@keyframes avatar3dFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+}
+
+/* Pulsing outer halo glow */
+.avatar3d-halo {
+  position: absolute;
+  inset: -30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,212,255,0.12) 0%, transparent 70%);
+  animation: avatar3dHaloPulse 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes avatar3dHaloPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.12); }
+}
+
+/* Orbit rings */
+.avatar3d-orbit-wrapper {
+  position: absolute;
+  inset: -40px;
+  pointer-events: none;
+}
+
+.avatar3d-orbit {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  animation: avatar3dOrbit 8s linear infinite;
+  transform-style: preserve-3d;
+}
+
+.avatar3d-orbit--2 {
+  inset: 20px;
+  border-color: rgba(124, 58, 237, 0.2);
+  animation-duration: 12s;
+  animation-direction: reverse;
+}
+
+@keyframes avatar3dOrbit {
+  to { transform: rotateZ(360deg) rotateX(65deg); }
+}
+
+.avatar3d-orbit-dot {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+}
+
+.avatar3d-orbit-dot--2 {
+  background: var(--accent-2);
+  box-shadow: 0 0 10px var(--accent-2), 0 0 20px var(--accent-2);
+}
+
+/* The main tiltable card */
+.avatar3d-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  cursor: none;
+  transition: box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+  /* Default idle transform handled by JS */
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(0, 212, 255, 0.1),
+    inset 0 0 40px rgba(0, 212, 255, 0.03);
+}
+
+.avatar3d-card--hovered {
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(0, 212, 255, 0.3),
+    0 0 60px rgba(0, 212, 255, 0.12),
+    inset 0 0 40px rgba(0, 212, 255, 0.06);
+}
+
+/* Gradient depth background behind avatar */
+.avatar3d-depth-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 80%, rgba(0,212,255,0.08) 0%, rgba(2,6,23,0.95) 70%);
+  z-index: 0;
+}
+
+/* Avatar image */
+.avatar3d-img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  display: block;
+  /* Slight upward shift to center the character */
+  padding-top: 10px;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5));
+  transition: filter 0.3s;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.avatar3d-card--hovered .avatar3d-img {
+  filter: drop-shadow(0 12px 32px rgba(0, 212, 255, 0.25));
+}
+
+/* Glare overlay — controlled via JS */
+.avatar3d-glare {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: 24px;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+/* Bottom gradient fade for images with white background */
+.avatar3d-bottom-fade {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 30%;
+  background: linear-gradient(to top, rgba(2,6,23,0.9) 0%, transparent 100%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Scan line that sweeps down */
+.avatar3d-scan {
+  position: absolute;
+  top: -4px; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  z-index: 5;
+  opacity: 0;
+  animation: avatar3dScan 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes avatar3dScan {
+  0% { top: -4px; opacity: 0; }
+  5% { opacity: 0.7; }
+  90% { opacity: 0.3; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Scan corner brackets */
+.avatar3d-corner {
+  position: absolute;
+  width: 20px; height: 20px;
+  z-index: 6;
+  pointer-events: none;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.avatar3d-card--hovered .avatar3d-corner { opacity: 1; }
+
+.avatar3d-corner--tl { top: 12px; left: 12px; border-top: 2px solid var(--accent); border-left: 2px solid var(--accent); border-radius: 3px 0 0 0; }
+.avatar3d-corner--tr { top: 12px; right: 12px; border-top: 2px solid var(--accent); border-right: 2px solid var(--accent); border-radius: 0 3px 0 0; }
+.avatar3d-corner--bl { bottom: 12px; left: 12px; border-bottom: 2px solid var(--accent); border-left: 2px solid var(--accent); border-radius: 0 0 0 3px; }
+.avatar3d-corner--br { bottom: 12px; right: 12px; border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent); border-radius: 0 0 3px 0; }
+
+/* Status badge at bottom */
+.avatar3d-status {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(2, 6, 23, 0.85);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  padding: 5px 14px;
+  border-radius: 100px;
+  z-index: 7;
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+}
+
+.avatar3d-status-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 6px #22c55e;
+  animation: pulse 2s infinite;
+}
+
+.avatar3d-status-text {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: #22c55e;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Ground shadow ellipse */
+.avatar3d-shadow {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 24px;
+  background: radial-gradient(ellipse, rgba(0,212,255,0.18) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(8px);
+  animation: avatar3dShadow 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes avatar3dShadow {
+  0%, 100% { opacity: 0.6; transform: translateX(-50%) scaleX(1); }
+  50% { opacity: 0.3; transform: translateX(-50%) scaleX(0.75); }
+}
+
+/* About section avatar override */
+.about-avatar3d {
+  --avatar-size: 280px !important;
+  animation: none !important; /* no float in about, use hover only */
 }
 
 /* ======== ABOUT ======== */
@@ -1514,6 +1792,25 @@ a:hover { color: #fff; }
   .contact-layout { grid-template-columns: 1fr; }
   .navigator { display: none; }
 
+  /* Hero split becomes stacked on tablet */
+  .hero-split {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 0 32px;
+    gap: 32px;
+  }
+
+  .hero-content { text-align: center; }
+  .hero-content .hero-actions { justify-content: center; }
+  .hero-content .hero-tags { justify-content: center; }
+  .hero-content .hero-desc { margin: 0 auto 40px; }
+  .hero-avatar-col { order: -1; }
+
+  /* Smaller avatar on tablet */
+  .hero-avatar-col .avatar3d-wrapper {
+    --avatar-size: 320px !important;
+  }
+
   /* Reposition nav indicators to bottom-center for mobile thumb access */
   .nav-indicators {
     top: auto;
@@ -1561,6 +1858,23 @@ a:hover { color: #fff; }
   .hero h1 { font-size: clamp(2.5rem, 10vw, 4rem); }
   .hero-actions { flex-direction: column; align-items: center; }
   .cin-corner { display: none; }
+
+  /* Mobile avatar sizing */
+  .hero-avatar-col .avatar3d-wrapper {
+    --avatar-size: 260px !important;
+  }
+
+  .about-avatar3d {
+    --avatar-size: 240px !important;
+  }
+
+  /* Disable parallax/tilt on mobile (touch devices) */
+  @media (hover: none) {
+    .avatar3d-card {
+      transform: perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) !important;
+      transition: transform 0.5s ease;
+    }
+  }
 
   /* Improve touch scrolling on mobile */
   .page-container {

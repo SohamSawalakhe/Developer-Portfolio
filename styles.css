@@ -116,7 +116,7 @@ body {
   }
 }
 
-/* ── Cinematic Letterbox Bars ── */
+/* ── Cinematic Letterbox Bars — REMOVED, now truly fullscreen ── */
 .intro-letterbox-top,
 .intro-letterbox-bottom {
   position: absolute;
@@ -124,18 +124,9 @@ body {
   right: 0;
   background: #000;
   z-index: 5;
+  height: 0 !important;
+  overflow: hidden;
   transition: height 0.8s var(--ease-spring);
-}
-.intro-letterbox-top    { top: 0;    height: 44px; }
-.intro-letterbox-bottom { bottom: 0; height: 44px; }
-
-@media (min-width: 768px) {
-  .intro-letterbox-top    { height: 64px; }
-  .intro-letterbox-bottom { height: 64px; }
-}
-@media (min-width: 1024px) {
-  .intro-letterbox-top    { height: 80px; }
-  .intro-letterbox-bottom { height: 80px; }
 }
 
 .intro-gateway.letterbox-close .intro-letterbox-top,
@@ -718,7 +709,21 @@ body {
   transition: transform 0.4s ease-out;
 }
 
-/* Center Avatar Stage (Full Page / Main Subject, No Circle Frame) */
+/* ─── CENTER AVATAR 3D STAGE (Interactive 3D Avatar, WebGL & Depth) ─── */
+.hero-avatar-center-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  will-change: transform;
+  pointer-events: auto;
+}
+
+/* ─── CENTER AVATAR STAGE (Clean Framer Effect) ──────────── */
 .hero-avatar-center-stage {
   position: absolute;
   inset: 0;
@@ -727,19 +732,19 @@ body {
   align-items: flex-end;
   justify-content: center;
   pointer-events: none;
-  will-change: transform;
+  transition: transform 0.1s ease-out;
 }
 
 .hero-avatar-floor-shadow {
   position: absolute;
-  bottom: 12px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: clamp(260px, 34vw, 480px);
-  height: 38px;
+  width: clamp(260px, 36vw, 500px);
+  height: 42px;
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(24, 20, 16, 0.28) 0%, rgba(24, 20, 16, 0.08) 55%, transparent 75%);
-  filter: blur(12px);
+  background: radial-gradient(ellipse, rgba(24, 20, 16, 0.32) 0%, rgba(24, 20, 16, 0.1) 55%, transparent 75%);
+  filter: blur(14px);
   z-index: 2;
   pointer-events: none;
 }
@@ -756,15 +761,19 @@ body {
   object-position: center bottom;
   opacity: 0;
   display: none;
-  filter: drop-shadow(0 20px 40px rgba(24, 20, 16, 0.16));
+  filter: drop-shadow(0 20px 45px rgba(24, 20, 16, 0.2));
   pointer-events: none;
+  transition: filter 0.4s ease;
+  will-change: transform, opacity;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .hero-avatar-center-img.active {
   opacity: 1;
   display: block;
-  transform: translateX(-50%);
 }
+
 
 /* Story panels (Continuous scrubbed text capsules across full stage) */
 .hero-panels-wrap {
@@ -1626,53 +1635,204 @@ body {
   box-shadow: 6px 6px 0px var(--ink), 0 20px 45px rgba(24, 20, 16, 0.12);
 }
 
-/* ─── CHARACTER CAPSULE IN ASIDE (Pure Unobstructed Character Art) ─── */
+/* ─── PROPER 3D AVATAR CAPSULE IN SIDEBAR (Interactive 3D Stage) ─── */
 .aside-character-capsule {
   position: relative;
   width: 100%;
-  height: 210px;
-  border-radius: 20px;
+  height: 245px;
+  border-radius: 22px;
   border: 1.5px solid var(--ink);
   overflow: hidden;
-  background: radial-gradient(circle at 50% 120%, rgba(229, 152, 56, 0.24) 0%, rgba(24, 20, 16, 0.04) 70%), #ffffff;
-  box-shadow: 3px 3px 0px var(--ink);
+  background: radial-gradient(ellipse at 50% 110%, rgba(229, 152, 56, 0.22) 0%, rgba(24, 20, 16, 0.03) 70%), #ffffff;
+  box-shadow: 4px 4px 0px var(--ink), 0 12px 30px rgba(24, 20, 16, 0.08);
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  margin-bottom: 6px;
+  margin-bottom: 12px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  cursor: crosshair;
+  transition: box-shadow 0.4s ease, border-color 0.3s ease;
+  will-change: transform;
+}
+
+.aside-character-capsule:hover {
+  box-shadow: 6px 6px 0px var(--ink), 0 20px 45px rgba(229, 152, 56, 0.2);
+}
+
+/* Dynamic Glare Overlay */
+.capsule-glare {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border-radius: 22px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.35) 0%, transparent 65%);
+}
+.aside-character-capsule:hover .capsule-glare {
+  opacity: 1;
+}
+
+/* Cyber HUD Corner Brackets */
+.capsule-corners {
+  position: absolute;
+  inset: 8px;
+  pointer-events: none;
+  z-index: 6;
+}
+.cap-c {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  opacity: 0.5;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.aside-character-capsule:hover .cap-c {
+  opacity: 1;
+}
+.cap-tl { top: 0; left: 0; border-top: 2px solid #e59838; border-left: 2px solid #e59838; border-radius: 2px 0 0 0; }
+.cap-tr { top: 0; right: 0; border-top: 2px solid #e59838; border-right: 2px solid #e59838; border-radius: 0 2px 0 0; }
+.cap-bl { bottom: 0; left: 0; border-bottom: 2px solid #e59838; border-left: 2px solid #e59838; border-radius: 0 0 0 2px; }
+.cap-br { bottom: 0; right: 0; border-bottom: 2px solid #e59838; border-right: 2px solid #e59838; border-radius: 0 0 2px 0; }
+
+/* Rotating 3D Orbit Ring */
+.capsule-orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 210px;
+  height: 210px;
+  margin-top: -105px;
+  margin-left: -105px;
+  border-radius: 50%;
+  border: 1px dashed rgba(229, 152, 56, 0.28);
+  pointer-events: none;
+  z-index: 2;
+  transform: rotateX(70deg) rotateZ(0deg);
+  animation: capOrbitSpin 14s linear infinite;
+}
+.capsule-orbit-dot {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  background: #e59838;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #e59838;
+}
+@keyframes capOrbitSpin {
+  from { transform: rotateX(68deg) rotateZ(0deg); }
+  to   { transform: rotateX(68deg) rotateZ(360deg); }
 }
 
 .aside-char-backdrop {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 30%, rgba(229, 152, 56, 0.28), transparent 70%);
-  pointer-events: none;
-}
-
-.char-backdrop-green {
-  background: radial-gradient(circle at 50% 30%, rgba(16, 185, 129, 0.28), transparent 70%);
-}
-
-.char-backdrop-blue {
-  background: radial-gradient(circle at 50% 30%, rgba(59, 130, 246, 0.28), transparent 70%);
-}
-
-.aside-char-img {
-  height: 225px;
-  width: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.18));
-  transition: transform 0.4s var(--ease-spring);
+  background: radial-gradient(circle at 50% 35%, rgba(229, 152, 56, 0.24), transparent 70%);
   pointer-events: none;
   z-index: 1;
 }
 
-.aside-character-capsule:hover .aside-char-img {
-  transform: scale(1.06) translateY(-4px);
+.char-backdrop-green {
+  background: radial-gradient(circle at 50% 35%, rgba(16, 185, 129, 0.24), transparent 70%);
+}
+.char-backdrop-green ~ .capsule-corners .cap-c {
+  border-color: #10b981;
+}
+.char-backdrop-green ~ .capsule-orbit-ring {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+.char-backdrop-green ~ .capsule-orbit-ring .capsule-orbit-dot {
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
 }
 
-.aside-char-badge {
-  display: none !important; /* Unobstructed character artwork */
+.char-backdrop-blue {
+  background: radial-gradient(circle at 50% 35%, rgba(59, 130, 246, 0.24), transparent 70%);
+}
+.char-backdrop-blue ~ .capsule-corners .cap-c {
+  border-color: #3b82f6;
+}
+.char-backdrop-blue ~ .capsule-orbit-ring {
+  border-color: rgba(59, 130, 246, 0.3);
+}
+.char-backdrop-blue ~ .capsule-orbit-ring .capsule-orbit-dot {
+  background: #3b82f6;
+  box-shadow: 0 0 8px #3b82f6;
+}
+
+/* 3D Character Avatar Image */
+.aside-char-img {
+  height: 255px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.22));
+  transition: filter 0.3s ease;
+  pointer-events: none;
+  z-index: 3;
+  transform: translateZ(30px);
+  will-change: transform;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.aside-character-capsule:hover .aside-char-img {
+  filter: drop-shadow(0 14px 28px rgba(229, 152, 56, 0.35));
+}
+
+/* Bottom Fade */
+.capsule-bottom-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 38px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.95) 0%, transparent 100%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Status Badge */
+.capsule-status-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%) translateZ(40px);
+  z-index: 7;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: rgba(24, 20, 16, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(229, 152, 56, 0.35);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.cap-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+.cap-status-text {
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
 }
 
 /* ─── SOHAM'S STORY LOG BUBBLE ─── */
@@ -2102,30 +2262,246 @@ body {
 
 /* ─── ABOUT SECTION ────────────────────────────────────────── */
 .about-modern-grid {
-  display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  gap: 32px;
-  align-items: center;
+  display: block;
   margin-bottom: 36px;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
 }
 
-@media (max-width: 1180px) {
-  .about-modern-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-}
-
 .photo-aurora-card {
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   width: 100%;
   box-sizing: border-box;
+  /* Float animation on the whole wrapper */
+  animation: av3dFloat 5s ease-in-out infinite;
 }
+
+@keyframes av3dFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+/* ======================================================
+   AVATAR 3D CARD — About Section
+   ====================================================== */
+
+.avatar-3d-card-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 270px;
+  /* Tilt transform set via JS */
+  border-radius: 22px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 85%, rgba(229,152,56,0.1) 0%, rgba(24,20,16,0.97) 70%);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.55),
+    0 0 0 1.5px rgba(229,152,56,0.18),
+    inset 0 0 40px rgba(229,152,56,0.03);
+  transition: box-shadow 0.4s ease;
+  cursor: crosshair;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.avatar-3d-card-wrap:hover {
+  box-shadow:
+    0 35px 90px rgba(0,0,0,0.75),
+    0 0 0 1.5px rgba(229,152,56,0.4),
+    0 0 50px rgba(229,152,56,0.1),
+    inset 0 0 40px rgba(229,152,56,0.06);
+}
+
+/* Scan corner brackets */
+.av3d-corner {
+  position: absolute;
+  width: 18px; height: 18px;
+  z-index: 6;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+.avatar-3d-card-wrap:hover .av3d-corner { opacity: 1; }
+
+.av3d-tl { top: 12px; left: 12px;
+  border-top: 2px solid #e59838; border-left: 2px solid #e59838; border-radius: 3px 0 0 0; }
+.av3d-tr { top: 12px; right: 12px;
+  border-top: 2px solid #e59838; border-right: 2px solid #e59838; border-radius: 0 3px 0 0; }
+.av3d-bl { bottom: 12px; left: 12px;
+  border-bottom: 2px solid #e59838; border-left: 2px solid #e59838; border-radius: 0 0 0 3px; }
+.av3d-br { bottom: 12px; right: 12px;
+  border-bottom: 2px solid #e59838; border-right: 2px solid #e59838; border-radius: 0 0 3px 0; }
+
+/* Scan line sweep */
+.av3d-scanline {
+  position: absolute;
+  top: -4px; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #e59838, transparent);
+  z-index: 5;
+  opacity: 0;
+  animation: av3dScan 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes av3dScan {
+  0%   { top: -4px; opacity: 0; }
+  5%   { opacity: 0.75; }
+  90%  { opacity: 0.25; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Glare */
+.av3d-glare {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: 22px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.14) 0%, transparent 65%);
+}
+.avatar-3d-card-wrap:hover .av3d-glare { opacity: 1; }
+
+/* Avatar image */
+.av3d-img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: contain;
+  object-position: center bottom;
+  display: block;
+  padding-top: 8px;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5));
+  transition: filter 0.3s;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.avatar-3d-card-wrap:hover .av3d-img {
+  filter: drop-shadow(0 12px 28px rgba(229,152,56,0.28));
+}
+
+/* Bottom fade */
+.av3d-bottom-fade {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 28%;
+  background: linear-gradient(to top, rgba(24,20,16,0.9) 0%, transparent 100%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Status badge */
+.av3d-status {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(24, 20, 16, 0.88);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  padding: 5px 13px;
+  border-radius: 100px;
+  z-index: 7;
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+}
+
+.av3d-status-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 6px #22c55e;
+  animation: av3dPulse 2s infinite;
+}
+
+@keyframes av3dPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+  50% { box-shadow: 0 0 0 6px transparent; }
+}
+
+.av3d-status-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: #22c55e;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Orbit rings */
+.av3d-orbit-wrap {
+  position: absolute;
+  inset: -36px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.av3d-orbit {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: av3dOrbit 10s linear infinite;
+  transform-style: preserve-3d;
+}
+
+.av3d-orbit-1 {
+  border: 1px solid rgba(229,152,56,0.22);
+}
+
+.av3d-orbit-2 {
+  inset: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  animation-duration: 14s;
+  animation-direction: reverse;
+}
+
+@keyframes av3dOrbit {
+  to { transform: rotateZ(360deg) rotateX(68deg); }
+}
+
+.av3d-orbit-dot {
+  position: absolute;
+  top: -4px; left: 50%;
+  transform: translateX(-50%);
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #e59838;
+  box-shadow: 0 0 8px #e59838, 0 0 16px rgba(229,152,56,0.5);
+}
+
+.av3d-orbit-dot-2 {
+  background: rgba(255,255,255,0.6);
+  box-shadow: 0 0 8px rgba(255,255,255,0.4);
+}
+
+/* Ground shadow */
+.av3d-ground-shadow {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65%;
+  height: 20px;
+  background: radial-gradient(ellipse, rgba(229,152,56,0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(6px);
+  animation: av3dShadow 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes av3dShadow {
+  0%, 100% { opacity: 0.7; transform: translateX(-50%) scaleX(1); }
+  50% { opacity: 0.3; transform: translateX(-50%) scaleX(0.7); }
+}
+
 
 .photo-wrapper {
   position: relative;
@@ -2969,13 +3345,14 @@ body {
 .orbit-2 .node-5 { top: 75%; left: 7%; transform: translate(-50%, -50%); }
 .orbit-2 .node-6 { top: 25%; left: 7%; transform: translate(-50%, -50%); }
 
-/* Orbit 3 (6 Nodes: 30, 90, 150, 210, 270, 330 deg) */
-.orbit-3 .node-1 { top: 6.7%; left: 75%; transform: translate(-50%, -50%); }
-.orbit-3 .node-2 { top: 50%; left: 100%; transform: translate(-50%, -50%); }
-.orbit-3 .node-3 { top: 93.3%; left: 75%; transform: translate(-50%, -50%); }
-.orbit-3 .node-4 { top: 93.3%; left: 25%; transform: translate(-50%, -50%); }
-.orbit-3 .node-5 { top: 50%; left: 0%; transform: translate(-50%, -50%); }
-.orbit-3 .node-6 { top: 6.7%; left: 25%; transform: translate(-50%, -50%); }
+/* Orbit 3 (7 Nodes: 0, 51.4, 102.9, 154.3, 205.7, 257.1, 308.6 deg) */
+.orbit-3 .node-1 { top: 0%; left: 50%; transform: translate(-50%, -50%); }
+.orbit-3 .node-2 { top: 18.8%; left: 89.1%; transform: translate(-50%, -50%); }
+.orbit-3 .node-3 { top: 61.1%; left: 98.7%; transform: translate(-50%, -50%); }
+.orbit-3 .node-4 { top: 95.1%; left: 71.7%; transform: translate(-50%, -50%); }
+.orbit-3 .node-5 { top: 95.1%; left: 28.3%; transform: translate(-50%, -50%); }
+.orbit-3 .node-6 { top: 61.1%; left: 1.3%; transform: translate(-50%, -50%); }
+.orbit-3 .node-7 { top: 18.8%; left: 10.9%; transform: translate(-50%, -50%); }
 
 /* Faded nodes on filter */
 .v-node.is-dimmed {
