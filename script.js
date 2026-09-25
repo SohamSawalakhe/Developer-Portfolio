@@ -29,15 +29,15 @@ const nav = document.getElementById('nav');
 const heroSection = document.getElementById('home');
 const scrollHint = document.getElementById('scrollHint');
 
-const introGateway    = document.getElementById('introGateway');
-const introVideo      = document.getElementById('introVideo');
+const introGateway = document.getElementById('introGateway');
+const introVideo = document.getElementById('introVideo');
 const introLoaderWrap = document.getElementById('introLoaderWrap');
 const introProgressFill = document.getElementById('introProgressFill');
-const introStatus     = document.getElementById('introStatus');
-const introPct        = document.getElementById('introPct');
-const introEnterBtn   = document.getElementById('introEnterBtn');
-const introSkipBtn    = document.getElementById('introSkipBtn');
-const introHintText   = document.getElementById('introHintText');
+const introStatus = document.getElementById('introStatus');
+const introPct = document.getElementById('introPct');
+const introEnterBtn = document.getElementById('introEnterBtn');
+const introSkipBtn = document.getElementById('introSkipBtn');
+const introHintText = document.getElementById('introHintText');
 let introReady = false;
 
 /* Avatar images (one per stage) */
@@ -58,8 +58,8 @@ function revealEnterButton() {
   if (introReady) return;
   introReady = true;
   if (introLoaderWrap) introLoaderWrap.classList.add('is-hidden');
-  if (introEnterBtn)   introEnterBtn.classList.add('is-ready');
-  if (introHintText)   introHintText.classList.add('is-ready');
+  if (introEnterBtn) introEnterBtn.classList.add('is-ready');
+  if (introHintText) introHintText.classList.add('is-ready');
 }
 
 function startProgressBar(durationMs) {
@@ -158,13 +158,33 @@ function enterExperience() {
 
 // Wire up buttons
 if (introEnterBtn) introEnterBtn.addEventListener('click', (e) => { e.stopPropagation(); enterExperience(); });
-if (introSkipBtn)  introSkipBtn.addEventListener('click', (e)  => { e.stopPropagation(); enterExperience(); });
+if (introSkipBtn) introSkipBtn.addEventListener('click', (e) => { e.stopPropagation(); enterExperience(); });
 
-// Click anywhere to enter (only if ready)
+// Click, scroll, or touch anywhere to enter (only if ready)
 if (introGateway) {
   introGateway.addEventListener('click', () => {
     if (introReady) enterExperience();
   });
+
+  // Natural scroll-wheel to enter
+  introGateway.addEventListener('wheel', (e) => {
+    if (e.deltaY > 15) enterExperience();
+  }, { passive: true });
+
+  // Touch swipe up to enter
+  let introTouchStartY = 0;
+  introGateway.addEventListener('touchstart', (e) => {
+    if (e.touches && e.touches.length) {
+      introTouchStartY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  introGateway.addEventListener('touchend', (e) => {
+    if (e.changedTouches && e.changedTouches.length) {
+      const deltaY = introTouchStartY - e.changedTouches[0].clientY;
+      if (deltaY > 25) enterExperience();
+    }
+  }, { passive: true });
 }
 
 // Hash bypass — skip intro when navigating to a section directly
@@ -201,9 +221,46 @@ handleInitialAnchorJump();
 window.addEventListener('DOMContentLoaded', handleInitialAnchorJump);
 window.addEventListener('load', handleInitialAnchorJump);
 
-// Keyboard shortcut: Enter or Space to proceed
+// Keyboard shortcuts: Enter or Space to enter; ArrowDown/Up to step through chapters
 window.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' || e.key === ' ') enterExperience();
+  if (introGateway && !introGateway.classList.contains('is-exiting') && introGateway.style.display !== 'none') {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      enterExperience();
+    }
+    return;
+  }
+
+  // Smooth stepping through 5 story chapters when in hero section
+  if (heroSection && window.scrollY < heroSection.offsetHeight - 80) {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+      const currentIdx = Math.min(TOTAL_PANELS - 1, Math.floor(rawProgress * TOTAL_PANELS));
+      const nextIdx = Math.min(TOTAL_PANELS - 1, currentIdx + 1);
+      if (nextIdx > currentIdx) {
+        e.preventDefault();
+        const targets = [0.00, 0.26, 0.46, 0.66, 0.88];
+        const heroTop = heroSection.getBoundingClientRect().top + window.scrollY;
+        const totalScrollable = heroSection.offsetHeight - window.innerHeight;
+        window.scrollTo({
+          top: heroTop + targets[nextIdx] * totalScrollable,
+          behavior: 'smooth'
+        });
+      }
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+      const currentIdx = Math.min(TOTAL_PANELS - 1, Math.floor(rawProgress * TOTAL_PANELS));
+      const prevIdx = Math.max(0, currentIdx - 1);
+      if (prevIdx < currentIdx) {
+        e.preventDefault();
+        const targets = [0.00, 0.26, 0.46, 0.66, 0.88];
+        const heroTop = heroSection.getBoundingClientRect().top + window.scrollY;
+        const totalScrollable = heroSection.offsetHeight - window.innerHeight;
+        window.scrollTo({
+          top: heroTop + targets[prevIdx] * totalScrollable,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }
 });
 
 // Boot the intro
@@ -219,17 +276,21 @@ function setAvatarImage(idx) {
 
 /* ─── EASING HELPERS ─────────────────────────────────────── */
 function clamp01(v) { return Math.max(0, Math.min(1, v)); }
-function easeInOut(t) { return t < 0.5 ? 2*t*t : 1-Math.pow(-2*t+2,2)/2; }
+function easeInOut(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
 function lerp(a, b, t) { return a + (b - a) * t; }
+function smoothstep(min, max, value) {
+  const x = Math.max(0, Math.min(1, (value - min) / (max - min)));
+  return x * x * (3 - 2 * x);
+}
 
 /* ─── BG COLOR LERP ──────────────────────────────────────── */
 // 5 background stops, one per panel
 const BG_STOPS = [
   { r: 176, g: 158, b: 140 }, // warm taupe  – panel 1
   { r: 160, g: 143, b: 120 }, // deeper sand – panel 2
-  { r: 140, g: 118, b: 95  }, // amber brown – panel 3
-  { r: 120, g: 100, b: 78  }, // dark amber  – panel 4
-  { r: 100, g: 84,  b: 64  }, // rich espresso – panel 5
+  { r: 140, g: 118, b: 95 }, // amber brown – panel 3
+  { r: 120, g: 100, b: 78 }, // dark amber  – panel 4
+  { r: 100, g: 84, b: 64 }, // rich espresso – panel 5
 ];
 
 function lerpColor(a, b, t) {
@@ -264,14 +325,24 @@ let smoothProgress = 0;
 let rafId = null;
 let isHeroActive = false;
 
+// Smooth gaze and breathing interpolation state (eliminates snapping)
+let curGazeX = 0;
+let curGazeY = 0;
+let targetGazeX = 0;
+let targetGazeY = 0;
+
 /* ─── CONTINUOUS RAF LOOP ────────────────────────────────── */
 function heroRAF() {
-  // Lerp smooth progress towards raw progress (buttery 60fps damped feel)
-  smoothProgress += (rawProgress - smoothProgress) * 0.085;
+  // Lerp smooth progress towards raw progress (buttery Framer feel, responsive & smooth)
+  smoothProgress += (rawProgress - smoothProgress) * 0.11;
 
   // Mouse Parallax Lerp for Avatar Stage
   curHeroRx += (targetHeroRx - curHeroRx) * 0.08;
   curHeroRy += (targetHeroRy - curHeroRy) * 0.08;
+
+  // Smooth Gaze & Breathing Lerp for Character Stage
+  curGazeX += (targetGazeX - curGazeX) * 0.10;
+  curGazeY += (targetGazeY - curGazeY) * 0.10;
 
   // Render
   renderHero(smoothProgress);
@@ -313,31 +384,42 @@ function renderHero(progress) {
     spotlight.style.top = `${spotY}%`;
   }
 
-  // --- 3. Avatar image per panel (cross-fade at each 1/5 threshold) ---
-  const imgIdx = Math.min(TOTAL_PANELS - 1, Math.floor(progress * TOTAL_PANELS));
+  // --- 3. Avatar image per panel (5 stages with smooth transition midpoints) ---
+  let imgIdx = 0;
+  if (progress < 0.185) imgIdx = 0;
+  else if (progress < 0.385) imgIdx = 1;
+  else if (progress < 0.585) imgIdx = 2;
+  else if (progress < 0.785) imgIdx = 3;
+  else imgIdx = 4;
   setAvatarImage(imgIdx);
 
-  // --- 4. Avatar stage subtle breathing parallax & gaze reaction ---
+  // --- 4. Avatar stage subtle breathing parallax & smoothly damped gaze ---
   const avatarStage = document.getElementById('heroAvatarStage');
   if (avatarStage) {
-    const avatarY = -progress * 20;
-    const avatarScale = 1 + progress * 0.03;
-    let gazeX = 0, gazeY = 0;
+    const avatarY = -progress * 22;
+    const avatarScale = 1 + progress * 0.025;
     const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
-    if (imgIdx === 1) gazeY = -8;  // subtly floats up with upward gaze
-    if (imgIdx === 2) gazeY = 8;   // settles down with downward gaze
-    if (imgIdx === 3) {
-      gazeX = isTablet ? -220 : 14; // on tablet, shift left so card on right has ample breathing room
+
+    if (imgIdx === 0) {
+      targetGazeX = 0;
+      targetGazeY = 0;
+    } else if (imgIdx === 1) {
+      targetGazeX = 0;
+      targetGazeY = -8;  // subtly floats up with upward gaze
+    } else if (imgIdx === 2) {
+      targetGazeX = 0;
+      targetGazeY = 8;   // settles down with downward gaze
+    } else if (imgIdx === 3) {
+      targetGazeX = isTablet ? -200 : 16; // breathing room for right-side card
+      targetGazeY = 0;
+    } else if (imgIdx === 4) {
+      targetGazeX = -12; // shifts left towards look direction
+      targetGazeY = 0;
     }
-    if (imgIdx === 4) gazeX = -10; // shifts left towards look direction
-    avatarStage.style.transform = `translate(${gazeX + curHeroRy * 0.4}px, ${avatarY + gazeY + curHeroRx * 0.3}px) scale(${avatarScale})`;
+
+    avatarStage.style.transform = `translate3d(${(curGazeX + curHeroRy * 0.35).toFixed(1)}px, ${(avatarY + curGazeY + curHeroRx * 0.25).toFixed(1)}px, 0) scale(${avatarScale.toFixed(3)})`;
   }
 
-  // --- 5. Timeline pills active update ---
-  const tPills = document.querySelectorAll('.hero-t-pill');
-  tPills.forEach((pill, idx) => {
-    pill.classList.toggle('active', idx === imgIdx);
-  });
 
   // --- 6. CONTINUOUS SCROLL TRAVEL: CRISP, BUTTERY FRAMER CARD TRANSITIONS ---
   const isMobile = window.innerWidth <= 768;
@@ -350,121 +432,134 @@ function renderHero(progress) {
     let opacity = 0;
     let transX = 0;
     let transY = 0;
+    let scale = 1.0;
 
     if (i === 0) {
-      // Panel 1 (Intro · Look Straight): active [0.0, 0.20]
-      if (progress <= 0.15) {
+      // Panel 1 (Intro · Look Straight): active [0.00, 0.22]
+      if (progress <= 0.13) {
         opacity = 1;
-        transY = lerp(0, -8, progress / 0.15);
-      } else if (progress <= 0.20) {
-        const t = (progress - 0.15) / 0.05;
-        opacity = 1 - easeInOut(t);
-        transY = lerp(-8, -20, t);
+        transY = lerp(0, -6, progress / 0.13);
+        scale = 1;
+      } else if (progress <= 0.22) {
+        const t = smoothstep(0.13, 0.22, progress);
+        opacity = 1 - t;
+        transY = lerp(-6, -26, t);
+        scale = lerp(1, 0.95, t);
       } else {
         opacity = 0;
       }
 
     } else if (i === 1) {
-      // Panel 2 (The Beginning · Look UP ⬆️): active [0.15, 0.40]
-      if (progress < 0.15) {
+      // Panel 2 (The Beginning · Look UP ⬆️): active [0.14, 0.42]
+      if (progress < 0.14) {
         opacity = 0;
-      } else if (progress <= 0.20) {
-        const t = (progress - 0.15) / 0.05;
-        opacity = easeInOut(t);
-        transY = lerp(20, 0, t);
-      } else if (progress <= 0.35) {
+      } else if (progress <= 0.22) {
+        const t = smoothstep(0.14, 0.22, progress);
+        opacity = t;
+        transY = lerp(26, 0, t);
+        scale = lerp(0.95, 1, t);
+      } else if (progress <= 0.33) {
         opacity = 1;
-        const t = (progress - 0.20) / 0.15;
-        transY = lerp(0, -8, t);
-      } else if (progress <= 0.40) {
-        const t = (progress - 0.35) / 0.05;
-        opacity = 1 - easeInOut(t);
-        transY = lerp(-8, -20, t);
+        const t = (progress - 0.22) / 0.11;
+        transY = lerp(0, -6, t);
+        scale = 1;
+      } else if (progress <= 0.42) {
+        const t = smoothstep(0.33, 0.42, progress);
+        opacity = 1 - t;
+        transY = lerp(-6, -26, t);
+        scale = lerp(1, 0.95, t);
       } else {
         opacity = 0;
       }
 
     } else if (i === 2) {
-      // Panel 3 (The Builder · Look DOWN ⬇️): active [0.35, 0.60]
-      if (progress < 0.35) {
+      // Panel 3 (The Builder · Look DOWN ⬇️): active [0.34, 0.62]
+      if (progress < 0.34) {
         opacity = 0;
-      } else if (progress <= 0.40) {
-        const t = (progress - 0.35) / 0.05;
-        opacity = easeInOut(t);
-        transY = lerp(20, 0, t);
-      } else if (progress <= 0.55) {
+      } else if (progress <= 0.42) {
+        const t = smoothstep(0.34, 0.42, progress);
+        opacity = t;
+        transY = lerp(26, 0, t);
+        scale = lerp(0.95, 1, t);
+      } else if (progress <= 0.53) {
         opacity = 1;
-        const t = (progress - 0.40) / 0.15;
-        transY = lerp(0, -8, t);
-      } else if (progress <= 0.60) {
-        const t = (progress - 0.55) / 0.05;
-        opacity = 1 - easeInOut(t);
-        transY = lerp(-8, -20, t);
+        const t = (progress - 0.42) / 0.11;
+        transY = lerp(0, -6, t);
+        scale = 1;
+      } else if (progress <= 0.62) {
+        const t = smoothstep(0.53, 0.62, progress);
+        opacity = 1 - t;
+        transY = lerp(-6, -26, t);
+        scale = lerp(1, 0.95, t);
       } else {
         opacity = 0;
       }
 
     } else if (i === 3) {
-      // Panel 4 (Scopus · Look RIGHT ➡️): active [0.55, 0.80]
-      if (progress < 0.55) {
+      // Panel 4 (Scopus · Look RIGHT ➡️): active [0.54, 0.82]
+      if (progress < 0.54) {
         opacity = 0;
-      } else if (progress <= 0.60) {
-        const t = (progress - 0.55) / 0.05;
-        opacity = easeInOut(t);
+      } else if (progress <= 0.62) {
+        const t = smoothstep(0.54, 0.62, progress);
+        opacity = t;
+        scale = lerp(0.95, 1, t);
         if (isMobile) {
-          transY = lerp(20, 0, t);
+          transY = lerp(26, 0, t);
         } else {
-          transX = lerp(35, 0, t);
+          transX = lerp(32, 0, t);
         }
-      } else if (progress <= 0.75) {
+      } else if (progress <= 0.73) {
         opacity = 1;
-        const t = (progress - 0.60) / 0.15;
+        scale = 1;
+        const t = (progress - 0.62) / 0.11;
         if (isMobile) {
-          transY = lerp(0, -8, t);
+          transY = lerp(0, -6, t);
         } else {
-          transX = lerp(0, -10, t);
+          transX = lerp(0, -8, t);
         }
-      } else if (progress <= 0.80) {
-        const t = (progress - 0.75) / 0.05;
-        opacity = 1 - easeInOut(t);
+      } else if (progress <= 0.82) {
+        const t = smoothstep(0.73, 0.82, progress);
+        opacity = 1 - t;
+        scale = lerp(1, 0.95, t);
         if (isMobile) {
-          transY = lerp(-8, -20, t);
+          transY = lerp(-6, -26, t);
         } else {
-          transX = lerp(-10, -28, t);
+          transX = lerp(-8, -32, t);
         }
       } else {
         opacity = 0;
       }
 
     } else if (i === 4) {
-      // Panel 5 (SitaraHub · Look LEFT ⬅️): active [0.75, 1.00]
-      if (progress < 0.75) {
+      // Panel 5 (SitaraHub · Look LEFT ⬅️): active [0.74, 1.00+]
+      if (progress < 0.74) {
         opacity = 0;
-      } else if (progress <= 0.80) {
-        const t = (progress - 0.75) / 0.05;
-        opacity = easeInOut(t);
+      } else if (progress <= 0.82) {
+        const t = smoothstep(0.74, 0.82, progress);
+        opacity = t;
+        scale = lerp(0.95, 1, t);
         if (isMobile) {
-          transY = lerp(20, 0, t);
+          transY = lerp(26, 0, t);
         } else {
-          transX = lerp(-35, 0, t);
+          transX = lerp(-32, 0, t);
         }
       } else {
         opacity = 1;
-        const t = clamp01((progress - 0.80) / 0.20);
+        scale = 1;
+        const t = clamp01((progress - 0.82) / 0.18);
         if (isMobile) {
           transY = lerp(0, -6, t);
         } else {
-          transX = lerp(0, 8, t);
+          transX = lerp(0, 6, t);
         }
       }
     }
 
-    inner.style.opacity = opacity;
-    inner.style.transform = `translate(${transX}px, ${transY}px)`;
+    inner.style.opacity = opacity.toFixed(3);
+    inner.style.transform = `translate3d(${transX.toFixed(1)}px, ${transY.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
     inner.style.pointerEvents = opacity > 0.5 ? 'auto' : 'none';
 
-    const isVisible = opacity > 0.01;
-    panel.style.display = isVisible ? 'block' : 'none';
+    const isVisible = opacity > 0.005;
     panel.style.visibility = isVisible ? 'visible' : 'hidden';
     panel.style.pointerEvents = opacity > 0.5 ? 'auto' : 'none';
   });
@@ -474,7 +569,7 @@ function renderHero(progress) {
     scrollHint.classList.toggle('hidden', progress > 0.03);
   }
 
-  // --- 9. Upper Nav Bar (Always present, compact on scroll) ---
+  // --- 8. Upper Nav Bar (Always present, compact on scroll) ---
   if (nav) {
     nav.classList.toggle('nav-scrolled', window.scrollY > 40);
   }
@@ -532,7 +627,7 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.classList.add('is-revealed');
-      
+
       // Animate skill progress bars when skills section is entered
       if (entry.target.querySelector('.sk-bar')) {
         entry.target.querySelectorAll('.sk-bar').forEach(bar => {
@@ -578,7 +673,7 @@ glowCards.forEach(card => {
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     let rgb = '229, 152, 56';
     if (glow.classList.contains('glow-emerald')) rgb = '16, 185, 129';
     if (glow.classList.contains('glow-blue')) rgb = '59, 130, 246';
@@ -806,18 +901,22 @@ if (playlistSelect && ambientAudio) {
 /* ─── SMOOTH CLICK ANCHOR NAVIGATION ──────────────────────── */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
-    const target = document.querySelector(this.getAttribute('href'));
+    const href = this.getAttribute('href');
+    if (!href || href === '#') return;
+    const target = document.querySelector(href);
     if (!target) return;
 
     e.preventDefault();
-    const targetPosition = target.getBoundingClientRect().top + window.scrollY;
+    const navOffset = href === '#home' ? 0 : 70;
+    const targetPosition = target.getBoundingClientRect().top + window.scrollY - navOffset;
 
     window.scrollTo({
-      top: targetPosition,
+      top: Math.max(0, targetPosition),
       behavior: 'smooth'
     });
   });
 });
+
 
 /* ─── 3D PERSPECTIVE CARD TILT ENGINE ─────────────────────── */
 function init3DCardTilt() {
