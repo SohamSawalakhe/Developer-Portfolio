@@ -14,10 +14,15 @@
   <meta name="author" content="Soham Sawalakhe" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-  <meta name="theme-color" content="#030712" />
+  <meta name="theme-color" content="#faf8f5" />
+  <meta name="color-scheme" content="light" />
 
-  <!-- Canonical URL -->
+  <!-- Canonical URL & Author -->
   <link rel="canonical" href="https://sohamsawalakhe.space/" />
+  <link rel="author" href="https://sohamsawalakhe.space/" />
+
+  <!-- LLM & AI Discoverability Standard (Gemini, Claude, ChatGPT, Perplexity) -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Context Summary" />
 
   <!-- Open Graph / Facebook / LinkedIn -->
   <meta property="og:type" content="profile" />
@@ -25,7 +30,11 @@
   <meta property="og:title" content="Soham Sawalakhe — Software Developer &amp; AI Engineer" />
   <meta property="og:description"
     content="Backend Developer at SitaraHub, AI/ML Researcher, and Full Stack Developer. Discover innovative software, ML projects, research publications, and tech stack." />
-  <meta property="og:image" content="https://sohamsawalakhe.space/Soham2.jpg" />
+  <meta property="og:image" content="https://sohamsawalakhe.space/og-image.jpg" />
+  <meta property="og:image:secure_url" content="https://sohamsawalakhe.space/og-image.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Soham Sawalakhe — Software Developer &amp; AI Engineer" />
   <meta property="og:site_name" content="Soham Sawalakhe Portfolio" />
   <meta property="og:locale" content="en_US" />
@@ -39,7 +48,7 @@
   <meta name="twitter:title" content="Soham Sawalakhe — Software Developer &amp; AI Engineer" />
   <meta name="twitter:description"
     content="Backend Developer at SitaraHub, AI/ML Researcher, and Full Stack Developer. Discover innovative software, ML projects, and publications." />
-  <meta name="twitter:image" content="https://sohamsawalakhe.space/Soham2.jpg" />
+  <meta name="twitter:image" content="https://sohamsawalakhe.space/og-image.jpg" />
   <meta name="twitter:image:alt" content="Soham Sawalakhe — Software Developer &amp; AI Engineer" />
 
   <!-- Favicon & Icons -->
@@ -63,7 +72,7 @@
         "jobTitle": "Software Developer & AI Engineer",
         "description": "Backend Developer at SitaraHub, AI/ML Engineer, Full Stack Developer, and Scopus-indexed researcher.",
         "url": "https://sohamsawalakhe.space/",
-        "image": "https://sohamsawalakhe.space/Soham2.jpg",
+        "image": "https://sohamsawalakhe.space/og-image.jpg",
         "email": "mailto:sohamsawalakhe@gmail.com",
         "telephone": "+917558496659",
         "address": {
@@ -128,75 +137,115 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap"
     rel="stylesheet" />
 
   <!-- Anime.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
 
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="preloader.css" />
 </head>
 
 <body>
 
-  <!-- ─── CINEMATIC VIDEO INTRO ──────────────────────────────── -->
-  <div id="introGateway" class="intro-gateway">
-
-    <!-- Full-screen background video -->
-    <video id="introVideo" class="intro-video-bg" autoplay muted playsinline preload="auto" loop aria-hidden="true">
-      <source src="intro.mp4" type="video/mp4" />
-      <source src="/intro.mp4" type="video/mp4" />
-    </video>
-
-    <!-- Cinematic letterbox bars -->
-    <div class="intro-letterbox-top"></div>
-    <div class="intro-letterbox-bottom"></div>
-
-    <!-- Dark vignette overlay -->
-    <div class="intro-vignette"></div>
-
-    <!-- Grain/film texture overlay -->
-    <div class="intro-grain" aria-hidden="true"></div>
-
-    <!-- Top-left: badge chip -->
-    <div class="intro-corner-badge">
-      <span class="intro-pulse-dot"></span>
-      <span>PORTFOLIO // 2025</span>
+  <!-- ─── CREATIVE TELEMETRY PRELOADER ──────────────────────────────────────── -->
+  <div id="creativePreloader" class="creative-preloader" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Loading Soham Sawalakhe Portfolio">
+    <!-- Ambient glow & telemetry radar grid -->
+    <div class="preloader-backdrop" aria-hidden="true">
+      <div class="preloader-grid-lines"></div>
+      <div class="preloader-radar-reticle"></div>
+      <div class="preloader-glow-orb"></div>
     </div>
 
-    <!-- Skip button (top-right) -->
-    <button class="intro-skip-btn" id="introSkipBtn" title="Skip intro">
-      SKIP
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <path d="M5 12h14M12 5l7 7-7 7" />
-      </svg>
-    </button>
+    <!-- Top telemetry HUD -->
+    <header class="preloader-top-hud">
+      <div class="hud-item hud-left">
+        <span class="hud-beacon"></span>
+        <span class="hud-mono">SYS_CORE // INITIALIZING</span>
+      </div>
+      <div class="hud-item hud-center">
+        <span class="hud-mono">SOHAM SAWALAKHE &bull; CREATIVE LABS</span>
+      </div>
+      <div class="hud-item hud-right">
+        <span class="hud-mono">PING: <span id="preloaderPing">14ms</span> &bull; 60FPS</span>
+      </div>
+    </header>
 
-
-
-    <!-- Bottom CTA (appears near end of video) -->
-    <div class="intro-bottom-bar">
-      <!-- Loading indicator shown first -->
-      <div class="intro-loader-wrap" id="introLoaderWrap">
-        <div class="intro-progress-bar">
-          <div class="intro-progress-fill" id="introProgressFill"></div>
+    <!-- Center creative stage -->
+    <div class="preloader-center-stage">
+      <!-- Gyroscopic orbital core with 3D cursor parallax -->
+      <div class="preloader-gyro-wrapper" id="preloaderGyro">
+        <div class="gyro-ring gyro-ring-outer">
+          <span class="gyro-cardinal deg-0">000°</span>
+          <span class="gyro-cardinal deg-90">090°</span>
+          <span class="gyro-cardinal deg-180">180°</span>
+          <span class="gyro-cardinal deg-270">270°</span>
         </div>
-        <div class="intro-status-text">
-          <span id="introStatus">LOADING EXPERIENCE...</span>
-          <span class="intro-pct" id="introPct">0%</span>
+        <div class="gyro-ring gyro-ring-middle">
+          <span class="gyro-satellite sat-1"></span>
+          <span class="gyro-satellite sat-2"></span>
+        </div>
+        <!-- Center Holographic Avatar Capsule -->
+        <div class="gyro-avatar-capsule" id="preloaderAvatarCapsule">
+          <img 
+            src="/soham1.png" 
+            alt="Soham Sawalakhe" 
+            class="preloader-avatar-img" 
+            id="preloaderAvatarImg"
+            draggable="false" 
+          />
+          <div class="capsule-glare" aria-hidden="true"></div>
+          <div class="capsule-scanline" aria-hidden="true"></div>
+          <div class="capsule-status-badge">
+            <span class="badge-dot"></span>
+            <span class="badge-text">ONLINE</span>
+          </div>
+          <div class="gyro-core-glow"></div>
         </div>
       </div>
 
-      <!-- Enter button revealed after load -->
-      <button class="intro-enter-btn" id="introEnterBtn">
-        <span>ENTER EXPERIENCE</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      </button>
-      <div class="intro-hint-text" id="introHintText">Click anywhere to begin this journey</div>
+      <!-- Identity & classification -->
+      <div class="preloader-brand-block">
+        <div class="preloader-badge-tag">
+          <span class="badge-spark">✦</span>
+          <span>ENGINEERING PORTFOLIO &bull; 2026</span>
+          <span class="badge-spark">✦</span>
+        </div>
+        <div class="preloader-title" role="heading" aria-level="2">SOHAM SAWALAKHE</div>
+        <p class="preloader-subtitle">Full Stack Engineer &bull; AI Systems &bull; Creative Developer</p>
+      </div>
+
+      <!-- High-precision telemetry progress engine -->
+      <div class="preloader-metric-block">
+        <div class="preloader-counter-row">
+          <span class="preloader-status-stream" id="preloaderStatusText">INITIALIZING ENGINE...</span>
+          <span class="preloader-percent" id="preloaderPercent">00%</span>
+        </div>
+        <div class="preloader-bar-track">
+          <div class="preloader-bar-fill" id="preloaderBarFill"></div>
+          <div class="preloader-bar-spark" id="preloaderBarSpark"></div>
+        </div>
+      </div>
+
+      <!-- Audio ready indicator & interaction hint -->
+      <div class="preloader-audio-pill">
+        <div class="audio-pill-wave" aria-hidden="true">
+          <span class="bar bar-1"></span>
+          <span class="bar bar-2"></span>
+          <span class="bar bar-3"></span>
+          <span class="bar bar-4"></span>
+        </div>
+        <span class="audio-pill-label">STUDIO SOUNDSCAPES READY &bull; SPIRITED AWAY GRAND PIANO</span>
+      </div>
     </div>
 
+    <!-- Bottom HUD metadata & skip hint -->
+    <footer class="preloader-bottom-hud">
+      <span class="hud-mono hud-coords">LAT: 18.5204° N &bull; LONG: 73.8567° E</span>
+      <span class="hud-mono hud-click-skip">CLICK ANYWHERE TO ENTER</span>
+      <span class="hud-mono hud-build">VER 2.4.0 // PRODUCTION OK</span>
+    </footer>
   </div>
 
   <!-- ─── FLOATING AESTHETIC BACKGROUND ORBS ──────────────────────────────── -->
@@ -207,1074 +256,756 @@
     <div class="cursor-glow" id="cursorGlow"></div>
   </div>
 
-  <!-- ─── MINIMAL MORPHING FLOATING NAV ────────────────────────────────────── -->
-  <nav id="nav">
-    <div class="nav-pill">
-      <a href="#home" class="nav-logo">
-        <span class="nav-avatar">S</span>
-        <span class="nav-name">Soham</span>
+  <!-- ─── SLEEK MODERN TOP NAVIGATION ──────────────────────────────────────── -->
+  <header id="siteHeader" class="site-header">
+    <div class="header-container">
+      <!-- Signature Logo -->
+      <a href="#home" class="brand-signature-link" aria-label="Soham Sawalakhe Home">
+        <img src="/logo-signature-transparent.png" alt="Soham." class="brand-signature-img" />
+        <span class="brand-signature-text">Soham.</span>
       </a>
 
-      <ul class="nav-links">
-        <li><a href="#about" class="nav-item">About</a></li>
-        <li><a href="#projects" class="nav-item">Projects</a></li>
-        <li><a href="#experience" class="nav-item">Experience</a></li>
-        <li><a href="#skills" class="nav-item">Skills</a></li>
-        <li><a href="#education" class="nav-item">Education</a></li>
-        <li><a href="#certifications" class="nav-item">Certs</a></li>
-        <li><a href="#contact" class="nav-item">Contact</a></li>
-      </ul>
+      <!-- Center Navigation Links -->
+      <nav class="center-nav" id="mainNav">
+        <ul class="nav-links-list">
+          <li><a href="#home" class="nav-item-link active"><span>Home</span></a></li>
+          <li><a href="#about" class="nav-item-link"><span>About</span></a></li>
+          <li><a href="#projects" class="nav-item-link"><span>Projects</span></a></li>
+          <li><a href="#experience" class="nav-item-link"><span>Experience</span></a></li>
+          <li><a href="#skills" class="nav-item-link"><span>Skills</span></a></li>
+          <li><a href="#contact" class="nav-item-link"><span>Contact</span></a></li>
+        </ul>
+      </nav>
 
-      <a href="Resume_Soham_Sawalakhe.pdf" target="_blank" class="nav-cta">
-        <span>Résumé</span>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M7 17L17 7M17 7H7M17 7V17" />
+      <!-- Right Action CTA -->
+      <div class="header-right-actions">
+        <a href="#contact" class="btn-connect-pill">
+          <span>Let's Connect</span>
+          <svg class="connect-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M7 17L17 7M17 7H7M17 7V17" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ─── HERO SECTION: FULL-SCREEN CANVAS SCROLL-TELLING ──────────────────── -->
+  <section id="home" class="hero-clean-section">
+    <!-- Sticky viewport-height inner — stays pinned while section scrolls -->
+    <div class="hero-scroll-sticky">
+
+      <!-- Full-screen scroll-driven canvas -->
+      <canvas id="heroCanvas" class="hero-frame-canvas" aria-label="Soham Sawalakhe — Developer Character Animation"></canvas>
+
+      <!-- Text overlay on the left — sits above the canvas -->
+      <div class="hero-text-overlay">
+        <div class="hero-greeting-tag">HEY, I'M</div>
+
+        <h1 class="hero-display-title">
+          <span class="name-part">SOHAM</span>
+          <span class="name-part">SAWALAKHE</span>
+        </h1>
+
+        <div class="hero-subtitle-divider">
+          <span class="accent-dash"></span>
+          <span class="subtitle-text">DEVELOPER &nbsp;|&nbsp; BUILDER &nbsp;|&nbsp; EXPLORER</span>
+        </div>
+
+        <p class="hero-lead-text">
+          Turning ideas into real products with code, creativity and curiosity.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#projects" class="btn-hero-primary">
+            <span>Explore My Work</span>
+            <svg class="arrow-diag" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M7 17L17 7M17 7H7M17 7V17" />
+            </svg>
+          </a>
+
+          <a href="Resume_Soham_Sawalakhe.pdf" target="_blank" class="btn-hero-resume" download aria-label="Download Resume and Profile Overview">
+            <svg class="resume-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            <span>Download Resume</span>
+          </a>
+        </div>
+
+        <div class="hero-metrics-strip">
+          <div class="metric-block">
+            <span class="metric-value">8+</span>
+            <span class="metric-label">Projects</span>
+          </div>
+          <div class="metric-separator" aria-hidden="true"></div>
+          <div class="metric-block">
+            <span class="metric-value">1+</span>
+            <span class="metric-label">Year Experience</span>
+          </div>
+          <div class="metric-separator" aria-hidden="true"></div>
+          <div class="metric-block">
+            <span class="metric-value">100+</span>
+            <span class="metric-label">Problems Solved</span>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <!-- Thin amber scroll-progress bar at bottom edge -->
+      <div class="hero-scroll-progress-wrap" aria-hidden="true">
+        <div class="hero-scroll-progress-bar" id="heroScrollProgressBar"></div>
+      </div>
+
+      <!-- Bottom Scroll Indicator -->
+      <a href="#about" class="hero-bottom-scroll-btn" id="heroScrollBtn" aria-label="Scroll to explore">
+        <div class="mouse-scroll-shell">
+          <div class="mouse-scroll-wheel"></div>
+        </div>
+        <span class="mouse-scroll-caption">SCROLL</span>
+        <svg class="mouse-scroll-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M6 9l6 6 6-6" />
         </svg>
       </a>
     </div>
-  </nav>
+  </section>
 
-  <!-- ─── HERO: FULL-PAGE CENTERED AVATAR SCROLLER (Apple/Framer-style) ─ -->
-  <section id="home" class="hero-scroll-section">
-    <div class="hero-sticky-pin" id="heroStickyPin">
+  <!-- ─── CINEMATIC INTRO VIDEO LIGHTBOX MODAL ───────────────── -->
+  <div id="introVideoModal" class="intro-video-modal" aria-hidden="true">
+    <div class="intro-modal-backdrop" id="modalBackdrop"></div>
+    <div class="intro-modal-dialog">
+      <button class="intro-modal-close-btn" id="modalCloseBtn" aria-label="Close intro video">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+      <div class="intro-modal-video-container">
+        <video id="introModalVideo" playsinline preload="metadata" controls>
+          <source src="intro.mp4" type="video/mp4" />
+          <source src="/intro.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </div>
 
-      <!-- Ambient Studio Background & Radial Lighting -->
-      <div class="hero-bg" id="heroBg"></div>
-      <div class="hero-spotlight" id="heroSpotlight"></div>
-      <div class="hero-ambient-glow" id="heroAmbientGlow"></div>
+  <!-- ─── ABOUT SECTION (02 / CAREER STORYTELLING) ────────────────────────── -->
+  <section id="about" class="about-hero-section" aria-label="About Soham Sawalakhe - Career Journey">
+    <!-- Pinned Viewport Container (stays pinned while 240vh parent scrolls) -->
+    <div class="about-scroll-sticky" id="aboutSticky">
 
-      <!-- CENTER AVATAR STAGE (Full-page centered character, seamless Framer effect) -->
-      <div class="hero-avatar-center-stage" id="heroAvatarStage">
-        <!-- Ground Floor Shadow -->
-        <div class="hero-avatar-floor-shadow"></div>
+      <!-- Full-Screen Clean Background Artwork (Completely uncluttered and pristine) -->
+      <img src="/about-clean-backdrop.jpg" alt="Soham Sawalakhe Studio" class="about-clean-backdrop" draggable="false" />
+      <div class="about-clean-gradient" aria-hidden="true"></div>
 
-        <img src="soham1.png" class="hero-avatar-center-img active" id="heroImg1"
-          alt="Soham Sawalakhe - Full Stack Developer" draggable="false" />
-        <img src="soham2.png" class="hero-avatar-center-img" id="heroImg2" alt="Soham - A Curious Mind"
-          draggable="false" />
-        <img src="soham3.png" class="hero-avatar-center-img" id="heroImg3" alt="Soham - The Builder"
-          draggable="false" />
-        <img src="soham4.png" class="hero-avatar-center-img" id="heroImg4" alt="Soham - Scopus Researcher"
-          draggable="false" />
-        <img src="soham5.png" class="hero-avatar-center-img" id="heroImg5" alt="Soham - Backend at SitaraHub"
-          draggable="false" />
+      <!-- Interactive Floating Stage Hotspots on the Artwork Stage -->
+      <div class="about-stage-hotspots" aria-hidden="true">
+        <div class="stage-pin pin-phase-1 active" data-pin="1">
+          <span class="pin-pulse"></span>
+          <div class="pin-card">
+            <div class="pin-badge">PHASE 01 // 2021</div>
+            <div class="pin-label">GCOE Yavatmal · CSE</div>
+            <div class="pin-sub">100+ DSA · 8.26 CGPA</div>
+          </div>
+        </div>
+        <div class="stage-pin pin-phase-2" data-pin="2">
+          <span class="pin-pulse"></span>
+          <div class="pin-card">
+            <div class="pin-badge">PHASE 02 // 2023</div>
+            <div class="pin-label">Scopus AI Research</div>
+            <div class="pin-sub">90% Detection Steganography</div>
+          </div>
+        </div>
+        <div class="stage-pin pin-phase-3" data-pin="3">
+          <span class="pin-pulse"></span>
+          <div class="pin-card">
+            <div class="pin-badge">PHASE 03 // 2024+</div>
+            <div class="pin-label">SitaraHub Production</div>
+            <div class="pin-sub">High-Throughput APIs · Prisma</div>
+          </div>
+        </div>
+        <div class="stage-live-telemetry">
+          <span class="telemetry-dot"></span>
+          <span>SITARAHUB PROD: ONLINE · 14ms</span>
+        </div>
       </div>
 
-      <!-- FLOATING STORY CARDS (Gaze-direction responsive positions) -->
-      <div class="hero-panels-wrap" id="heroPanelsWrap">
+      <!-- Clean Text Overlay on the Left (Matching Hero Section Structure) -->
+      <div class="about-text-overlay">
+        <!-- Category Tag -->
+        <div class="about-greeting-tag">02 / ABOUT ME</div>
 
-        <!-- Panel 1: Intro (Look Center/Straight) -->
-        <div class="hero-panel hero-panel--center-left" id="hPanel1">
-          <div class="hp-inner">
-            <div class="badge-pill"><span class="pulse-dot"></span> OPEN TO OPPORTUNITIES</div>
-            <h1 class="hp-title">Hi, I'm<br><span class="gradient-text">Soham Sawalakhe.</span></h1>
-            <p class="hp-sub">Backend Developer at SitaraHub &amp; Scopus-published researcher building scalable systems
-              and intelligent AI pipelines.</p>
-            <div class="hp-btns">
-              <a href="#projects" class="btn-primary"><span>Explore Work</span><svg width="14" height="14"
-                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg></a>
-              <a href="#contact" class="btn-secondary">Let's Connect</a>
+        <!-- Headline -->
+        <h2 class="about-display-title">
+          <span class="title-part">CURIOUS</span>
+          <span class="title-part">BY DEFAULT.</span>
+        </h2>
+
+        <!-- Subtitle Divider -->
+        <div class="about-subtitle-divider">
+          <span class="accent-dash"></span>
+          <span class="subtitle-text">FOUNDATIONS &nbsp;|&nbsp; RESEARCH &nbsp;|&nbsp; PRODUCTION</span>
+        </div>
+
+        <!-- Interactive 3-Phase Switcher Tabs -->
+        <div class="about-phase-tabs" role="tablist" aria-label="About story phases">
+          <button class="about-phase-tab active" data-phase="1" type="button" role="tab" aria-selected="true" aria-label="Phase 1: College">
+            <span class="tab-num">01</span>
+            <span class="tab-title">College</span>
+          </button>
+          <div class="tab-arrow" aria-hidden="true">→</div>
+          <button class="about-phase-tab" data-phase="2" type="button" role="tab" aria-selected="false" aria-label="Phase 2: Research">
+            <span class="tab-num">02</span>
+            <span class="tab-title">Research</span>
+          </button>
+          <div class="tab-arrow" aria-hidden="true">→</div>
+          <button class="about-phase-tab" data-phase="3" type="button" role="tab" aria-selected="false" aria-label="Phase 3: Production">
+            <span class="tab-num">03</span>
+            <span class="tab-title">Production</span>
+          </button>
+        </div>
+
+        <!-- Clean Story Container (Smoothly transitions between the 3 milestones) -->
+        <div class="about-story-container">
+          <!-- Phase 1 -->
+          <div class="about-story-pane active" data-pane="1">
+            <div class="pane-badge">PHASE 01 // 2021 — FOUNDATIONS</div>
+            <h3 class="pane-title">Computer Engineering @ GCOEY</h3>
+            <p class="pane-desc">
+              Pursued B.Tech in Computer Engineering at Government College of Engineering, Yavatmal (8.26 CGPA). Mastered competitive data structures, relational theory, and algorithmic problem-solving.
+            </p>
+            <div class="pane-chips">
+              <span class="pane-chip">🏛️ GCOE Yavatmal</span>
+              <span class="pane-chip">📊 8.26 CGPA</span>
+              <span class="pane-chip">⚡ 100+ LeetCode Solved</span>
+            </div>
+          </div>
+
+          <!-- Phase 2 -->
+          <div class="about-story-pane" data-pane="2">
+            <div class="pane-badge">PHASE 02 // EXPLORATION &amp; RESEARCH</div>
+            <h3 class="pane-title">Applied AI &amp; Scopus Publication</h3>
+            <p class="pane-desc">
+              Dove deep into distributed systems, applied AI, and database steganography. Authored a Scopus-indexed research paper achieving 90% accuracy in detecting covert database steganography.
+            </p>
+            <div class="pane-chips">
+              <span class="pane-chip">🔬 Scopus Published</span>
+              <span class="pane-chip">🛡️ 90% Detection AI</span>
+              <span class="pane-chip">💻 TypeScript · Python · SQL</span>
+            </div>
+          </div>
+
+          <!-- Phase 3 -->
+          <div class="about-story-pane" data-pane="3">
+            <div class="pane-badge">PHASE 03 // PRODUCTION &amp; IMPACT</div>
+            <h3 class="pane-title">High-Throughput Systems @ SitaraHub</h3>
+            <p class="pane-desc">
+              Architecting high-throughput backend services at SitaraHub (Mumbai) and previously at TechElevare (Pune). Building modular APIs, Prisma ORM pipelines, and fault-tolerant cloud services.
+            </p>
+            <div class="pane-chips">
+              <span class="pane-chip">🚀 SitaraHub Backend</span>
+              <span class="pane-chip">⚙️ High-Throughput APIs</span>
+              <span class="pane-chip">📦 Prisma · Docker · Node.js</span>
             </div>
           </div>
         </div>
 
-        <!-- Panel 2: The Beginning (Look UP) -->
-        <div class="hero-panel hero-panel--look-up" id="hPanel2">
-          <div class="hp-inner">
-            <div class="badge-pill">📚 THE BEGINNING</div>
-            <h2 class="hp-title">A curious mind<br><span class="gradient-text">looking up.</span></h2>
-            <p class="hp-sub">Started Computer Engineering at GCOE Yavatmal — curiosity as fuel, code as craft. Obsessed
-              with distributed architecture from day one.</p>
-            <div class="hp-stats">
-              <div class="hp-stat"><span class="hp-stat-n">8.26</span><span class="hp-stat-l">CGPA</span></div>
-              <div class="hp-stat"><span class="hp-stat-n">2021</span><span class="hp-stat-l">Started</span></div>
-              <div class="hp-stat"><span class="hp-stat-n">'25</span><span class="hp-stat-l">Graduate</span></div>
-            </div>
-          </div>
+        <!-- CTA Buttons -->
+        <div class="about-cta-group">
+          <a href="#projects" class="btn-hero-primary">
+            <span>Explore My Work</span>
+            <svg class="arrow-diag" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M7 17L17 7M17 7H7M17 7V17" />
+            </svg>
+          </a>
+          <a href="Resume_Soham_Sawalakhe.pdf" target="_blank" class="btn-hero-resume" download aria-label="Download Resume">
+            <svg class="resume-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            <span>Download Resume</span>
+          </a>
         </div>
 
-        <!-- Panel 3: The Builder (Look DOWN) -->
-        <div class="hero-panel hero-panel--look-down" id="hPanel3">
-          <div class="hp-inner">
-            <div class="badge-pill">⚡ THE BUILDER</div>
-            <h2 class="hp-title">Confidence built<br><span class="gradient-text">with every line.</span></h2>
-            <p class="hp-sub">Shipped 20+ production applications — from real-time AI computer vision models to
-              high-throughput REST APIs handling thousands of events.</p>
-            <div class="hp-stats">
-              <div class="hp-stat"><span class="hp-stat-n">20+</span><span class="hp-stat-l">Shipped</span></div>
-              <div class="hp-stat"><span class="hp-stat-n">90%</span><span class="hp-stat-l">AI Accuracy</span></div>
-              <div class="hp-stat"><span class="hp-stat-n">99.9%</span><span class="hp-stat-l">Uptime</span></div>
-            </div>
+        <!-- Clean Metrics Strip (Exact same styling as hero-metrics-strip) -->
+        <div class="hero-metrics-strip">
+          <div class="metric-block">
+            <span class="metric-value">8+</span>
+            <span class="metric-label">Projects</span>
+          </div>
+          <div class="metric-separator" aria-hidden="true"></div>
+          <div class="metric-block">
+            <span class="metric-value">1+</span>
+            <span class="metric-label">Year Experience</span>
+          </div>
+          <div class="metric-separator" aria-hidden="true"></div>
+          <div class="metric-block">
+            <span class="metric-value">100+</span>
+            <span class="metric-label">Problems Solved</span>
+          </div>
+          <div class="metric-separator" aria-hidden="true"></div>
+          <div class="metric-block">
+            <span class="metric-value">1</span>
+            <span class="metric-label">Research Paper</span>
           </div>
         </div>
-
-        <!-- Panel 4: Scopus Research (Look RIGHT) -->
-        <div class="hero-panel hero-panel--look-right" id="hPanel4">
-          <div class="hp-inner">
-            <div class="badge-pill">🔬 SCOPUS PUBLISHED</div>
-            <h2 class="hp-title">Precision built.<br><span class="gradient-text">Indexed globally.</span></h2>
-            <p class="hp-sub">Scopus-indexed author in database steganography &amp; cybersecurity — where rigorous
-              academic research meets hardened engineering.</p>
-            <div class="hp-btns">
-              <a href="#about" class="btn-primary"><span>Read Research</span><svg width="14" height="14"
-                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg></a>
-              <a href="https://doi.org" target="_blank" class="btn-secondary">Scopus ID</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Panel 5: SitaraHub (Look LEFT) -->
-        <div class="hero-panel hero-panel--look-left" id="hPanel5">
-          <div class="hp-inner">
-            <div class="badge-pill">🚀 CURRENT IMPACT</div>
-            <h2 class="hp-title">Backend at<br><span class="gradient-text">SitaraHub.</span></h2>
-            <p class="hp-sub">Architecting production microservices, optimized SQL data layers, and automated cloud
-              workflows serving clients daily.</p>
-            <div class="hp-btns">
-              <a href="#experience" class="btn-primary"><span>View Career</span><svg width="14" height="14"
-                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg></a>
-              <a href="#contact" class="btn-secondary">Get In Touch</a>
-            </div>
-          </div>
-        </div>
-
       </div>
 
-      <!-- Scroll Down Hint: Sleek minimal indicator -->
-      <div class="hero-scroll-hint" id="scrollHint">
-        <div class="mouse-icon">
-          <div class="mouse-wheel"></div>
-        </div>
-        <span>SCROLL TO EXPLORE</span>
+      <!-- Thin amber scroll-progress bar at bottom edge (Matching hero) -->
+      <div class="hero-scroll-progress-wrap" aria-hidden="true">
+        <div class="hero-scroll-progress-bar" id="aboutProgressBar"></div>
       </div>
+
+      <!-- Bottom Scroll Indicator to Projects -->
+      <a href="#projects" class="hero-bottom-scroll-btn" id="aboutScrollBtn" aria-label="Scroll to Projects">
+        <div class="mouse-scroll-shell">
+          <div class="mouse-scroll-wheel"></div>
+        </div>
+        <span class="mouse-scroll-caption">SCROLL</span>
+        <svg class="mouse-scroll-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </a>
+
     </div>
   </section>
 
-  <!-- ─── ABOUT SECTION ────────────────────────────────────────────────────── -->
+    <!-- ─── PROJECTS SECTION (ACT II: SELECTED WORK — PORSCHE HORIZONTAL SIDE-SCROLLING) ─── -->
+  <section id="projects" class="projects-horizontal-section">
+    <!-- Sticky Fullscreen Viewport Frame -->
+    <div class="projects-sticky-viewport" id="projectsSticky">
 
-
-  <!-- ─── ABOUT SECTION ────────────────────────────────────────────────────── -->
-  <section id="about" class="content-section story-split-section">
-    <div class="section-container">
-      <div class="story-split-layout">
-
-        <!-- Sticky Left Story Column -->
-        <aside class="story-sticky-aside reveal">
-          <div class="card-ambient-glow glow-amber"></div>
-
-          <!-- Illustrated 3D Character Capsule -->
-          <div class="aside-character-capsule avatar-3d-capsule" id="capsuleAbout">
-            <div class="capsule-glare"></div>
-            <div class="capsule-corners">
-              <span class="cap-c cap-tl"></span>
-              <span class="cap-c cap-tr"></span>
-              <span class="cap-c cap-bl"></span>
-              <span class="cap-c cap-br"></span>
-            </div>
-            <div class="aside-char-backdrop"></div>
-            <div class="capsule-orbit-ring" aria-hidden="true">
-              <div class="capsule-orbit-dot"></div>
-            </div>
-            <img src="soham1.png" alt="Soham - Digital Architect" class="aside-char-img" draggable="false" />
-            <div class="capsule-bottom-fade"></div>
-            <div class="capsule-status-badge">
-              <span class="cap-status-dot"></span>
-              <span class="cap-status-text">Available For Hire</span>
-            </div>
+      <!-- Header & Navigation Bar -->
+      <div class="porsche-proj-header">
+        <div class="pph-left">
+          <div class="dch-overline">
+            <span class="dch-pulse"></span>
+            <span>ACT II // SELECTED WORK</span>
           </div>
-
-          <div class="story-aside-header">
-            <div class="story-act-badge">
-              <span class="chapter-node-pulse"></span>
-              <span>ACT 01 // THE BLUEPRINT</span>
-            </div>
-            <h2 class="story-aside-title">The Engineer's Foundations &amp; Vision.</h2>
-            <p class="story-aside-monologue">
-              Every complex system starts with relentless curiosity. From competitive data structures at GCOE Yavatmal
-              to architecting production backends and neural models, here is the blueprint of my engineering journey.
-            </p>
-          </div>
-
-          <ul class="story-nav-steps">
-            <li>
-              <a href="#beat-origin" class="story-step-link active">
-                <span class="step-num">01</span>
-                <span>Foundations &amp; Bio</span>
-              </a>
-            </li>
-            <li>
-              <a href="#beat-manifesto" class="story-step-link">
-                <span class="step-num">02</span>
-                <span>Engineering Manifesto</span>
-              </a>
-            </li>
-            <li>
-              <a href="#beat-pipeline" class="story-step-link">
-                <span class="step-num">03</span>
-                <span>System Design Pipeline</span>
-              </a>
-            </li>
-          </ul>
-
-          <div class="story-aside-footer">
-            <a href="Resume_Soham_Sawalakhe.pdf" target="_blank" class="btn-primary"><span>Download Résumé</span><svg
-                width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg></a>
-            <a href="#contact" class="btn-secondary">Let's Connect</a>
-          </div>
-        </aside>
-
-        <!-- Scrolling Right Content Column (Story Beats) -->
-        <div class="story-scroll-col">
-
-          <!-- Beat 1: Foundations & Bio -->
-          <div class="story-beat" id="beat-origin">
-
-            <!-- Soham's Story Log 01 -->
-            <div class="sohams-log-bubble reveal">
-              <div class="log-avatar-thumb">
-                <img src="soham1.png" alt="Soham Sawalakhe" />
-                <span class="log-online-dot"></span>
-              </div>
-              <div class="log-content">
-                <div class="log-header">
-                  <span class="log-speaker">SOHAM'S LOG // CHAPTER 01</span>
-                  <span class="log-time">TRANSMISSION: GCOEY &rarr; PRODUCTION</span>
-                </div>
-                <p class="log-quote">
-                  "Every distributed system begins with a simple challenge: How do we engineer services so resilient and
-                  responsive that scale feels effortless?"
-                </p>
-              </div>
-            </div>
-
-            <div class="about-modern-grid">
-
-              <!-- Bio & Details Card with 3D Tilt (Full Width Spacious Layout) -->
-              <div class="about-details-card tilt-card-3d reveal">
-                <div class="card-ambient-glow glow-amber"></div>
-                <h3 class="about-heading">Architecting Scalable Systems &amp; Applied AI</h3>
-                <p class="about-para">
-                  I'm pursuing my <strong>B.Tech in Computer Engineering</strong> at <strong>Government College of
-                    Engineering, Yavatmal (2021–2025)</strong> with an <strong>8.26 CGPA</strong>. My engineering
-                  foundation blends high-throughput backend services, relational database optimization, and applied
-                  machine learning research.
-                </p>
-                <p class="about-para">
-                  Currently, as <strong>Backend Developer at SitaraHub (Mumbai)</strong>, I engineer scalable
-                  microservices with Node.js, TypeScript, and Prisma ORM. Previously, I built modular client-server
-                  architectures during my internship at <strong>TechElevare Software (Pune)</strong>. I also authored a
-                  <strong>Scopus-indexed research paper</strong> achieving 90% detection accuracy for covert database
-                  steganography.
-                </p>
-
-                <!-- Dedicated Career Metrics Row (Structured & Prominent) -->
-                <div class="career-metrics-row">
-                  <div class="c-metric-pill">
-                    <span class="m-val">8.26</span>
-                    <span class="m-lbl">CGPA // GCOEY '25</span>
-                  </div>
-                  <div class="c-metric-pill">
-                    <span class="m-val">SitaraHub</span>
-                    <span class="m-lbl">Backend Dev (Present)</span>
-                  </div>
-                  <div class="c-metric-pill">
-                    <span class="m-val">Scopus</span>
-                    <span class="m-lbl">90% Detection Paper</span>
-                  </div>
-                  <div class="c-metric-pill">
-                    <span class="m-val">100+</span>
-                    <span class="m-lbl">LeetCode &amp; HackerRank</span>
-                  </div>
-                </div>
-
-                <!-- Quick Info Grid -->
-                <div class="meta-grid">
-                  <div class="meta-item">
-                    <span class="meta-label">Location</span>
-                    <span class="meta-val">Amravati / Pune, India</span>
-                  </div>
-                  <div class="meta-item">
-                    <span class="meta-label">Core Stack</span>
-                    <span class="meta-val">Node.js · TS · Python · SQL</span>
-                  </div>
-                  <div class="meta-item">
-                    <span class="meta-label">Email</span>
-                    <span class="meta-val">sohamsawalakhe@gmail.com</span>
-                  </div>
-                  <div class="meta-item">
-                    <span class="meta-label">Availability</span>
-                    <span class="meta-val highlight-val">Open to Full-Time Roles</span>
-                  </div>
-                </div>
-
-                <div class="about-actions">
-                  <a href="Resume_Soham_Sawalakhe.pdf" target="_blank" class="btn-primary">Download Résumé</a>
-                  <a href="#contact" class="btn-secondary">Get in Touch</a>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- Beat 2: Engineering Manifesto -->
-          <div class="story-beat" id="beat-manifesto">
-            <div class="story-manifesto-card tilt-card-3d reveal">
-              <div class="card-ambient-glow glow-amber"></div>
-              <div class="manifesto-badge">
-                <span>⚡ THREE CORE ENGINEERING PILLARS</span>
-              </div>
-              <h3 class="manifesto-title">Precision Over Hacks. Speed with Stability.</h3>
-              <p class="manifesto-para">
-                Software is only as good as its behavior under pressure. My engineering practice is governed by three
-                fundamental principles forged across open-source work, academic research, and production deployments:
-              </p>
-              <div class="manifesto-grid">
-                <div class="manifesto-pillar">
-                  <span class="pillar-icon">⚡</span>
-                  <div class="pillar-name">Zero-Bottleneck Concurrency</div>
-                  <div class="pillar-desc">Asynchronous workers, event-driven queues, and sub-50ms API responses
-                    designed to scale horizontally without degradation.</div>
-                </div>
-                <div class="manifesto-pillar">
-                  <span class="pillar-icon">🧠</span>
-                  <div class="pillar-name">Applied Intelligence</div>
-                  <div class="pillar-desc">Bridging mathematical machine learning with production software—from
-                    Scikit-learn classifiers to context-aware NLP pipelines.</div>
-                </div>
-                <div class="manifesto-pillar">
-                  <span class="pillar-icon">🛡️</span>
-                  <div class="pillar-name">Cryptographic Hardening</div>
-                  <div class="pillar-desc">Rigorous data integrity, database steganography defense, and strict
-                    role-based access control verified via peer-reviewed research.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Beat 3: Live Engineering Workflow Pipeline (High-Fidelity Vector Architecture Schematic) -->
-          <div class="story-beat" id="beat-pipeline">
-            <div class="tech-stream-banner reveal">
-              <div class="card-ambient-glow glow-amber"></div>
-              <div class="stream-title">
-                <span class="chapter-node-pulse"></span>
-                <span>PRODUCTION SYSTEM DESIGN &amp; BACKEND PIPELINE</span>
-              </div>
-
-              <!-- Vector Schematic Illustration (Spacious, Mathematically Aligned & Uncramped) -->
-              <div class="arch-svg-container">
-                <svg viewBox="0 0 930 290" fill="none" class="arch-schematic-svg" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Background Circuit Grid -->
-                  <defs>
-                    <pattern id="archGridProper" width="24" height="24" patternUnits="userSpaceOnUse">
-                      <line x1="0" y1="0" x2="24" y2="0" stroke="rgba(229,152,56,0.06)" stroke-width="1" />
-                      <line x1="0" y1="0" x2="0" y2="24" stroke="rgba(229,152,56,0.06)" stroke-width="1" />
-                    </pattern>
-                  </defs>
-                  <rect width="930" height="290" fill="url(#archGridProper)" />
-
-                  <!-- TOP ROW HORIZONTAL CONNECTING BUS LINES -->
-                  <!-- Client to Gateway -->
-                  <path d="M 210 65 L 260 65" stroke="#e59838" stroke-width="2" stroke-dasharray="4 4" opacity="0.6" />
-                  <!-- Gateway to Microservices -->
-                  <path d="M 440 65 L 490 65" stroke="#e59838" stroke-width="2" stroke-dasharray="4 4" opacity="0.6" />
-                  <!-- Microservices to Persistence -->
-                  <path d="M 670 65 L 720 65" stroke="#10b981" stroke-width="2" stroke-dasharray="4 4" opacity="0.6" />
-
-                  <!-- VERTICAL CONNECTING BUS LINES (Direct Top-to-Bottom Alignment) -->
-                  <!-- Gateway down to Async Queue -->
-                  <path d="M 350 105 L 350 170" stroke="#3b82f6" stroke-width="1.8" stroke-dasharray="4 4"
-                    opacity="0.75" />
-                  <!-- Microservices down to Applied AI -->
-                  <path d="M 580 105 L 580 170" stroke="#10b981" stroke-width="1.8" stroke-dasharray="4 4"
-                    opacity="0.75" />
-                  <!-- Persistence down to Analytics ETL -->
-                  <path d="M 810 105 L 810 170" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="4 4"
-                    opacity="0.75" />
-
-                  <!-- ANIMATED DATA PACKETS -->
-                  <!-- Horizontals -->
-                  <circle cx="210" cy="65" r="4.5" fill="#e59838">
-                    <animate attributeName="cx" values="210;260" dur="2s" repeatCount="indefinite" />
-                  </circle>
-                  <circle cx="440" cy="65" r="4.5" fill="#e59838">
-                    <animate attributeName="cx" values="440;490" dur="2s" repeatCount="indefinite" />
-                  </circle>
-                  <circle cx="670" cy="65" r="4.5" fill="#10b981">
-                    <animate attributeName="cx" values="670;720" dur="2s" repeatCount="indefinite" />
-                  </circle>
-
-                  <!-- Verticals -->
-                  <circle cx="350" cy="105" r="4" fill="#3b82f6">
-                    <animate attributeName="cy" values="105;170" dur="2.4s" repeatCount="indefinite" />
-                  </circle>
-                  <circle cx="580" cy="105" r="4" fill="#10b981">
-                    <animate attributeName="cy" values="105;170" dur="2.4s" repeatCount="indefinite" />
-                  </circle>
-                  <circle cx="810" cy="105" r="4" fill="#f59e0b">
-                    <animate attributeName="cy" values="105;170" dur="2.4s" repeatCount="indefinite" />
-                  </circle>
-
-                  <!-- ─── TOP ROW: INGRESS & CORE APPLICATION PIPELINE ─── -->
-
-                  <!-- NODE 1: Client Layer (x=30, y=20, w=180, h=85) -->
-                  <g transform="translate(30, 20)">
-                    <rect width="180" height="85" rx="14" fill="#191410" stroke="#e59838" stroke-width="1.5" />
-                    <circle cx="22" cy="24" r="6" fill="#e59838" />
-                    <text x="36" y="28" fill="#ffffff" font-family="Outfit" font-size="12" font-weight="800"
-                      letter-spacing="0.5">CLIENT APPS</text>
-                    <text x="18" y="52" fill="#c4b5a5" font-family="JetBrains Mono" font-size="9.5"
-                      font-weight="600">Next.js 14 · React UI</text>
-                    <text x="18" y="70" fill="#e59838" font-family="JetBrains Mono" font-size="8.5"
-                      font-weight="600">REST · HTTPS · WS</text>
-                  </g>
-
-                  <!-- NODE 2: Edge API Gateway (x=260, y=20, w=180, h=85) -->
-                  <g transform="translate(260, 20)">
-                    <rect width="180" height="85" rx="14" fill="#191410" stroke="#f59e0b" stroke-width="1.5" />
-                    <circle cx="22" cy="24" r="6" fill="#f59e0b" />
-                    <text x="36" y="28" fill="#ffffff" font-family="Outfit" font-size="12" font-weight="800"
-                      letter-spacing="0.5">API GATEWAY</text>
-                    <text x="18" y="52" fill="#c4b5a5" font-family="JetBrains Mono" font-size="9.5"
-                      font-weight="600">Reverse Proxy · TLS</text>
-                    <text x="18" y="70" fill="#10b981" font-family="JetBrains Mono" font-size="8.5"
-                      font-weight="600">JWT Bearer · Rate Limit</text>
-                  </g>
-
-                  <!-- NODE 3: Core Microservices (x=490, y=20, w=180, h=85) -->
-                  <g transform="translate(490, 20)">
-                    <rect width="180" height="85" rx="14" fill="#191410" stroke="#10b981" stroke-width="1.8" />
-                    <circle cx="22" cy="24" r="6" fill="#10b981" />
-                    <text x="36" y="28" fill="#ffffff" font-family="Outfit" font-size="12" font-weight="800"
-                      letter-spacing="0.5">MICROSERVICES</text>
-                    <text x="18" y="52" fill="#c4b5a5" font-family="JetBrains Mono" font-size="9.5"
-                      font-weight="600">Node.js · TS · Express</text>
-                    <text x="18" y="70" fill="#e59838" font-family="JetBrains Mono" font-size="8.5"
-                      font-weight="600">Django REST · Prisma</text>
-                  </g>
-
-                  <!-- NODE 4: Persistence Cluster (x=720, y=20, w=180, h=85) -->
-                  <g transform="translate(720, 20)">
-                    <rect width="180" height="85" rx="14" fill="#191410" stroke="#10b981" stroke-width="1.5" />
-                    <circle cx="22" cy="24" r="6" fill="#10b981" />
-                    <text x="36" y="28" fill="#ffffff" font-family="Outfit" font-size="12" font-weight="800"
-                      letter-spacing="0.5">PERSISTENCE</text>
-                    <text x="18" y="52" fill="#c4b5a5" font-family="JetBrains Mono" font-size="9.5"
-                      font-weight="600">PostgreSQL · MySQL</text>
-                    <text x="18" y="70" fill="#10b981" font-family="JetBrains Mono" font-size="8.5"
-                      font-weight="600">ACID · Conn Pooling</text>
-                  </g>
-
-                  <!-- ─── BOTTOM ROW: ASYNC QUEUE, APPLIED AI & ANALYTICS ─── -->
-
-                  <!-- NODE 5: Redis Async Queue (x=260, y=170, w=180, h=85) -->
-                  <g transform="translate(260, 170)">
-                    <rect width="180" height="85" rx="14" fill="#141a24" stroke="#3b82f6" stroke-width="1.5" />
-                    <circle cx="22" cy="24" r="6" fill="#3b82f6" />
-                    <text x="36" y="28" fill="#ffffff" font-family="Outfit" font-size="12" font-weight="800"
-                      letter-spacing="0.5">ASYNC QUEUE</text>
-                    <text x="18" y="52" fill="#93c5fd" font-family="JetBrains Mono" font-size="9.5"
-                      font-weight="600">Redis Cache · Celery</text>
-                    <text x="18" y="70" fill="#60a5fa" font-family="JetBrains Mono" font-size="8.5"
-                      font-weight="600">Background Event Queue</text>
-                  </g>
-
-                  <!-- NODE 6: Applied AI Inference (x=490, y=170, w=180, h=85) -->
-                  <g transform="translate(490, 170)">
-                    <rect width="180" height="85" rx="14" fill="#122119" stroke="#10b981" stroke-width="1.5" />
-                    <circle cx="22" cy="24" r="6" fill="#10b981" />
-                    <text x="36" y="28" fill="#ffffff" font-family="Outfit" font-size="12" font-weight="800"
-                      letter-spacing="0.5">APPLIED AI &amp; ML</text>
-                    <text x="18" y="52" fill="#a7f3d0" font-family="JetBrains Mono" font-size="9.5"
-                      font-weight="600">Scikit-learn · Pandas</text>
-                    <text x="18" y="70" fill="#34d399" font-family="JetBrains Mono" font-size="8.5"
-                      font-weight="600">Steganography 90% Acc</text>
-                  </g>
-
-                  <!-- NODE 7: Analytics ETL Engine (x=720, y=170, w=180, h=85) -->
-                  <g transform="translate(720, 170)">
-                    <rect width="180" height="85" rx="14" fill="#211a12" stroke="#f59e0b" stroke-width="1.5" />
-                    <circle cx="22" cy="24" r="6" fill="#f59e0b" />
-                    <text x="36" y="28" fill="#ffffff" font-family="Outfit" font-size="12" font-weight="800"
-                      letter-spacing="0.5">ANALYTICS ETL</text>
-                    <text x="18" y="52" fill="#fde68a" font-family="JetBrains Mono" font-size="9.5"
-                      font-weight="600">Pandas · NumPy ETL</text>
-                    <text x="18" y="70" fill="#fbbf24" font-family="JetBrains Mono" font-size="8.5"
-                      font-weight="600">Automated Data Reports</text>
-                  </g>
-                </svg>
-              </div>
-
-              <!-- Live Architecture Badges -->
-              <div class="arch-telemetry-bar">
-                <span class="arch-badge">⚡ Sub-50ms Response Latency</span>
-                <span class="arch-badge">🛡️ Strict Role-Based Auth (JWT)</span>
-                <span class="arch-badge">🗄️ Relational Schema Optimization</span>
-                <span class="arch-badge">🧠 Scopus-Indexed ML Anomaly Engine</span>
-              </div>
-            </div>
-          </div>
-
-
-
+          <h2 class="dch-giant-title">
+            <span class="dch-title-line">FIVE</span>
+            <span class="dch-title-line amber">MISSIONS.</span>
+          </h2>
         </div>
 
+        <!-- Porsche Telemetry & Navigation Controls -->
+        <div class="pph-controls">
+          <div class="pph-counter">
+            <span class="pph-current" id="pphCurrentMission">01</span>
+            <span class="pph-slash">/</span>
+            <span class="pph-total">05</span>
+          </div>
+
+          <!-- Clickable Phase Tabs -->
+          <div class="pph-tabs" role="tablist">
+            <button class="pph-tab active" data-index="0" type="button" aria-label="Mission 1: Stegano AI">01 STEGANO AI</button>
+            <button class="pph-tab" data-index="1" type="button" aria-label="Mission 2: Library ERP">02 LIBRARY ERP</button>
+            <button class="pph-tab" data-index="2" type="button" aria-label="Mission 3: CDP Chatbot">03 CDP CHATBOT</button>
+            <button class="pph-tab" data-index="3" type="button" aria-label="Mission 4: Thread Engine">04 CONCURRENCY</button>
+            <button class="pph-tab" data-index="4" type="button" aria-label="Mission 5: Analytics Hub">05 ANALYTICS</button>
+          </div>
+
+          <!-- Arrow Controls -->
+          <div class="pph-arrows">
+            <button class="pph-arrow-btn" id="pphPrevBtn" aria-label="Previous Mission" type="button">←</button>
+            <button class="pph-arrow-btn" id="pphNextBtn" aria-label="Next Mission" type="button">→</button>
+          </div>
+        </div>
       </div>
+
+
+      <!-- Horizontal Scrolling Track -->
+      <div class="projects-track-wrapper">
+        <div class="projects-horizontal-track" id="projectsHorizontalTrack">
+
+          <!-- ─── Mission 01: Covert Database Detection Engine ─── -->
+          <div class="side-proj-card" id="mission-stegano">
+            <div class="side-proj-inner">
+              <div class="side-proj-left">
+                <span class="proj-num">01</span>
+                <div class="proj-tag">SCOPUS INDEXED · AI RESEARCH · CYBERSECURITY</div>
+                <h3 class="proj-title">Covert Database<br>Detection Engine</h3>
+                <p class="proj-desc">Engineered an intelligent desktop system utilizing steganography analysis, cryptographic entropy metrics, and Scikit-learn classifiers to detect hidden database payloads inside carrier files. Achieved <strong>90% detection accuracy</strong>, published in a <strong>Scopus-indexed international research journal</strong>.</p>
+                <div class="proj-tech-strip">
+                  <span>Python</span><span>Scikit-learn</span><span>Steganography</span><span>Cryptography</span><span>Tkinter</span>
+                </div>
+                <a href="https://github.com/SohamSawalakhe/Covert-Database-Detection" target="_blank" class="proj-cta-link">
+                  <span>View Source Code</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+              <div class="side-proj-right">
+                <div class="proj-visual-box">
+                  <svg viewBox="0 0 540 340" fill="none" class="proj-visual-svg" xmlns="http://www.w3.org/2000/svg">
+                    <g opacity="0.15" stroke="#e59838" stroke-width="1">
+                      <line x1="0" y1="85" x2="540" y2="85"/><line x1="0" y1="170" x2="540" y2="170"/>
+                      <line x1="0" y1="255" x2="540" y2="255"/><line x1="135" y1="0" x2="135" y2="340"/>
+                      <line x1="270" y1="0" x2="270" y2="340"/><line x1="405" y1="0" x2="405" y2="340"/>
+                    </g>
+                    <circle cx="270" cy="170" r="130" stroke="#e59838" stroke-width="1.5" stroke-dasharray="8 8" opacity="0.35"/>
+                    <circle cx="270" cy="170" r="85" stroke="#e59838" stroke-width="2" stroke-dasharray="6 6" opacity="0.6"/>
+                    <circle cx="270" cy="170" r="42" fill="rgba(229,152,56,0.1)" stroke="#e59838" stroke-width="2.5"/>
+                    <polygon points="270,170 400,80 360,40" fill="url(#pvLG)" opacity="0.65"/>
+                    <defs><linearGradient id="pvLG" x1="270" y1="170" x2="400" y2="80" gradientUnits="userSpaceOnUse"><stop stop-color="#e59838" stop-opacity="0.9"/><stop offset="1" stop-color="#e59838" stop-opacity="0"/></linearGradient></defs>
+                    <rect x="250" y="150" width="40" height="40" rx="10" fill="#e59838"/>
+                    <path d="M263 170 L268 175 L277 164" stroke="#0a0906" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <g class="radar-ping-blip">
+                      <circle cx="345" cy="108" r="15" stroke="#10b981" stroke-width="1.5" class="radar-ping-ring" fill="rgba(16,185,129,0.1)"/>
+                      <circle cx="345" cy="108" r="5" fill="#10b981"/>
+                      <text x="362" y="104" fill="#10b981" font-family="JetBrains Mono" font-size="9" font-weight="700">PAYLOAD DETECTED</text>
+                    </g>
+                    <g class="radar-ping-blip" style="animation-delay:1.2s">
+                      <circle cx="188" cy="228" r="13" stroke="#e59838" stroke-width="1.5" class="radar-ping-ring" fill="rgba(229,152,56,0.1)"/>
+                      <circle cx="188" cy="228" r="5" fill="#e59838"/>
+                      <text x="118" y="248" fill="#e59838" font-family="JetBrains Mono" font-size="9" font-weight="700">ENTROPY: 0.942</text>
+                    </g>
+                    <rect x="38" y="52" width="145" height="36" rx="10" fill="rgba(229,152,56,0.08)" stroke="#e59838" stroke-width="1"/>
+                    <text x="110" y="75" fill="#e59838" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">SCOPUS INDEXED 2024</text>
+                    <rect x="348" y="242" width="145" height="36" rx="10" fill="rgba(16,185,129,0.08)" stroke="#10b981" stroke-width="1"/>
+                    <text x="420" y="265" fill="#10b981" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">ACCURACY: 90%</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ─── Mission 02: Library Management System ─── -->
+          <div class="side-proj-card" id="mission-library">
+            <div class="side-proj-inner">
+              <div class="side-proj-left">
+                <span class="proj-num">02</span>
+                <div class="proj-tag">FULL STACK · DJANGO · REST APIS · JWT</div>
+                <h3 class="proj-title">Library Management<br>System</h3>
+                <p class="proj-desc">Dual-interface system with automated checkout tracking, role-based JWT security, and relational MySQL analytics. Built for real institutional deployment with automated issue/return workflows and fine calculation engines.</p>
+                <div class="proj-tech-strip">
+                  <span>Django</span><span>DRF</span><span>MySQL</span><span>REST APIs</span><span>JWT Auth</span>
+                </div>
+                <a href="https://github.com/SohamSawalakhe/Library-Management-System" target="_blank" class="proj-cta-link">
+                  <span>View Source Code</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+              <div class="side-proj-right">
+                <div class="proj-visual-box">
+                  <svg viewBox="0 0 540 340" fill="none" class="proj-visual-svg" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="540" height="340" fill="#fdfcf9"/>
+                    <g opacity="0.12" stroke="#0f172a" stroke-width="1">
+                      <line x1="0" y1="85" x2="540" y2="85"/><line x1="0" y1="170" x2="540" y2="170"/>
+                      <line x1="0" y1="255" x2="540" y2="255"/><line x1="180" y1="0" x2="180" y2="340"/>
+                      <line x1="360" y1="0" x2="360" y2="340"/>
+                    </g>
+                    <!-- Server & Database Nodes -->
+                    <rect x="50" y="70" width="130" height="90" rx="14" fill="#ffffff" stroke="#e59838" stroke-width="2"/>
+                    <text x="115" y="105" fill="#0f172a" font-family="Outfit" font-size="14" font-weight="800" text-anchor="middle">STUDENT PORTAL</text>
+                    <text x="115" y="128" fill="#71717a" font-family="JetBrains Mono" font-size="10" text-anchor="middle">JWT Session Auth</text>
+
+                    <rect x="50" y="190" width="130" height="90" rx="14" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+                    <text x="115" y="225" fill="#0f172a" font-family="Outfit" font-size="14" font-weight="800" text-anchor="middle">ADMIN DASHBOARD</text>
+                    <text x="115" y="248" fill="#71717a" font-family="JetBrains Mono" font-size="10" text-anchor="middle">Catalog & Overdue</text>
+
+                    <!-- Central API Core -->
+                    <circle cx="270" cy="175" r="50" fill="#ffffff" stroke="#d97706" stroke-width="2.5"/>
+                    <text x="270" y="172" fill="#d97706" font-family="Outfit" font-size="15" font-weight="900" text-anchor="middle">DJANGO REST</text>
+                    <text x="270" y="190" fill="#71717a" font-family="JetBrains Mono" font-size="9" text-anchor="middle">BACKEND ENGINE</text>
+
+                    <!-- DB Cylinder -->
+                    <rect x="360" y="125" width="130" height="100" rx="16" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+                    <text x="425" y="165" fill="#0f172a" font-family="Outfit" font-size="14" font-weight="800" text-anchor="middle">MYSQL CLUSTER</text>
+                    <text x="425" y="188" fill="#059669" font-family="JetBrains Mono" font-size="10" text-anchor="middle">Relational Schema</text>
+
+                    <!-- Connectors -->
+                    <path d="M180 115 L220 160" stroke="#e59838" stroke-width="2" stroke-dasharray="4 4"/>
+                    <path d="M180 235 L220 190" stroke="#0f172a" stroke-width="2" stroke-dasharray="4 4"/>
+                    <path d="M320 175 L360 175" stroke="#10b981" stroke-width="2.5"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ─── Mission 03: Customer Data Platform Chatbot ─── -->
+          <div class="side-proj-card" id="mission-cdp">
+            <div class="side-proj-inner">
+              <div class="side-proj-left">
+                <span class="proj-num">03</span>
+                <div class="proj-tag">NLP · AI ASSISTANT · MULTI-DOC RETRIEVAL</div>
+                <h3 class="proj-title">Customer Data Platform<br>Chatbot</h3>
+                <p class="proj-desc">Context-aware natural language assistant answering technical cross-platform queries across Segment, mParticle, and Lytics documentation. Features intent-based retrieval, conversational memory, and precise parameter extraction.</p>
+                <div class="proj-tech-strip">
+                  <span>Python</span><span>NLP</span><span>Flask</span><span>REST API</span><span>Cosine Similarity</span>
+                </div>
+                <a href="https://github.com/SohamSawalakhe/cdp-chatbot" target="_blank" class="proj-cta-link">
+                  <span>View Source Code</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+              <div class="side-proj-right">
+                <div class="proj-visual-box">
+                  <svg viewBox="0 0 540 340" fill="none" class="proj-visual-svg" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="540" height="340" fill="#fdfcf9"/>
+                    <!-- Terminal Console Window -->
+                    <rect x="40" y="40" width="460" height="260" rx="16" fill="#0f172a"/>
+                    <!-- Window Controls -->
+                    <circle cx="65" cy="65" r="5" fill="#ef4444"/>
+                    <circle cx="82" cy="65" r="5" fill="#f59e0b"/>
+                    <circle cx="99" cy="65" r="5" fill="#10b981"/>
+                    <text x="270" y="68" fill="#94a3b8" font-family="JetBrains Mono" font-size="11" text-anchor="middle">cdp-assistant // inference-pipeline</text>
+
+                    <!-- Terminal Chat Lines -->
+                    <text x="65" y="115" fill="#38bdf8" font-family="JetBrains Mono" font-size="11">&gt; query: "How to set up user identity tracking in Segment?"</text>
+                    <rect x="65" y="135" width="410" height="75" rx="8" fill="#1e293b"/>
+                    <text x="80" y="160" fill="#e2e8f0" font-family="JetBrains Mono" font-size="10.5">analytics.identify("user_123", {</text>
+                    <text x="95" y="180" fill="#e2e8f0" font-family="JetBrains Mono" font-size="10.5">  email: "soham@sitarahub.com", plan: "Enterprise"</text>
+                    <text x="80" y="200" fill="#e2e8f0" font-family="JetBrains Mono" font-size="10.5">});</text>
+
+                    <!-- Status Badges -->
+                    <rect x="65" y="235" width="130" height="26" rx="6" fill="rgba(16,185,129,0.2)"/>
+                    <text x="130" y="252" fill="#10b981" font-family="JetBrains Mono" font-size="10" font-weight="700" text-anchor="middle">MATCH: SEGMENT DOCS</text>
+
+                    <rect x="210" y="235" width="115" height="26" rx="6" fill="rgba(229,152,56,0.2)"/>
+                    <text x="267" y="252" fill="#e59838" font-family="JetBrains Mono" font-size="10" font-weight="700" text-anchor="middle">LATENCY: 42ms</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ─── Mission 04: Any Search Multi-Threaded Engine ─── -->
+          <div class="side-proj-card" id="mission-concurrency">
+            <div class="side-proj-inner">
+              <div class="side-proj-left">
+                <span class="proj-num">04</span>
+                <div class="proj-tag">SYSTEMS · CONCURRENCY · PARALLEL I/O</div>
+                <h3 class="proj-title">Any Search Multi-Threaded<br>Engine</h3>
+                <p class="proj-desc">High-speed concurrent file indexing and search engine utilizing asynchronous thread pools for immediate file discovery. Traverses millions of inodes in seconds with non-blocking UI rendering and zero lock contention.</p>
+                <div class="proj-tech-strip">
+                  <span>Python</span><span>Multi-threading</span><span>Tkinter</span><span>OS APIs</span><span>Thread Workers</span>
+                </div>
+                <a href="https://github.com/SohamSawalakhe" target="_blank" class="proj-cta-link">
+                  <span>View Source Code</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+              <div class="side-proj-right">
+                <div class="proj-visual-box">
+                  <svg viewBox="0 0 540 340" fill="none" class="proj-visual-svg" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="540" height="340" fill="#fdfcf9"/>
+                    <g opacity="0.12" stroke="#0f172a" stroke-width="1">
+                      <line x1="0" y1="170" x2="540" y2="170"/>
+                      <line x1="180" y1="0" x2="180" y2="340"/>
+                      <line x1="360" y1="0" x2="360" y2="340"/>
+                    </g>
+                    <!-- Dispatcher Box -->
+                    <rect x="40" y="115" width="110" height="110" rx="16" fill="#0f172a"/>
+                    <text x="95" y="165" fill="#ffffff" font-family="Outfit" font-size="13" font-weight="800" text-anchor="middle">MAIN</text>
+                    <text x="95" y="185" fill="#e59838" font-family="JetBrains Mono" font-size="10" font-weight="700" text-anchor="middle">DISPATCHER</text>
+
+                    <!-- Worker Threads Stack -->
+                    <rect x="220" y="55" width="130" height="42" rx="10" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+                    <text x="285" y="80" fill="#0f172a" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">Thread_01 [I/O]</text>
+
+                    <rect x="220" y="115" width="130" height="42" rx="10" fill="#ffffff" stroke="#e59838" stroke-width="2"/>
+                    <text x="285" y="140" fill="#0f172a" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">Thread_02 [Scan]</text>
+
+                    <rect x="220" y="175" width="130" height="42" rx="10" fill="#ffffff" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="285" y="200" fill="#0f172a" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">Thread_03 [Match]</text>
+
+                    <rect x="220" y="235" width="130" height="42" rx="10" fill="#ffffff" stroke="#8b5cf6" stroke-width="2"/>
+                    <text x="285" y="260" fill="#0f172a" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">Thread_04 [Index]</text>
+
+                    <!-- Results Channel -->
+                    <rect x="390" y="105" width="115" height="130" rx="16" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+                    <text x="447" y="150" fill="#0f172a" font-family="Outfit" font-size="13" font-weight="800" text-anchor="middle">UNIFIED</text>
+                    <text x="447" y="170" fill="#0f172a" font-family="Outfit" font-size="13" font-weight="800" text-anchor="middle">OUTPUT</text>
+                    <text x="447" y="195" fill="#10b981" font-family="JetBrains Mono" font-size="10" font-weight="700" text-anchor="middle">0.08s 50K Files</text>
+
+                    <!-- Arrows -->
+                    <path d="M150 170 L220 76" stroke="#10b981" stroke-width="2"/>
+                    <path d="M150 170 L220 136" stroke="#e59838" stroke-width="2"/>
+                    <path d="M150 170 L220 196" stroke="#3b82f6" stroke-width="2"/>
+                    <path d="M150 170 L220 256" stroke="#8b5cf6" stroke-width="2"/>
+
+                    <path d="M350 76 L390 150" stroke="#10b981" stroke-width="2"/>
+                    <path d="M350 136 L390 160" stroke="#e59838" stroke-width="2"/>
+                    <path d="M350 196 L390 180" stroke="#3b82f6" stroke-width="2"/>
+                    <path d="M350 256 L390 190" stroke="#8b5cf6" stroke-width="2"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ─── Mission 05: Real-Time Data Analytics Hub ─── -->
+          <div class="side-proj-card" id="mission-analytics">
+            <div class="side-proj-inner">
+              <div class="side-proj-left">
+                <span class="proj-num">05</span>
+                <div class="proj-tag">DATA ANALYTICS · REACT · MONGODB · CHARTS</div>
+                <h3 class="proj-title">Real-Time Data<br>Analytics Hub</h3>
+                <p class="proj-desc">Interactive dashboard visualizing dynamic multi-dimensional KPI metrics, custom aggregations, and live business forecasting with Chart.js. Includes automated CSV parsing, dynamic date filter slices, and responsive viewport dashboards.</p>
+                <div class="proj-tech-strip">
+                  <span>React.js</span><span>Chart.js</span><span>Node.js</span><span>MongoDB</span><span>Express</span>
+                </div>
+                <a href="https://github.com/SohamSawalakhe/NAIC-Data-Visualization-Dashboard" target="_blank" class="proj-cta-link">
+                  <span>View Source Code</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+              <div class="side-proj-right">
+                <div class="proj-visual-box">
+                  <svg viewBox="0 0 540 340" fill="none" class="proj-visual-svg" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="540" height="340" fill="#fdfcf9"/>
+                    <!-- Analytics Grid Line -->
+                    <g opacity="0.12" stroke="#0f172a" stroke-width="1">
+                      <line x1="40" y1="80" x2="500" y2="80"/>
+                      <line x1="40" y1="140" x2="500" y2="140"/>
+                      <line x1="40" y1="200" x2="500" y2="200"/>
+                      <line x1="40" y1="260" x2="500" y2="260"/>
+                    </g>
+                    <!-- Chart Curves -->
+                    <path d="M50 240 Q150 180, 240 190 T380 110 T490 70" fill="none" stroke="#d97706" stroke-width="3.5" stroke-linecap="round"/>
+                    <path d="M50 260 Q130 230, 230 220 T360 160 T490 120" fill="none" stroke="#10b981" stroke-width="2.5" stroke-dasharray="5 5" stroke-linecap="round"/>
+
+                    <!-- Data Points -->
+                    <circle cx="240" cy="190" r="6" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
+                    <circle cx="380" cy="110" r="6" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
+                    <circle cx="490" cy="70" r="8" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
+
+                    <!-- Metric HUD Callout -->
+                    <rect x="360" y="30" width="130" height="32" rx="8" fill="#0f172a"/>
+                    <text x="425" y="51" fill="#10b981" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">+38.4% GROWTH</text>
+
+                    <!-- Bottom Category Labels -->
+                    <text x="50" y="285" fill="#71717a" font-family="JetBrains Mono" font-size="9">Q1</text>
+                    <text x="160" y="285" fill="#71717a" font-family="JetBrains Mono" font-size="9">Q2</text>
+                    <text x="270" y="285" fill="#71717a" font-family="JetBrains Mono" font-size="9">Q3</text>
+                    <text x="380" y="285" fill="#71717a" font-family="JetBrains Mono" font-size="9">Q4</text>
+                    <text x="490" y="285" fill="#71717a" font-family="JetBrains Mono" font-size="9">PROJ</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Bottom Progress Strip & Caption -->
+      <div class="porsche-scroll-progress-wrap">
+        <div class="porsche-scroll-progress-bar" id="projectsProgressBar"></div>
+      </div>
+      <div class="porsche-scroll-caption">
+        <span>SCROLL DOWN TO ADVANCE MISSIONS</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+
     </div>
   </section>
 
-  <!-- ─── PROJECTS SECTION (ACT II: MISSIONS & CODEBREAKING) ────────────────── -->
-  <section id="projects" class="content-section story-split-section">
-    <div class="section-container">
-      <div class="story-split-layout">
+  <!-- ─── EXPERIENCE SECTION (ACT III: PRODUCTION CHRONICLES — DARK CINEMATIC) ─── -->
+  <section id="experience" class="dark-section dark-section-alt">
 
-        <!-- Sticky Left Story Column -->
-        <aside class="story-sticky-aside reveal">
-          <div class="card-ambient-glow glow-blue"></div>
-
-          <!-- Illustrated 3D Character Capsule -->
-          <div class="aside-character-capsule avatar-3d-capsule" id="capsuleProjects">
-            <div class="capsule-glare"></div>
-            <div class="capsule-corners">
-              <span class="cap-c cap-tl"></span>
-              <span class="cap-c cap-tr"></span>
-              <span class="cap-c cap-bl"></span>
-              <span class="cap-c cap-br"></span>
-            </div>
-            <div class="aside-char-backdrop char-backdrop-blue"></div>
-            <div class="capsule-orbit-ring" aria-hidden="true">
-              <div class="capsule-orbit-dot"></div>
-            </div>
-            <img src="soham4.png" alt="Soham - Cyber & AI Researcher" class="aside-char-img" draggable="false" />
-            <div class="capsule-bottom-fade"></div>
-            <div class="capsule-status-badge">
-              <span class="cap-status-dot"></span>
-              <span class="cap-status-text">Scopus Researcher</span>
-            </div>
-          </div>
-
-          <div class="story-aside-header">
-            <div class="story-act-badge">
-              <span class="chapter-node-pulse"></span>
-              <span>ACT 02 // MISSIONS &amp; CODEBREAKING</span>
-            </div>
-            <h2 class="story-aside-title">Five Engineered Breakthroughs.</h2>
-            <p class="story-aside-monologue">
-              Theory tested in the crucible of real performance. From uncovering covert payloads under international
-              peer review to architecting zero-latency conversational agents and parallel file scanners.
-            </p>
-          </div>
-
-          <ul class="story-nav-steps">
-            <li>
-              <a href="#mission-stegano" class="story-step-link active">
-                <span class="step-num">M_01</span>
-                <span>Scopus Steganography</span>
-              </a>
-            </li>
-            <li>
-              <a href="#mission-library" class="story-step-link">
-                <span class="step-num">M_02</span>
-                <span>Role-Auth Library System</span>
-              </a>
-            </li>
-            <li>
-              <a href="#mission-cdp" class="story-step-link">
-                <span class="step-num">M_03</span>
-                <span>CDP AI Assistant</span>
-              </a>
-            </li>
-            <li>
-              <a href="#mission-concurrency" class="story-step-link">
-                <span class="step-num">M_04</span>
-                <span>Multi-Threaded Scanner</span>
-              </a>
-            </li>
-            <li>
-              <a href="#mission-analytics" class="story-step-link">
-                <span class="step-num">M_05</span>
-                <span>Real-Time Analytics Hub</span>
-              </a>
-            </li>
-          </ul>
-
-          <div class="story-aside-footer">
-            <div class="badge-pill" style="margin: 0; width: 100%; justify-content: center;"><span
-                class="pulse-dot"></span> 1 Scopus · 20+ Production Apps</div>
-          </div>
-        </aside>
-
-        <!-- Scrolling Right Content Column (Missions) -->
-        <div class="story-scroll-col">
-
-          <!-- Mission 01: Spotlight Steganography -->
-          <div class="story-beat" id="mission-stegano">
-
-            <!-- Soham's Story Log 02 -->
-            <div class="sohams-log-bubble reveal">
-              <div class="log-avatar-thumb">
-                <img src="soham4.png" alt="Soham Sawalakhe" />
-                <span class="log-online-dot"></span>
-              </div>
-              <div class="log-content">
-                <div class="log-header">
-                  <span class="log-speaker">SOHAM'S LOG // CHAPTER 02</span>
-                  <span class="log-time">SCOPUS RESEARCH ARCHIVE</span>
-                </div>
-                <p class="log-quote">
-                  "Hiding data in carrier databases is an art; uncovering it mathematically under international peer
-                  review is rigorous science. 90% accuracy was just the baseline."
-                </p>
-              </div>
-            </div>
-
-            <div class="project-spotlight-card tilt-card-3d reveal">
-              <div class="card-ambient-glow glow-amber"></div>
-
-              <div class="spotlight-visual-box">
-                <svg viewBox="0 0 540 340" fill="none" class="spotlight-svg" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Background Grid & Radar Sweep -->
-                  <g opacity="0.12" stroke="#e59838" stroke-width="1">
-                    <line x1="0" y1="85" x2="540" y2="85" />
-                    <line x1="0" y1="170" x2="540" y2="170" />
-                    <line x1="0" y1="255" x2="540" y2="255" />
-                    <line x1="135" y1="0" x2="135" y2="340" />
-                    <line x1="270" y1="0" x2="270" y2="340" />
-                    <line x1="405" y1="0" x2="405" y2="340" />
-                  </g>
-
-                  <circle cx="270" cy="170" r="120" stroke="#e59838" stroke-width="1.5" stroke-dasharray="8 8"
-                    opacity="0.35" />
-                  <circle cx="270" cy="170" r="80" stroke="#e59838" stroke-width="2" stroke-dasharray="6 6"
-                    opacity="0.6" />
-                  <circle cx="270" cy="170" r="40" fill="rgba(229,152,56,0.18)" stroke="#e59838" stroke-width="2" />
-
-                  <!-- Laser Scan Beam -->
-                  <polygon points="270,170 390,90 350,50" fill="url(#laserGrad)" opacity="0.55" />
-                  <defs>
-                    <linearGradient id="laserGrad" x1="270" y1="170" x2="390" y2="90" gradientUnits="userSpaceOnUse">
-                      <stop stop-color="#e59838" stop-opacity="0.8" />
-                      <stop offset="1" stop-color="#e59838" stop-opacity="0" />
-                    </linearGradient>
-                  </defs>
-
-                  <!-- Core Stegano Shield -->
-                  <rect x="250" y="150" width="40" height="40" rx="10" fill="#e59838" />
-                  <path d="M263 170 L268 175 L277 164" stroke="#14110e" stroke-width="3" stroke-linecap="round"
-                    stroke-linejoin="round" />
-
-                  <!-- Live Radar Target Blips -->
-                  <g class="radar-ping-blip">
-                    <circle cx="340" cy="110" r="14" stroke="#10b981" stroke-width="1.5" class="radar-ping-ring"
-                      fill="rgba(16,185,129,0.15)" />
-                    <circle cx="340" cy="110" r="4" fill="#10b981" />
-                    <text x="355" y="106" fill="#10b981" font-family="JetBrains Mono" font-size="8.5"
-                      font-weight="700">PAYLOAD_PING [OK]</text>
-                  </g>
-                  <g class="radar-ping-blip" style="animation-delay: 1.2s;">
-                    <circle cx="190" cy="220" r="12" stroke="#e59838" stroke-width="1.5" class="radar-ping-ring"
-                      fill="rgba(229,152,56,0.15)" />
-                    <circle cx="190" cy="220" r="4" fill="#e59838" />
-                    <text x="125" y="240" fill="#e59838" font-family="JetBrains Mono" font-size="8.5"
-                      font-weight="700">ENTROPY: 0.942</text>
-                  </g>
-
-                  <!-- Dynamic telemetry chips -->
-                  <g>
-                    <rect x="60" y="60" width="130" height="38" rx="10" fill="#201b17" stroke="#e59838"
-                      stroke-width="1.2" />
-                    <text x="125" y="84" fill="#e59838" font-family="JetBrains Mono" font-size="11" font-weight="700"
-                      text-anchor="middle">Entropy: 0.94</text>
-                  </g>
-
-                  <g>
-                    <rect x="340" y="240" width="140" height="38" rx="10" fill="#201b17" stroke="#10b981"
-                      stroke-width="1.2" />
-                    <text x="410" y="264" fill="#10b981" font-family="JetBrains Mono" font-size="11" font-weight="700"
-                      text-anchor="middle">Accuracy: 90%</text>
-                  </g>
-
-                  <rect x="20" y="20" width="150" height="26" rx="6" fill="rgba(229,152,56,0.25)" stroke="#e59838"
-                    stroke-width="1" />
-                  <text x="95" y="37" fill="#e59838" font-family="JetBrains Mono" font-size="9" font-weight="700"
-                    text-anchor="middle">SCOPUS INDEXED 2024</text>
-                </svg>
-              </div>
-
-              <div class="spotlight-details-box">
-                <div class="spotlight-tag">MISSION 01 // AI RESEARCH &amp; CYBERSECURITY</div>
-                <h3 class="spotlight-title">Covert Database Detection Engine</h3>
-                <p class="spotlight-para">
-                  Engineered an intelligent desktop system utilizing steganography analysis, cryptographic entropy
-                  metrics, and Scikit-learn classifiers to detect hidden database payloads inside carrier files.
-                  Successfully achieved <strong>90% detection accuracy</strong>, published in a <strong>Scopus-indexed
-                    international research journal</strong>.
-                </p>
-                <div class="tech-pill-list">
-                  <span class="tech-pill">Python</span>
-                  <span class="tech-pill">Scikit-learn</span>
-                  <span class="tech-pill">Steganography</span>
-                  <span class="tech-pill">Cryptography</span>
-                  <span class="tech-pill">Tkinter</span>
-                </div>
-                <div class="spotlight-action">
-                  <a href="https://github.com/SohamSawalakhe/Covert-Database-Detection" target="_blank"
-                    class="btn-primary">
-                    <span>View Source Code</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="2.5">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- Modern Bento 2-Column Grid with Seamless Visual Cards -->
-          <div class="story-beat" id="missions-bento">
-            <div class="projects-bento-grid">
-
-              <!-- Project 1: Library Management System -->
-              <div class="bento-card tilt-card-3d reveal" id="mission-library">
-                <div class="card-ambient-glow glow-blue"></div>
-                <div class="bento-visual-header visual-blue">
-                  <svg viewBox="0 0 340 160" fill="none" class="bento-svg" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="30" y="25" width="110" height="105" rx="12" fill="#1e273a" stroke="#3b82f6"
-                      stroke-width="1.5" />
-                    <rect x="45" y="40" width="80" height="12" rx="4" fill="#3b82f6" opacity="0.8" />
-                    <rect x="45" y="60" width="55" height="7" rx="3" fill="rgba(255,255,255,0.4)" />
-                    <rect x="45" y="74" width="70" height="7" rx="3" fill="rgba(255,255,255,0.3)" />
-                    <rect x="45" y="88" width="40" height="7" rx="3" fill="rgba(255,255,255,0.2)" />
-
-                    <rect x="180" y="25" width="125" height="105" rx="12" fill="#1e273a" stroke="#60a5fa"
-                      stroke-width="1.5" />
-                    <circle cx="242" cy="65" r="20" fill="#2563eb" />
-                    <text x="242" y="70" fill="#fff" font-family="Outfit" font-size="13" font-weight="800"
-                      text-anchor="middle">JWT</text>
-                    <rect x="200" y="98" width="85" height="16" rx="6" fill="rgba(59,130,246,0.3)" />
-                    <text x="242" y="110" fill="#93c5fd" font-family="JetBrains Mono" font-size="9" font-weight="700"
-                      text-anchor="middle">ROLE AUTH</text>
-                  </svg>
-                </div>
-                <div class="bento-body">
-                  <span class="card-tag">MISSION 02 · FULL STACK · DJANGO</span>
-                  <h4 class="card-title">Library Management System</h4>
-                  <p class="card-desc">Dual-interface system with automated checkout tracking, role-based JWT security,
-                    and relational MySQL analytics.</p>
-                  <div class="card-tags">
-                    <span>Django</span><span>DRF</span><span>MySQL</span><span>REST APIs</span>
-                  </div>
-                  <a href="https://github.com/SohamSawalakhe/Library-Management-System" target="_blank"
-                    class="card-link">GitHub Repository →</a>
-                </div>
-              </div>
-
-              <!-- Project 2: CDP Customer Support AI Chatbot -->
-              <div class="bento-card tilt-card-3d reveal" id="mission-cdp">
-                <div class="card-ambient-glow glow-emerald"></div>
-                <div class="bento-visual-header visual-green">
-                  <svg viewBox="0 0 340 160" fill="none" class="bento-svg" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="25" y="25" width="175" height="44" rx="12" fill="#1b392b" stroke="#10b981"
-                      stroke-width="1.5" />
-                    <text x="40" y="52" fill="#d1fae5" font-family="Outfit" font-size="11" font-weight="600">"How to
-                      setup CDP pipeline?"</text>
-
-                    <rect x="135" y="85" width="180" height="46" rx="12" fill="#065f46" stroke="#34d399"
-                      stroke-width="1.5" />
-                    <text x="150" y="112" fill="#ffffff" font-family="Outfit" font-size="11"
-                      font-weight="600">"Initialize tracking snippet..."</text>
-                    <circle cx="295" cy="120" r="4" fill="#34d399" />
-                  </svg>
-                </div>
-                <div class="bento-body">
-                  <span class="card-tag">MISSION 03 · NLP · AI ASSISTANT</span>
-                  <h4 class="card-title">Customer Data Platform Chatbot</h4>
-                  <p class="card-desc">Context-aware natural language assistant answering technical queries across
-                    Segment, mParticle, and Lytics docs.</p>
-                  <div class="card-tags">
-                    <span>Python</span><span>NLP</span><span>Flask</span><span>REST API</span>
-                  </div>
-                  <a href="https://github.com/SohamSawalakhe/cdp-chatbot" target="_blank" class="card-link">GitHub
-                    Repository →</a>
-                </div>
-              </div>
-
-              <!-- Project 3: Any Search Multi-Threaded Tool -->
-              <div class="bento-card tilt-card-3d reveal" id="mission-concurrency">
-                <div class="card-ambient-glow glow-amber"></div>
-                <div class="bento-visual-header visual-amber">
-                  <svg viewBox="0 0 340 160" fill="none" class="bento-svg" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="170" cy="80" r="50" stroke="#f59e0b" stroke-width="2" stroke-dasharray="6 6" />
-                    <line x1="40" y1="55" x2="300" y2="55" stroke="#e59838" stroke-width="2" opacity="0.6" />
-                    <line x1="40" y1="80" x2="300" y2="80" stroke="#f59e0b" stroke-width="3" />
-                    <line x1="40" y1="105" x2="300" y2="105" stroke="#e59838" stroke-width="2" opacity="0.6" />
-                    <circle cx="130" cy="55" r="5" fill="#fff" />
-                    <circle cx="210" cy="80" r="6" fill="#fff" />
-                    <circle cx="80" cy="105" r="5" fill="#fff" />
-                    <text x="170" y="142" fill="#fcd34d" font-family="JetBrains Mono" font-size="10" font-weight="700"
-                      text-anchor="middle">PARALLEL I/O STREAMS</text>
-                  </svg>
-                </div>
-                <div class="bento-body">
-                  <span class="card-tag">MISSION 04 · SYSTEMS · CONCURRENCY</span>
-                  <h4 class="card-title">Any Search Multi-Threaded Engine</h4>
-                  <p class="card-desc">High-speed file scanner leveraging asynchronous thread workers for immediate
-                    directory indexing and substring retrieval.</p>
-                  <div class="card-tags">
-                    <span>Python</span><span>Multi-threading</span><span>Tkinter</span><span>OS APIs</span>
-                  </div>
-                  <a href="https://github.com/SohamSawalakhe" target="_blank" class="card-link">GitHub Repository →</a>
-                </div>
-              </div>
-
-              <!-- Project 4: Business Telemetry Dashboard -->
-              <div class="bento-card tilt-card-3d reveal" id="mission-analytics">
-                <div class="card-ambient-glow glow-purple"></div>
-                <div class="bento-visual-header visual-purple">
-                  <svg viewBox="0 0 340 160" fill="none" class="bento-svg" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="45" y="90" width="32" height="40" rx="6" fill="#8b5cf6" />
-                    <rect x="95" y="65" width="32" height="65" rx="6" fill="#a78bfa" />
-                    <rect x="145" y="45" width="32" height="85" rx="6" fill="#c084fc" />
-                    <rect x="195" y="75" width="32" height="55" rx="6" fill="#8b5cf6" />
-                    <rect x="245" y="35" width="32" height="95" rx="6" fill="#d8b4fe" />
-                    <polyline points="61,90 111,65 161,45 211,75 261,35" stroke="#ffffff" stroke-width="2.5"
-                      fill="none" />
-                    <circle cx="261" cy="35" r="5" fill="#f59e0b" />
-                  </svg>
-                </div>
-                <div class="bento-body">
-                  <span class="card-tag">MISSION 05 · DATA ANALYTICS · REACT</span>
-                  <h4 class="card-title">Real-Time Data Analytics Hub</h4>
-                  <p class="card-desc">Interactive dashboard visualizing dynamic multi-dimensional KPI metrics, custom
-                    aggregations, and business forecasts.</p>
-                  <div class="card-tags">
-                    <span>React.js</span><span>Chart.js</span><span>Node.js</span><span>MongoDB</span>
-                  </div>
-                  <a href="https://github.com/SohamSawalakhe/NAIC-Data-Visualization-Dashboard" target="_blank"
-                    class="card-link">GitHub Repository →</a>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-
+    <!-- Chapter Header -->
+    <div class="dark-chapter-header" id="exp-chapter-header">
+      <div class="dch-overline">
+        <span class="dch-pulse"></span>
+        <span>ACT III // PRODUCTION CHRONICLES</span>
       </div>
+      <h2 class="dch-giant-title">
+        <span class="dch-title-line">REAL-WORLD</span>
+        <span class="dch-title-line amber">IMPACT.</span>
+      </h2>
     </div>
-  </section>
 
-  <!-- ─── EXPERIENCE SECTION (ACT III: PRODUCTION CHRONICLES) ─────────────── -->
-  <section id="experience" class="content-section story-split-section">
-    <div class="section-container">
-      <div class="story-split-layout">
+    <!-- Experience Entries (Cinematic) -->
+    <div class="exp-cinema-stack">
 
-        <!-- Sticky Left Story Column -->
-        <aside class="story-sticky-aside reveal">
-          <div class="card-ambient-glow glow-emerald"></div>
-
-          <!-- Illustrated 3D Character Capsule -->
-          <div class="aside-character-capsule avatar-3d-capsule" id="capsuleExp">
-            <div class="capsule-glare"></div>
-            <div class="capsule-corners">
-              <span class="cap-c cap-tl"></span>
-              <span class="cap-c cap-tr"></span>
-              <span class="cap-c cap-bl"></span>
-              <span class="cap-c cap-br"></span>
-            </div>
-            <div class="aside-char-backdrop char-backdrop-green"></div>
-            <div class="capsule-orbit-ring" aria-hidden="true">
-              <div class="capsule-orbit-dot"></div>
-            </div>
-            <img src="soham5.png" alt="Soham - Backend at SitaraHub" class="aside-char-img" draggable="false" />
-            <div class="capsule-bottom-fade"></div>
-            <div class="capsule-status-badge">
-              <span class="cap-status-dot"></span>
-              <span class="cap-status-text">Backend @ SitaraHub</span>
-            </div>
+      <!-- Current Role: SitaraHub -->
+      <div class="exp-cinema-entry" id="exp-sitarahub">
+        <div class="ece-meta">
+          <span class="ece-badge current">● PRESENT ROLE</span>
+          <span class="ece-period">Jan 2026 – Now</span>
+        </div>
+        <div class="ece-company">SitaraHub</div>
+        <div class="ece-role">Backend Developer · Mumbai, Maharashtra</div>
+        <p class="ece-desc">Developing and deploying scalable backend services using <strong>Node.js, TypeScript, and Prisma ORM</strong> to support high-throughput web applications with optimized sub-50ms API response times. Designing robust RESTful endpoints and optimizing relational schemas across <strong>MySQL, PostgreSQL, and SQLite</strong>. Building data processing pipelines using <strong>Pandas and NumPy</strong> for real-time analytics.</p>
+        <div class="ece-metrics">
+          <div class="ece-metric-item">
+            <span class="ece-metric-num">99.9%</span>
+            <span>Uptime SLA</span>
           </div>
-
-          <div class="story-aside-header">
-            <div class="story-act-badge">
-              <span class="chapter-node-pulse"></span>
-              <span>ACT 03 // PRODUCTION CHRONICLES</span>
-            </div>
-            <h2 class="story-aside-title">Real-World Deployments &amp; Impact.</h2>
-            <p class="story-aside-monologue">
-              Engineering isn't proven in presentations; it's proven in production under concurrent workloads. From
-              shipping high-volume microservices to mentoring student cohorts, here is my operational track record.
-            </p>
+          <div class="ece-metric-item">
+            <span class="ece-metric-num">&lt;50ms</span>
+            <span>API Latency</span>
           </div>
-
-          <ul class="story-nav-steps">
-            <li>
-              <a href="#exp-sitarahub" class="story-step-link active">
-                <span class="step-num">01</span>
-                <span>SitaraHub (Backend Dev)</span>
-              </a>
-            </li>
-            <li>
-              <a href="#exp-techelevare" class="story-step-link">
-                <span class="step-num">02</span>
-                <span>Techelevare Software (Intern)</span>
-              </a>
-            </li>
-            <li>
-              <a href="#exp-leadership" class="story-step-link">
-                <span class="step-num">03</span>
-                <span>GCOEY &amp; NSS Leadership</span>
-              </a>
-            </li>
-          </ul>
-
-          <div class="story-aside-footer">
-            <div class="meta-item" style="width: 100%; padding: 12px 14px; margin: 0;">
-              <span class="meta-label">Current Availability</span>
-              <span class="meta-val highlight-val">Open to Full-Time Backend / AI Roles</span>
-            </div>
-          </div>
-        </aside>
-
-        <!-- Scrolling Right Content Column -->
-        <div class="story-scroll-col">
-          <div class="exp-container" style="max-width: 100%; margin: 0;">
-
-            <!-- Soham's Story Log 03 -->
-            <div class="sohams-log-bubble reveal">
-              <div class="log-avatar-thumb">
-                <img src="soham5.png" alt="Soham Sawalakhe" />
-                <span class="log-online-dot"></span>
-              </div>
-              <div class="log-content">
-                <div class="log-header">
-                  <span class="log-speaker">SOHAM'S LOG // CHAPTER 03</span>
-                  <span class="log-time">SITARAHUB CLOUD DISPATCH</span>
-                </div>
-                <p class="log-quote">
-                  "Architecture isn't validated until it takes concurrent traffic. At SitaraHub, every microservice is
-                  engineered for sub-50ms latency and 99.9% fault-tolerant uptime."
-                </p>
-              </div>
-            </div>
-
-            <!-- Experience 1: SitaraHub (CURRENT) -->
-            <div class="exp-row current-role reveal" id="exp-sitarahub">
-              <div class="exp-indicator">
-                <div class="exp-dot-glow"></div>
-                <div class="exp-line"></div>
-              </div>
-              <div class="exp-card tilt-card-3d">
-                <div class="card-ambient-glow glow-amber"></div>
-                <div class="exp-header">
-                  <div>
-                    <span class="badge-role-current">● PRESENT ROLE</span>
-                    <h3 class="exp-job-title">Backend Developer</h3>
-                    <div class="exp-org">SitaraHub · Mumbai, Maharashtra</div>
-                  </div>
-                  <div class="exp-time-badge">Jan 2026 – Present</div>
-                </div>
-                <p class="exp-details">
-                  Developing and deploying scalable backend services using <strong>Node.js, TypeScript, and Prisma
-                    ORM</strong> to support high-throughput web applications with optimized sub-50ms API response times.
-                  Designing robust RESTful endpoints for seamless integration with Next.js frontend clients.
-                </p>
-                <p class="exp-details" style="margin-top: -6px;">
-                  Optimizing relational schemas and SQL queries across <strong>MySQL, PostgreSQL, and SQLite</strong>
-                  for high query throughput and maintainability. Building data processing pipelines using <strong>Pandas
-                    and NumPy</strong> to support real-time analytics and BI requirements within cross-functional Agile
-                  sprints.
-                </p>
-
-                <!-- Live Telemetry Status Badges -->
-                <div class="telemetry-row">
-                  <span class="telemetry-tag">⚡ 99.9% Uptime SLA</span>
-                  <span class="telemetry-tag">🚀 Sub-50ms API Latency</span>
-                  <span class="telemetry-tag">🛡️ Prisma ORM &amp; RBAC</span>
-                  <span class="telemetry-tag">📊 Pandas Analytics ETL</span>
-                </div>
-
-                <div class="card-tags">
-                  <span>Node.js</span><span>TypeScript</span><span>Prisma ORM</span><span>REST
-                    APIs</span><span>PostgreSQL</span><span>MySQL</span><span>Pandas</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Experience 2: Techelevare Software (AUG 2025 - DEC 2025) -->
-            <div class="exp-row reveal" id="exp-techelevare">
-              <div class="exp-indicator">
-                <div class="exp-dot"></div>
-                <div class="exp-line"></div>
-              </div>
-              <div class="exp-card tilt-card-3d">
-                <div class="card-ambient-glow glow-blue"></div>
-                <div class="exp-header">
-                  <div>
-                    <span class="badge-role">INTERNSHIP</span>
-                    <h3 class="exp-job-title">Full Stack Developer Intern</h3>
-                    <div class="exp-org">Techelevare Software Pvt Ltd · Pune, Maharashtra</div>
-                  </div>
-                  <div class="exp-time-badge">Aug 2025 – Dec 2025</div>
-                </div>
-                <p class="exp-details">
-                  Architected responsive, accessible frontend interfaces in <strong>React.js</strong> using modular
-                  component design patterns. Built scalable RESTful backend services using <strong>Node.js and
-                    Express.js</strong>, integrating high-performance MySQL query optimizations.
-                </p>
-                <p class="exp-details" style="margin-top: -6px;">
-                  Integrated <strong>Python / Scikit-learn machine learning models</strong> into full-stack application
-                  workflows to power intelligent, data-driven user features. Actively contributed to daily Agile
-                  standups, code reviews, and CI/CD testing.
-                </p>
-                <div class="card-tags">
-                  <span>React.js</span><span>Node.js</span><span>Express.js</span><span>Scikit-Learn</span><span>MySQL</span><span>Agile/Scrum</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Experience 3: Class Representative & NSS Volunteer -->
-            <div class="exp-row reveal" id="exp-leadership">
-              <div class="exp-indicator">
-                <div class="exp-dot"></div>
-              </div>
-              <div class="exp-card tilt-card-3d">
-                <div class="card-ambient-glow glow-emerald"></div>
-                <div class="exp-header">
-                  <div>
-                    <span class="badge-role">LEADERSHIP</span>
-                    <h3 class="exp-job-title">Technical Volunteer &amp; Class Representative</h3>
-                    <div class="exp-org">National Service Scheme (NSS) &amp; GCOE Yavatmal</div>
-                  </div>
-                  <div class="exp-time-badge">2021 – 2024</div>
-                </div>
-                <p class="exp-details">
-                  Represented 60+ computer engineering classmates. Conducted peer coding camps, guided juniors in
-                  software foundations, and coordinated social impact technical initiatives.
-                </p>
-                <div class="card-tags">
-                  <span>Leadership</span><span>Team Coordination</span><span>Mentorship</span>
-                </div>
-              </div>
-            </div>
-
+          <div class="ece-metric-item">
+            <span class="ece-metric-num">10+</span>
+            <span>Services Shipped</span>
           </div>
         </div>
-
+        <div class="ece-tags">
+          <span>Node.js</span><span>TypeScript</span><span>Prisma ORM</span>
+          <span>PostgreSQL</span><span>MySQL</span><span>REST APIs</span><span>Pandas</span>
+        </div>
       </div>
+
+      <div class="ece-divider" aria-hidden="true"></div>
+
+      <!-- Internship: Techelevare -->
+      <div class="exp-cinema-entry" id="exp-techelevare">
+        <div class="ece-meta">
+          <span class="ece-badge">INTERNSHIP</span>
+          <span class="ece-period">Aug 2025 – Dec 2025</span>
+        </div>
+        <div class="ece-company">Techelevare</div>
+        <div class="ece-role">Full Stack Developer Intern · Pune, Maharashtra</div>
+        <p class="ece-desc">Architected responsive, accessible frontend interfaces in <strong>React.js</strong> using modular component design patterns. Built scalable RESTful backend services using <strong>Node.js and Express.js</strong>. Integrated <strong>Python / Scikit-learn machine learning models</strong> into full-stack application workflows to power intelligent, data-driven user features. Actively contributed to daily Agile standups and CI/CD testing.</p>
+        <div class="ece-tags">
+          <span>React.js</span><span>Node.js</span><span>Express.js</span><span>Scikit-Learn</span><span>MySQL</span><span>Agile/Scrum</span>
+        </div>
+      </div>
+
+      <div class="ece-divider" aria-hidden="true"></div>
+
+      <!-- Leadership: GCOE Yavatmal -->
+      <div class="exp-cinema-entry" id="exp-leadership">
+        <div class="ece-meta">
+          <span class="ece-badge">LEADERSHIP</span>
+          <span class="ece-period">2021 – 2024</span>
+        </div>
+        <div class="ece-company">GCOE Yavatmal</div>
+        <div class="ece-role">Technical Volunteer &amp; Class Representative · NSS</div>
+        <p class="ece-desc">Represented 60+ computer engineering classmates. Conducted peer coding camps, guided juniors in software foundations, and coordinated social impact technical initiatives with the National Service Scheme (NSS).</p>
+        <div class="ece-metrics">
+          <div class="ece-metric-item">
+            <span class="ece-metric-num">60+</span>
+            <span>Students Led</span>
+          </div>
+          <div class="ece-metric-item">
+            <span class="ece-metric-num">3</span>
+            <span>Years Active</span>
+          </div>
+        </div>
+        <div class="ece-tags">
+          <span>Leadership</span><span>Team Coordination</span><span>Mentorship</span>
+        </div>
+      </div>
+
     </div>
+
+    <!-- Availability Banner -->
+    <div class="dark-avail-banner">
+      <span class="dab-pulse"></span>
+      <span>OPEN TO FULL-TIME BACKEND / AI ENGINEERING ROLES</span>
+      <span class="dab-arrow">→</span>
+      <a href="#contact" class="dab-cta">Let's Talk</a>
+    </div>
+
   </section>
 
   <!-- ─── SKILLS SECTION (3D SPINNING VORTEX GALAXY) ────────────────────────── -->
-  <section id="skills" class="content-section">
+  <section id="skills" class="content-section dark-section">
     <div class="section-container">
 
       <div class="chapter-badge">
@@ -1296,7 +1027,7 @@
       </div>
 
       <!-- 3D Spinning Vortex Stage -->
-      <div class="vortex-arena reveal">
+      <div class="vortex-arena" id="vortexArena">
         <div class="card-ambient-glow glow-amber"></div>
 
         <!-- Central Glowing Stellar Core -->
@@ -1571,7 +1302,7 @@
   </section>
 
   <!-- ─── EDUCATION & CERTS SECTION ────────────────────────────────────────── -->
-  <section id="education" class="content-section">
+  <section id="education" class="content-section dark-section">
     <div class="section-container">
 
       <div class="chapter-badge">
@@ -1795,15 +1526,17 @@
         <div class="card-ambient-glow glow-amber"></div>
 
         <div class="contact-left">
-          <div class="chapter-badge">
-            <span class="chapter-node-pulse"></span>
-            <span class="section-num">CH_06</span>
-            <span class="chapter-title-text">SIGNAL TRANSMISSION // CONNECT</span>
-          </div>
-          <div class="c-stat-tag"
-            style="display:inline-flex; align-items:center; gap:8px; margin: 12px 0 16px; padding: 6px 14px; background: rgba(255,255,255,0.92); border: 1.2px solid var(--ink); border-radius: 99px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 800; color: var(--ink); box-shadow: 2px 2px 0px var(--ink);">
-            <span class="pulse-dot"></span>
-            <span>AVAILABLE // REMOTE, HYBRID &amp; ON-SITE ROLES</span>
+          <div class="contact-meta-badges">
+            <div class="contact-ch-badge">
+              <span class="contact-pulse-amber"></span>
+              <span class="contact-ch-num">CH_06</span>
+              <span class="contact-ch-sep">/</span>
+              <span class="contact-ch-title">LET'S CONNECT</span>
+            </div>
+            <div class="contact-avail-pill">
+              <span class="contact-pulse-green"></span>
+              <span>AVAILABLE FOR FULL-TIME ROLES &amp; FREELANCE</span>
+            </div>
           </div>
           <h2 class="contact-main-heading">
             Let's build something<br>
@@ -1843,9 +1576,44 @@
         </div>
 
         <div class="contact-right">
-          <div class="contact-character-portal">
-            <div class="contact-portal-glow"></div>
-            <img src="soham1.png" alt="Soham Sawalakhe - Direct Signal" class="contact-char-img" />
+          <div class="contact-dispatch-console">
+            <div class="cdc-header">
+              <span class="cdc-title">TRANSMISSION CONSOLE</span>
+              <div class="cdc-status-pill">
+                <span class="cdc-pulse-dot"></span>
+                <span>ONLINE &amp; ACTIVE</span>
+              </div>
+            </div>
+
+            <div class="cdc-metrics-grid">
+              <div class="cdc-metric">
+                <span class="cdc-metric-val">&lt; 4 Hours</span>
+                <span class="cdc-metric-lbl">Typical Response</span>
+              </div>
+              <div class="cdc-metric">
+                <span class="cdc-metric-val">Immediate</span>
+                <span class="cdc-metric-lbl">Availability</span>
+              </div>
+              <div class="cdc-metric">
+                <span class="cdc-metric-val">Mumbai / Pune</span>
+                <span class="cdc-metric-lbl">Location / Remote</span>
+              </div>
+              <div class="cdc-metric">
+                <span class="cdc-metric-val">Backend &amp; AI</span>
+                <span class="cdc-metric-lbl">Primary Focus</span>
+              </div>
+            </div>
+
+            <div class="cdc-quick-cta">
+              <a href="mailto:sohamsawalakhe@gmail.com" class="cdc-btn-primary">
+                <span>Direct Email Dispatch</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="Resume_Soham_Sawalakhe.pdf" download target="_blank" class="cdc-btn-secondary">
+                <span>Download Executive Resume</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -1878,16 +1646,16 @@
     </div>
   </footer>
 
-  <!-- ─── FLOATING AMBIENT MUSIC PLAYER ────────────────────────────────────── -->
+  <!-- ─── FLOATING AMBIENT MUSIC PLAYER: PLEASANT CODER THEME ──────────────── -->
   <div id="ambientPlayer" class="ambient-player collapsed">
 
     <!-- Mini Bar / Toggle Pill -->
-    <button id="playerToggleBtn" class="player-toggle-btn" aria-label="Toggle ambient music player">
+    <button id="playerToggleBtn" class="player-toggle-btn" aria-label="Toggle Pleasant Coder ambient player">
       <div class="player-disc-icon">
         <span class="disc-dot"></span>
       </div>
       <div class="player-mini-info">
-        <span class="p-now-title" id="pMiniTitle">🍃 Naruto Theme</span>
+        <span class="p-now-title" id="pMiniTitle">🌸 Spirited Away</span>
         <div class="p-equalizer">
           <span class="eq-bar bar-1"></span>
           <span class="eq-bar bar-2"></span>
@@ -1900,7 +1668,7 @@
     <!-- Expanded Glassmorphic Panel -->
     <div class="player-expand-panel" id="playerExpandPanel">
       <div class="p-panel-header">
-        <div class="p-tag-pill">🍃 NARUTO • SADNESS &amp; SORROW</div>
+        <div class="p-tag-pill">🌸 STUDIO GHIBLI • SPIRITED AWAY</div>
         <button class="p-close-btn" id="playerCloseBtn" aria-label="Minimize player">✕</button>
       </div>
 
@@ -1908,11 +1676,11 @@
       <div class="p-track-display">
         <div class="p-track-artwork">
           <span class="artwork-pulse"></span>
-          <span class="artwork-icon" id="pTrackIcon">🍃</span>
+          <span class="artwork-icon" id="pTrackIcon">🌸</span>
         </div>
         <div class="p-track-meta">
-          <h4 class="p-track-name" id="pTrackName">Naruto • Sadness and Sorrow</h4>
-          <span class="p-track-sub" id="pTrackSub">Original Iconic Acoustic Piano &amp; Flute</span>
+          <h4 class="p-track-name" id="pTrackName">Studio Ghibli • Spirited Away Theme</h4>
+          <span class="p-track-sub" id="pTrackSub">Peaceful Acoustic Grand Piano for Deep Focus</span>
         </div>
       </div>
 
@@ -1930,31 +1698,32 @@
           <span class="w-bar w-9"></span>
           <span class="w-bar w-10"></span>
         </div>
-        <span class="p-wave-status" id="pWaveStatus">Subtle Audio Ready • Click Play</span>
+        <span class="p-wave-status" id="pWaveStatus">Soothing Melodies • Running</span>
       </div>
 
       <!-- Playlist Selector -->
       <div class="p-playlist-selector">
-        <label for="playlistSelect" class="p-select-label">SELECT SOUNDSCAPE</label>
+        <label for="playlistSelect" class="p-select-label">SELECT FOCUS SOUNDSCAPE</label>
         <select id="playlistSelect" class="p-select-dropdown">
+          <option value="audio/spirited-away-piano.mp3" data-name="Studio Ghibli • Spirited Away Theme"
+            data-sub="Peaceful Acoustic Grand Piano for Deep Focus" data-tag="🌸 STUDIO GHIBLI • SPIRITED AWAY" data-icon="🌸" selected>🌸 Studio Ghibli • Spirited Away (Peaceful Piano)</option>
           <option value="audio/naruto-sadness-and-sorrow.mp3" data-name="Naruto • Sadness and Sorrow"
-            data-sub="Original Iconic Acoustic Piano &amp; Flute" data-tag="🍃 NARUTO • SADNESS &amp; SORROW"
-            data-icon="🍃" selected>🍃 Naruto • Sadness and Sorrow (Original)</option>
-          <option value="audio/naruto-loneliness.mp3" data-name="Naruto • Loneliness"
-            data-sub="Gentle Emotional Piano &amp; Strings" data-tag="🍂 NARUTO • LONELINESS" data-icon="🍂">🍂 Naruto •
-            Loneliness (Gentle Piano)</option>
+            data-sub="Iconic Acoustic Flute &amp; Gentle Piano" data-tag="🍃 NARUTO • SADNESS &amp; SORROW" data-icon="🍃">🍃 Naruto • Sadness and Sorrow (Acoustic Theme)</option>
           <option value="audio/naruto-daylight-konoha.mp3" data-name="Naruto • Daylight of Konoha"
-            data-sub="Peaceful Village Morning Acoustic Guitar" data-tag="☀️ DAYLIGHT OF KONOHA" data-icon="☀️">☀️
-            Naruto • Daylight of Konoha (Acoustic)</option>
-          <option value="audio/spirited-away-piano.mp3" data-name="Ghibli • Always With Me"
-            data-sub="Spirited Away Peaceful Piano Theme" data-tag="🌸 SPIRITED AWAY • GHIBLI" data-icon="🌸">🌸 Ghibli
-            • Always With Me (Spirited Away)</option>
-          <option value="audio/light-notes.wav" data-name="Peaceful Light Piano"
-            data-sub="Minimalist &amp; Calming Ambient Keys" data-tag="🎹 SERENE LIGHT PIANO" data-icon="🎹">🎹 Peaceful
-            Light Piano (Minimalist)</option>
-          <option value="audio/zen-garden.wav" data-name="Kyoto Zen Garden"
-            data-sub="Subtle Koto Strings &amp; Atmospheric Breeze" data-tag="🍵 KYOTO ZEN GARDEN" data-icon="🍵">🍵
-            Kyoto Zen Garden (Subtle Strings)</option>
+            data-sub="Warm Morning Acoustic Guitar &amp; Sunshine" data-tag="☀️ NARUTO • DAYLIGHT OF KONOHA" data-icon="☀️">☀️ Naruto • Daylight of Konoha (Acoustic Guitar)</option>
+          <option value="audio/naruto-loneliness.mp3" data-name="Naruto • Loneliness &amp; Flow"
+            data-sub="Gentle Emotional Piano &amp; Ambient Strings" data-tag="🌧️ NARUTO • LONELINESS &amp; WORK" data-icon="🌧️">🌧️ Naruto • Loneliness &amp; Flow (Piano)</option>
+          <option value="audio/cozy-lofi-beats.wav" data-name="Pleasant Coder • Cozy Lo-Fi Rain &amp; Rhodes"
+            data-sub="Warm Electric Piano Chords &amp; Ambient Vinyl Rain" data-tag="☕ COZY LO-FI • RAIN &amp; RHODES"
+            data-icon="☕">☕ Pleasant Coder • Cozy Lo-Fi Rain &amp; Rhodes</option>
+          <option value="audio/deep-focus-flow.wav" data-name="Pleasant Coder • Midnight Deep Flow"
+            data-sub="Mellow Neo-Soul Keys &amp; Chill Lo-Fi Drums" data-tag="🌙 MIDNIGHT • DEEP FLOW BEATS"
+            data-icon="🌙">🌙 Pleasant Coder • Midnight Deep Flow (Lo-Fi Beats)</option>
+          <option value="audio/zen-garden.wav" data-name="Kyoto Zen • Traditional Koto"
+            data-sub="Subtle Koto Strings &amp; Atmospheric Breeze" data-tag="🍵 KYOTO ZEN • STRINGS" data-icon="🍵">🍵 Kyoto Zen • Traditional Koto (Strings)</option>
+          <option value="audio/light-notes.wav" data-name="Minimalist Keys • Ambient Notes"
+            data-sub="Minimalist Ambient Keys for Deep Focus" data-tag="🎹 MINIMALIST KEYS"
+            data-icon="🎹">🎹 Minimalist Keys • Ambient Notes</option>
         </select>
       </div>
 
@@ -1978,10 +1747,68 @@
       </div>
 
       <!-- Hidden Native Audio Element -->
-      <audio id="ambientAudio" preload="auto" loop src="audio/naruto-sadness-and-sorrow.mp3"></audio>
+      <audio id="ambientAudio" preload="auto" loop src="audio/spirited-away-piano.mp3"></audio>
     </div>
 
   </div>
+
+    <!-- GSAP + ScrollTrigger for cinematic scroll animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+  (function() {
+    function initCinematicScrollAnimations() {
+      if (!window.gsap || !window.ScrollTrigger) return;
+      const gsap = window.gsap;
+      gsap.registerPlugin(window.ScrollTrigger);
+
+      /* Chapter headers: title lines fly up on enter */
+      document.querySelectorAll('.dark-chapter-header').forEach(function(header) {
+        const lines = header.querySelectorAll('.dch-title-line');
+        const overline = header.querySelector('.dch-overline');
+        const subtitle = header.querySelector('.dch-subtitle');
+        if (overline) gsap.from(overline, { scrollTrigger: { trigger: header, start: 'top 82%', once: true }, y: 30, opacity: 0, duration: 0.7, ease: 'power2.out' });
+        if (lines.length) gsap.from(lines, { scrollTrigger: { trigger: header, start: 'top 80%', once: true }, y: 80, opacity: 0, duration: 0.9, stagger: 0.12, ease: 'power3.out' });
+        if (subtitle) gsap.from(subtitle, { scrollTrigger: { trigger: header, start: 'top 75%', once: true }, y: 25, opacity: 0, duration: 0.7, delay: 0.25, ease: 'power2.out' });
+      });
+
+      /* Dark bento cards: stagger up */
+      const bentoCards = document.querySelectorAll('.dbento-card');
+      if (bentoCards.length) gsap.from(bentoCards, { scrollTrigger: { trigger: '.dark-bento-grid', start: 'top 82%', once: true }, y: 65, opacity: 0, duration: 0.75, stagger: 0.11, ease: 'power2.out' });
+
+      /* Experience entries: slide up + company name flies left */
+      document.querySelectorAll('.exp-cinema-entry').forEach(function(entry) {
+        gsap.from(entry, { scrollTrigger: { trigger: entry, start: 'top 82%', once: true }, y: 55, opacity: 0, duration: 0.95, ease: 'power3.out' });
+        const company = entry.querySelector('.ece-company');
+        if (company) gsap.from(company, { scrollTrigger: { trigger: entry, start: 'top 82%', once: true }, x: -50, opacity: 0, duration: 1.05, delay: 0.15, ease: 'power3.out' });
+        const metrics = entry.querySelectorAll('.ece-metric-item');
+        if (metrics.length) gsap.from(metrics, { scrollTrigger: { trigger: entry, start: 'top 78%', once: true }, y: 30, opacity: 0, duration: 0.7, stagger: 0.1, delay: 0.3, ease: 'power2.out' });
+      });
+
+      /* Availability banner */
+      const avail = document.querySelector('.dark-avail-banner');
+      if (avail) gsap.from(avail, { scrollTrigger: { trigger: avail, start: 'top 88%', once: true }, y: 40, opacity: 0, duration: 0.8, ease: 'power2.out' });
+
+      /* Skills vortex arena */
+      const vortex = document.querySelector('.vortex-arena');
+      if (vortex) gsap.from(vortex, { scrollTrigger: { trigger: vortex, start: 'top 80%', once: true }, scale: 0.9, opacity: 0, duration: 1.1, ease: 'power3.out' });
+
+      /* Education cards */
+      const eduCards = document.querySelectorAll('.edu-modern-card');
+      if (eduCards.length) gsap.from(eduCards, { scrollTrigger: { trigger: '.edu-grid', start: 'top 82%', once: true }, y: 60, opacity: 0, duration: 0.8, stagger: 0.12, ease: 'power2.out' });
+
+      /* Cert cards */
+      const certCards = document.querySelectorAll('.cert-badge-card');
+      if (certCards.length) gsap.from(certCards, { scrollTrigger: { trigger: '.certs-grid', start: 'top 82%', once: true }, y: 50, opacity: 0, duration: 0.7, stagger: 0.08, ease: 'power2.out' });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCinematicScrollAnimations);
+    } else {
+      initCinematicScrollAnimations();
+    }
+  })();
+  </script>
 
   <script type="module" src="script.js"></script>
 </body>

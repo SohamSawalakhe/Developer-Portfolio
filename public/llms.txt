@@ -38,20 +38,32 @@ Soham Sawalakhe (Soham Manish Sawalakhe) is a Software Developer, AI/ML Engineer
 
 ## Key Projects
 
-### 1. Covert Database Detection (AI/ML & Security)
+### 1. Covert Database Detection Engine (AI/ML & Security)
 - **Technologies**: Python, Tkinter, Scikit-learn, Stegano, Cryptography
-- **Description**: Desktop application to detect hidden databases using steganography, cryptography, and machine learning. Achieved 90% detection accuracy. Published in a Scopus-indexed journal.
+- **Description**: High-precision forensic application to detect hidden databases using steganography, cryptography, and machine learning. Achieved 90% detection accuracy. Published in a Scopus-indexed journal.
 - **Link**: https://github.com/SohamSawalakhe/Covert-Database-Detection
 
 ### 2. Library Management System (Full Stack)
 - **Technologies**: Django, Django REST Framework, MySQL, Bootstrap
-- **Description**: Dual-interface management system with role-based access control, JWT authentication, and automated book issue/return tracking.
+- **Description**: Enterprise dual-interface management system with role-based access control (RBAC), JWT authentication, and automated book issue/return tracking.
 - **Link**: https://github.com/SohamSawalakhe/Library-Management-System
 
-### 3. Immersive 3D Developer Portfolio
-- **Technologies**: React, Three.js, Vite, TypeScript, WebGL, Framer Motion
+### 3. Customer Data Platform (CDP) Chatbot
+- **Technologies**: Python, NLP, Vector Embeddings, FastAPI, React
+- **Description**: Intelligent support assistant processing documentation across Segment, mParticle, Lytics, and Zeotap with semantic search and cross-CDP comparisons.
+
+### 4. Any Search Multi-Threaded Engine
+- **Technologies**: C++, Python, Multi-threading, OS File Indexing
+- **Description**: High-performance local file indexing tool traversing deep file structures with sub-50ms latency and concurrent search threads.
+
+### 5. Real-Time Data Analytics Hub
+- **Technologies**: React, Node.js, WebSockets, Chart.js, Redis
+- **Description**: Telemetry streaming pipeline rendering live financial and system metrics, real-time alert thresholds, and multi-tenant performance graphs.
+
+### 6. Immersive 3D Developer Portfolio & Neural Telemetry Engine
+- **Technologies**: HTML5, Vanilla CSS Design System, JavaScript, Anime.js, WebGL Canvas
 - **Website**: https://sohamsawalakhe.space/
-- **Description**: Interactive WebGL portfolio with responsive scrollytelling, custom shaders, and particle dynamics.
+- **Description**: Ultra-luxury engineering portfolio featuring real-time 100-frame character canvas, interactive 3D avatar gaze tracking, Porsche GT3 inspired telemetry scrollytelling, and responsive design.
 
 ---
 
