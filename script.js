@@ -608,19 +608,7 @@ function initAboutScrolltelling() {
     if (currentActivePhase === phase && !force) return;
     currentActivePhase = phase;
 
-    // 1. Physically move & zoom the artwork to focus on the active phase
-    if (backdrop) {
-      if (phase === 1) {
-        // Focus on College & campus era (top-left)
-        backdrop.style.transform = 'scale(1.08) translate3d(4%, 2%, 0)';
-      } else if (phase === 2) {
-        // Smoothly glide to Research & applied AI era (center / Soham / city)
-        backdrop.style.transform = 'scale(1.22) translate3d(-3%, -4%, 0)';
-      } else if (phase === 3) {
-        // Smoothly glide to Production systems & dual-monitor setup (right)
-        backdrop.style.transform = 'scale(1.16) translate3d(-9%, 2%, 0)';
-      }
-    }
+    // Backdrop stays fixed — no pan/zoom between phases
 
     // 2. Update tab buttons
     tabs.forEach(tab => {
@@ -841,6 +829,183 @@ function initProjectsSideScroll() {
   updateSideScroll();
 }
 
+/* ─── FLOATING AMBIENT MUSIC PLAYER ENGINE ──────────────────── */
+function initAmbientMusicPlayer() {
+  const player = document.getElementById('ambientPlayer');
+  if (!player) return;
+
+  const toggleBtn = document.getElementById('playerToggleBtn');
+  const closeBtn = document.getElementById('playerCloseBtn');
+  const playPauseBtn = document.getElementById('pPlayPauseBtn');
+  const playIcon = document.getElementById('pPlayIcon');
+  const playText = document.getElementById('pPlayText');
+  const muteBtn = document.getElementById('pMuteBtn');
+  const muteIcon = document.getElementById('pMuteIcon');
+  const volSlider = document.getElementById('pVolumeSlider');
+  const playlistSelect = document.getElementById('playlistSelect');
+  const audio = document.getElementById('ambientAudio');
+
+  const miniTitle = document.getElementById('pMiniTitle');
+  const trackName = document.getElementById('pTrackName');
+  const trackSub = document.getElementById('pTrackSub');
+  const trackIcon = document.getElementById('pTrackIcon');
+  const tagPill = document.querySelector('.p-tag-pill');
+  const waveStatus = document.getElementById('pWaveStatus');
+
+  let isPlaying = true; // Initiated at start
+
+  // Set initial volume
+  if (audio) {
+    audio.volume = volSlider ? parseFloat(volSlider.value) : 0.35;
+  }
+
+  function updatePlayUI(playing) {
+    isPlaying = playing;
+    player.classList.toggle('is-playing', playing);
+    if (playPauseBtn) playPauseBtn.classList.toggle('is-playing', playing);
+    if (playIcon) playIcon.textContent = playing ? '⏸' : '▶';
+    if (playText) playText.textContent = playing ? 'Pause Soundtrack' : 'Play Soundtrack';
+    if (waveStatus) waveStatus.textContent = playing ? 'Soothing Melodies • Running' : 'Soundtrack Paused';
+  }
+
+  function updateTrackMetadata() {
+    if (!playlistSelect) return;
+    const opt = playlistSelect.options[playlistSelect.selectedIndex];
+    if (!opt) return;
+
+    const name = opt.getAttribute('data-name') || opt.textContent;
+    const sub = opt.getAttribute('data-sub') || '';
+    const tag = opt.getAttribute('data-tag') || '';
+    const icon = opt.getAttribute('data-icon') || '🚀';
+
+    const shortName = name.includes('•') ? name.split('•')[1].trim().replace(' Theme', '') : name;
+    if (miniTitle) miniTitle.textContent = icon + ' ' + shortName;
+    if (trackName) trackName.textContent = name;
+    if (trackSub) trackSub.textContent = sub;
+    if (trackIcon) trackIcon.textContent = icon;
+    if (tagPill) tagPill.textContent = tag;
+  }
+
+  function startPlayback() {
+    if (!audio) return;
+    updatePlayUI(true);
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        updatePlayUI(true);
+      }).catch((err) => {
+        console.log('[AmbientPlayer] Autoplay waiting for user gesture:', err);
+        const onFirstGesture = () => {
+          if (isPlaying) {
+            audio.play().then(() => updatePlayUI(true)).catch(() => {});
+          }
+          ['click', 'keydown', 'touchstart'].forEach(evt => {
+            window.removeEventListener(evt, onFirstGesture);
+          });
+        };
+        ['click', 'keydown', 'touchstart'].forEach(evt => {
+          window.addEventListener(evt, onFirstGesture, { once: true, passive: true });
+        });
+      });
+    }
+  }
+
+  function pausePlayback() {
+    if (!audio) return;
+    audio.pause();
+    updatePlayUI(false);
+  }
+
+  // Play / Pause toggle button
+  if (playPauseBtn) {
+    playPauseBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (audio && !audio.paused) {
+        pausePlayback();
+      } else {
+        startPlayback();
+      }
+    });
+  }
+
+  // Mini pill toggle button
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      player.classList.toggle('collapsed');
+      if (audio && audio.paused && isPlaying) {
+        startPlayback();
+      }
+    });
+  }
+
+  // Close button
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      player.classList.add('collapsed');
+    });
+  }
+
+  // Mute button
+  if (muteBtn && audio) {
+    muteBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      audio.muted = !audio.muted;
+      if (muteIcon) muteIcon.textContent = audio.muted ? '🔇' : '🔊';
+    });
+  }
+
+  // Volume slider
+  if (volSlider && audio) {
+    volSlider.addEventListener('input', (e) => {
+      e.stopPropagation();
+      audio.volume = parseFloat(e.target.value);
+      if (audio.muted && audio.volume > 0) {
+        audio.muted = false;
+        if (muteIcon) muteIcon.textContent = '🔊';
+      }
+    });
+  }
+
+  // Playlist selection
+  if (playlistSelect && audio) {
+    playlistSelect.addEventListener('change', () => {
+      const newSrc = playlistSelect.value;
+      updateTrackMetadata();
+      const wasPlaying = isPlaying;
+      audio.src = newSrc;
+      audio.load();
+      if (wasPlaying) {
+        startPlayback();
+      }
+    });
+  }
+
+  // Initialize UI with metadata and active state
+  updateTrackMetadata();
+  updatePlayUI(true);
+
+  // Auto-initiate playback
+  startPlayback();
+
+  // Listen to preloader completion to ensure playback
+  window.addEventListener('preloaderFinished', () => {
+    if (audio && audio.paused && isPlaying) {
+      startPlayback();
+    }
+  });
+
+  // Guarantee playback on first page interaction
+  const triggerOnAnyInteraction = () => {
+    if (audio && audio.paused && isPlaying) {
+      startPlayback();
+    }
+  };
+  window.addEventListener('click', triggerOnAnyInteraction, { passive: true });
+}
+
+
 function initPortfolioApp() {
   console.log('[Portfolio] Initializing app modules...');
   if (typeof init3DCardTilt === 'function') init3DCardTilt();
@@ -848,6 +1013,7 @@ function initPortfolioApp() {
   if (typeof initRadarSimulator === 'function') initRadarSimulator();
   if (typeof initAboutScrolltelling === 'function') initAboutScrolltelling();
   if (typeof initProjectsSideScroll === 'function') initProjectsSideScroll();
+  if (typeof initAmbientMusicPlayer === 'function') initAmbientMusicPlayer();
   console.log('[Portfolio] All modules initialized successfully!');
 }
 

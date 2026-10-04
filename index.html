@@ -236,7 +236,7 @@
           <span class="bar bar-3"></span>
           <span class="bar bar-4"></span>
         </div>
-        <span class="audio-pill-label">STUDIO SOUNDSCAPES READY &bull; SPIRITED AWAY GRAND PIANO</span>
+        <span class="audio-pill-label">STUDIO SOUNDSCAPES READY &bull; NARUTO: DAYLIGHT OF KONOHA</span>
       </div>
     </div>
 
@@ -1571,7 +1571,7 @@
             <a href="https://github.com/SohamSawalakhe" target="_blank" class="social-btn">GitHub ↗</a>
             <a href="https://www.linkedin.com/in/soham-sawalakhe-901366278/" target="_blank" class="social-btn">LinkedIn
               ↗</a>
-            <span class="social-btn static">📍 Amravati / Pune, India</span>
+            <span class="social-btn static">📍 Mumbai / Amravati, India</span>
           </div>
         </div>
 
@@ -1595,7 +1595,7 @@
                 <span class="cdc-metric-lbl">Availability</span>
               </div>
               <div class="cdc-metric">
-                <span class="cdc-metric-val">Mumbai / Pune</span>
+                <span class="cdc-metric-val">Mumbai / Amravati</span>
                 <span class="cdc-metric-lbl">Location / Remote</span>
               </div>
               <div class="cdc-metric">
@@ -1647,7 +1647,7 @@
   </footer>
 
   <!-- ─── FLOATING AMBIENT MUSIC PLAYER: PLEASANT CODER THEME ──────────────── -->
-  <div id="ambientPlayer" class="ambient-player collapsed">
+  <div id="ambientPlayer" class="ambient-player collapsed is-playing">
 
     <!-- Mini Bar / Toggle Pill -->
     <button id="playerToggleBtn" class="player-toggle-btn" aria-label="Toggle Pleasant Coder ambient player">
@@ -1655,7 +1655,7 @@
         <span class="disc-dot"></span>
       </div>
       <div class="player-mini-info">
-        <span class="p-now-title" id="pMiniTitle">🌸 Spirited Away</span>
+        <span class="p-now-title" id="pMiniTitle">☀️ Daylight of Konoha</span>
         <div class="p-equalizer">
           <span class="eq-bar bar-1"></span>
           <span class="eq-bar bar-2"></span>
@@ -1668,7 +1668,7 @@
     <!-- Expanded Glassmorphic Panel -->
     <div class="player-expand-panel" id="playerExpandPanel">
       <div class="p-panel-header">
-        <div class="p-tag-pill">🌸 STUDIO GHIBLI • SPIRITED AWAY</div>
+        <div class="p-tag-pill">☀️ NARUTO • DAYLIGHT OF KONOHA</div>
         <button class="p-close-btn" id="playerCloseBtn" aria-label="Minimize player">✕</button>
       </div>
 
@@ -1676,11 +1676,11 @@
       <div class="p-track-display">
         <div class="p-track-artwork">
           <span class="artwork-pulse"></span>
-          <span class="artwork-icon" id="pTrackIcon">🌸</span>
+          <span class="artwork-icon" id="pTrackIcon">☀️</span>
         </div>
         <div class="p-track-meta">
-          <h4 class="p-track-name" id="pTrackName">Studio Ghibli • Spirited Away Theme</h4>
-          <span class="p-track-sub" id="pTrackSub">Peaceful Acoustic Grand Piano for Deep Focus</span>
+          <h4 class="p-track-name" id="pTrackName">Naruto • Daylight of Konoha</h4>
+          <span class="p-track-sub" id="pTrackSub">Warm Morning Acoustic Guitar &amp; Sunshine • Anime OST</span>
         </div>
       </div>
 
@@ -1698,19 +1698,19 @@
           <span class="w-bar w-9"></span>
           <span class="w-bar w-10"></span>
         </div>
-        <span class="p-wave-status" id="pWaveStatus">Soothing Melodies • Running</span>
+        <span class="p-wave-status" id="pWaveStatus">Uplifting Anime Energy • Running</span>
       </div>
 
       <!-- Playlist Selector -->
       <div class="p-playlist-selector">
         <label for="playlistSelect" class="p-select-label">SELECT FOCUS SOUNDSCAPE</label>
         <select id="playlistSelect" class="p-select-dropdown">
+          <option value="audio/naruto-daylight-konoha.mp3" data-name="Naruto • Daylight of Konoha"
+            data-sub="Warm Morning Acoustic Guitar &amp; Sunshine" data-tag="☀️ NARUTO • DAYLIGHT OF KONOHA" data-icon="☀️" selected>☀️ Naruto • Daylight of Konoha (Acoustic Guitar)</option>
           <option value="audio/spirited-away-piano.mp3" data-name="Studio Ghibli • Spirited Away Theme"
-            data-sub="Peaceful Acoustic Grand Piano for Deep Focus" data-tag="🌸 STUDIO GHIBLI • SPIRITED AWAY" data-icon="🌸" selected>🌸 Studio Ghibli • Spirited Away (Peaceful Piano)</option>
+            data-sub="Peaceful Acoustic Grand Piano for Deep Focus" data-tag="🌸 STUDIO GHIBLI • SPIRITED AWAY" data-icon="🌸">🌸 Studio Ghibli • Spirited Away (Peaceful Piano)</option>
           <option value="audio/naruto-sadness-and-sorrow.mp3" data-name="Naruto • Sadness and Sorrow"
             data-sub="Iconic Acoustic Flute &amp; Gentle Piano" data-tag="🍃 NARUTO • SADNESS &amp; SORROW" data-icon="🍃">🍃 Naruto • Sadness and Sorrow (Acoustic Theme)</option>
-          <option value="audio/naruto-daylight-konoha.mp3" data-name="Naruto • Daylight of Konoha"
-            data-sub="Warm Morning Acoustic Guitar &amp; Sunshine" data-tag="☀️ NARUTO • DAYLIGHT OF KONOHA" data-icon="☀️">☀️ Naruto • Daylight of Konoha (Acoustic Guitar)</option>
           <option value="audio/naruto-loneliness.mp3" data-name="Naruto • Loneliness &amp; Flow"
             data-sub="Gentle Emotional Piano &amp; Ambient Strings" data-tag="🌧️ NARUTO • LONELINESS &amp; WORK" data-icon="🌧️">🌧️ Naruto • Loneliness &amp; Flow (Piano)</option>
           <option value="audio/cozy-lofi-beats.wav" data-name="Pleasant Coder • Cozy Lo-Fi Rain &amp; Rhodes"
@@ -1729,9 +1729,9 @@
 
       <!-- Controls Row -->
       <div class="p-controls-row">
-        <button id="pPlayPauseBtn" class="p-action-btn primary-btn">
-          <span id="pPlayIcon">▶</span>
-          <span id="pPlayText">Play Soundtrack</span>
+        <button id="pPlayPauseBtn" class="p-action-btn primary-btn is-playing">
+          <span id="pPlayIcon">⏸</span>
+          <span id="pPlayText">Pause Soundtrack</span>
         </button>
         <button id="pMuteBtn" class="p-action-btn secondary-btn" title="Toggle Mute">
           <span id="pMuteIcon">🔊</span>
@@ -1741,13 +1741,13 @@
       <!-- Volume Control -->
       <div class="p-volume-box">
         <span class="p-vol-icon">🔉</span>
-        <input type="range" id="pVolumeSlider" min="0" max="1" step="0.05" value="0.30" class="p-vol-slider"
+        <input type="range" id="pVolumeSlider" min="0" max="1" step="0.05" value="0.35" class="p-vol-slider"
           aria-label="Volume slider" />
         <span class="p-vol-icon">🔊</span>
       </div>
 
       <!-- Hidden Native Audio Element -->
-      <audio id="ambientAudio" preload="auto" loop src="audio/spirited-away-piano.mp3"></audio>
+      <audio id="ambientAudio" preload="auto" loop src="audio/naruto-daylight-konoha.mp3"></audio>
     </div>
 
   </div>

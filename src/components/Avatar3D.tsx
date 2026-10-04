@@ -81,14 +81,22 @@ export default function Avatar3D({
       targetRy = 0;
     };
 
-    // Listen on the window for smooth trailing even outside the card
-    window.addEventListener('mousemove', onMouseMove);
+    // Listen only on the card so tilt doesn't track during scroll
+    card.addEventListener('mousemove', onMouseMove);
     card.addEventListener('mouseleave', onMouseLeave);
+
+    // Reset tilt on scroll so the card doesn't drift when scrolling
+    const onScroll = () => {
+      targetRx = 0;
+      targetRy = 0;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
 
     return () => {
       cancelAnimationFrame(rafId);
-      window.removeEventListener('mousemove', onMouseMove);
+      card.removeEventListener('mousemove', onMouseMove);
       card.removeEventListener('mouseleave', onMouseLeave);
+      window.removeEventListener('scroll', onScroll);
     };
   }, [isHovered]);
 

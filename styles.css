@@ -2263,8 +2263,7 @@ body {
   z-index: 1;
   pointer-events: none;
   filter: contrast(1.02) brightness(1.01);
-  transform: scale(1.02);
-  transition: opacity 0.4s ease;
+
   will-change: auto;
 }
 
@@ -5332,6 +5331,18 @@ body {
 
 .p-action-btn.primary-btn:hover {
   background: #000;
+  transform: translateY(-2px);
+}
+
+.p-action-btn.primary-btn.is-playing {
+  background: var(--amber);
+  color: #1a1612;
+  box-shadow: 0 4px 16px rgba(224, 138, 0, 0.35);
+}
+
+.p-action-btn.primary-btn.is-playing:hover {
+  background: var(--amber-dark);
+  color: #fff;
   transform: translateY(-2px);
 }
 
