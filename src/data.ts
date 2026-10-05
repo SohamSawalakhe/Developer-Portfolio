@@ -66,7 +66,7 @@ export const data = {
     freelance: "Available",
     github: "https://github.com/SohamSawalakhe",
     linkedin: "https://www.linkedin.com/in/soham-sawalakhe-901366278/",
-    resume: "/Resume_Soham_Sawalakhe.pdf",
+    resume: "/Soham_Sawalakhe_Resume.pdf",
     image: "/Soham2.jpg",
     typedItems: ["Software Developer", "AI/ML Engineer", "Full Stack Developer", "Data Scientist", "Problem Solver"]
   },
